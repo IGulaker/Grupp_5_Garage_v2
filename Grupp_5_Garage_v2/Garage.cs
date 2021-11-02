@@ -13,6 +13,7 @@ namespace Grupp_5_Garage_v2
             get => default;
             set
             {
+                NumberOfParkingLots = value;
             }
         }
 
