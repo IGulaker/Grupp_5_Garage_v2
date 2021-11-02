@@ -6,7 +6,15 @@ namespace Grupp_5_Garage_v2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Grupp 5!");
+            for (int i = 0; i < 20; i++)
+            {
+                Vehicle myVehicle = new Vehicle();
+                Console.WriteLine();
+                Console.WriteLine(myVehicle.GetBasicInfo());
+                Console.WriteLine();
+                Console.WriteLine(myVehicle.GetFullInfo());
+            }
+           
         }
     }
 }
