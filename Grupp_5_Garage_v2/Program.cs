@@ -6,7 +6,7 @@ namespace Grupp_5_Garage_v2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello Grupp 5!");
         }
     }
 }
