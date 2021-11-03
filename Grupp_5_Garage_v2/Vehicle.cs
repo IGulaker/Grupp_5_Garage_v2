@@ -22,7 +22,7 @@ namespace Grupp_5_Garage_v2
         public Vehicle()
         {
             Random random = new Random();
-            Fuel = (FuelType)random.Next(7);
+            Fuel = (FuelType)random.Next();
             for (int i = 0; i < 3; i++)
             {
                 char[] unAllowedLetters = { 'i', 'q', 'v' };
@@ -54,9 +54,9 @@ namespace Grupp_5_Garage_v2
             nextReceiptNumber++;
 
         }
-        protected string GetBasicInfo()
+        public string GetBasicInfo()
         {
-            return $"{RegNr}\t{Manufacturer.PadRight(15).Substring(0, 15)} Kvittonr: {ReceiptNumber}";
+            return $"{RegNr}\t{Manufacturer.PadRight(15).Substring(0, 15)}{VehicleType().PadRight(16).Substring(0,16)} Kvittonr: {ReceiptNumber}";
         }
         protected string GetFullInfo()
         {

@@ -32,8 +32,6 @@ namespace Grupp_5_Garage_v2
             if (IsMopedClassTwo) RegNr = "*REGISTRERINGSNUMMER SAKNAS*";
         }
 
-       
-
         public override string ToString()
         {
             return $"{this.GetFullInfo()}Hjälmförvaring: {(HasHelmetBox ? "Ja": "Nej")}";
