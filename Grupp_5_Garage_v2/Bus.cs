@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Vehicle1
 {
-    class Bus  : Vehicle
+    class Bus : Vehicle
     {
-        public bool BusCompany { get; set; } 
+        public bool BusCompany { get; set; }
         public bool IsDoubleDeck { get; set; }
+        public Bus()
+        {
+
+        }
     }
 }
