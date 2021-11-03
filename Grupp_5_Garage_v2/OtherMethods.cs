@@ -32,7 +32,7 @@ namespace Grupp_5_Garage_v2
                         numberOfExeptions++;
                     }
                 }
-                for (int i = 3; i < 6; i++)
+                for (int i = 3; i < 5; i++)
                 {
                     if (!Char.IsDigit(inputArray[i]))
                     {
@@ -40,6 +40,10 @@ namespace Grupp_5_Garage_v2
                         numberOfExeptions++;
                     }
                 }
+                if (!Char.IsDigit(inputArray[5]) && !IsValidLetter(inputArray[5]))
+                {
+                    exeptionMessage += $"Position {5}: {inputArray[5]} - Felaktigt tecken.\n";
+                }      
             }
             if (numberOfExeptions == 0) exeptionMessage = null;
             return (numberOfExeptions == 0 ? true : false);
