@@ -60,9 +60,9 @@ namespace Grupp_5_Garage_v2
         }
         protected string GetFullInfo()
         {
-            return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
+            return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType()}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
                 $"\nAntal hjul:\t{NumberOfWheels}\nKvittonummer:" +
-                $"\t{ReceiptNumber}";
+                $"\t{ReceiptNumber}\n";
         }
         abstract protected string VehicleType();
 
