@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Vehicle1
 {
-    class Moped : Vehicle 
+    class MotorCycle : Vehicle
     {
-        public bool HasHelmetBox { get; set; }
-        public bool IsMopedClass { get; set; }
-
+       public bool CycleType { get; set; }
+        public bool WeightClass { get; set; }
     }
 }

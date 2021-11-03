@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Vehicle1
 {
-    class Moped : Vehicle 
+    class Bus  : Vehicle
     {
-        public bool HasHelmetBox { get; set; }
-        public bool IsMopedClass { get; set; }
-
+        public bool BusCompany { get; set; } 
+        public bool IsDoubleDeck { get; set; }
     }
 }

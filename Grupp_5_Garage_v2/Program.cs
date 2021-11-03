@@ -1,12 +1,47 @@
 ﻿using System;
 
-namespace Grupp_5_Garage_v2
+
+namespace Vehicle1
+    
 {
-    class Program
+    class Vehicle
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Grupp 5!");
+            Car myObj = new Car();
+            myObj.CarName = "";
+
+          
         }
+    }
+    class Car : Vehicle 
+    {
+        private string CarName;
+        public string CarName
+        {
+            get { return CarName; }
+            set { CarName = value}
+        }
+        
+    }
+
+    class Bus : Vehicle 
+    {
+
+    }
+
+    class MotorCycle : Vehicle 
+    {
+
+    }
+
+    class Truck : Vehicle
+    {
+
+    }
+
+    class Moped : Vehicle
+    {
+
     }
 }
