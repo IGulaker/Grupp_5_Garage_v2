@@ -8,35 +8,40 @@ namespace Grupp_5_Garage_v2
 {
     internal class Moped : Vehicle
     {
-        public Moped()
+        public bool IsMopedClassTwo { get; set; }
+
+        public bool HasHelmetBox { get; set; }
+
+        public Moped() : base()
         {
-            throw new System.NotImplementedException();
+            Random random = new();
+            IsMopedClassTwo = random.Next(2) == 0;
+            HasHelmetBox = random.Next(2) == 0;
+            Size = 1;
+            NumberOfWheels = 2;
+            if (IsMopedClassTwo) RegNr = "*REGISTRERINGSNUMMER SAKNAS*";
         }
 
-        public Moped(string x)
+        public Moped(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear,
+            bool isMopedClassTwo, bool hasHelmetBox) 
+            : base(regNr, color, numberOfWheels, passengerCapacity, fuel, manufacturer, modelYear)
         {
-            throw new System.NotImplementedException();
+            IsMopedClassTwo = isMopedClassTwo;
+            HasHelmetBox = hasHelmetBox;
+            Size = 1;
+            if (IsMopedClassTwo) RegNr = "*REGISTRERINGSNUMMER SAKNAS*";
         }
 
-        public bool IsMopedClass
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public bool HasHelmetBox
-        {
-            get => default;
-            set
-            {
-            }
-        }
+       
 
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            return $"{this.GetFullInfo()}Hjälmförvaring: {(HasHelmetBox ? "Ja": "Nej")}";
+        }
+
+        protected override string VehicleType()
+        {
+            return $"Moped klass {(IsMopedClassTwo ? "I" : "II" )}";
         }
     }
 }

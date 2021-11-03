@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Grupp_5_Garage_v2/1.0.0": {
+        "runtime": {
+          "Grupp_5_Garage_v2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Grupp_5_Garage_v2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
