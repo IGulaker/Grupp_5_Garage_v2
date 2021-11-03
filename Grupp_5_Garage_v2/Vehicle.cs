@@ -21,8 +21,8 @@ namespace Grupp_5_Garage_v2
 
         public Vehicle()
         {
-            Random random = new Random();
-            Fuel = (FuelType)random.Next();
+            Random random = new();
+            Fuel = (FuelType)random.Next(0, Enum.GetNames(typeof(FuelType)).Length);
             for (int i = 0; i < 3; i++)
             {
                 char[] unAllowedLetters = { 'i', 'q', 'v' };
@@ -34,8 +34,8 @@ namespace Grupp_5_Garage_v2
                 } while (unAllowedLetters.Contains(letter));
                 RegNr += letter.ToString().ToUpper();
             }
-            RegNr += random.Next(1000);
-            Color = random.Next(2) == 0 ? "Vit" : "Grå";
+            RegNr += random.Next(1000).ToString("000");
+            Color = ((Colors)random.Next(0, Enum.GetNames(typeof(Colors)).Length)).ToString();
             Manufacturer = ((RandomManufacturer)random.Next(0, Enum.GetNames(typeof(RandomManufacturer)).Length)).ToString();
             ModelYear = random.Next(1980, DateTime.Now.Year);
             ReceiptNumber = nextReceiptNumber;
@@ -56,15 +56,14 @@ namespace Grupp_5_Garage_v2
         }
         public string GetBasicInfo()
         {
-            return $"{RegNr}\t{Manufacturer.PadRight(15).Substring(0, 15)}{VehicleType().PadRight(16).Substring(0,16)} Kvittonr: {ReceiptNumber}";
+            return $"\t{RegNr}\t{VehicleType.PadRight(16).Substring(0, 16)} {Manufacturer.PadRight(15).Substring(0, 15)} Kvittonr: {ReceiptNumber}";
         }
         protected string GetFullInfo()
         {
-            return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType()}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
+            return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
                 $"\nAntal hjul:\t{NumberOfWheels}\nKvittonummer:" +
                 $"\t{ReceiptNumber}\n";
         }
-        abstract protected string VehicleType();
-
+        abstract protected string VehicleType { get; }
     }
 }

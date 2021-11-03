@@ -39,4 +39,18 @@ namespace Grupp_5_Garage_v2
         Chevrolet,
         Toyota
     }
+
+    enum Colors
+    {
+        Vit,
+        Svart,
+        Grå,
+        Röd,
+        Silver,
+        Blå,
+        Rosa,
+        Grön,
+        Orange,
+        Gul,
+    }
 }
