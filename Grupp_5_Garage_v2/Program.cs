@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections;
 
 namespace Grupp_5_Garage_v2
 {
@@ -6,23 +8,28 @@ namespace Grupp_5_Garage_v2
     {
         static void Main(string[] args)
         {
-            Moped moped = new("ABC123", "röd", 2, 2, FuelType.Bensin, "BMW", 1873, false, true);
-            TypeBasicInfo(moped);
+            //Moped moped = new("ABC123", "röd", 2, 2, FuelType.Bensin, "BMW", 1873, false, true);
+            //TypeBasicInfo(moped);
 
-            Vehicle vehicle = new Car();
-            TypeBasicInfo(vehicle);
+            //Vehicle vehicle = new Car();
+            //TypeBasicInfo(vehicle);
 
-            vehicle = new MotorCycle();
-            TypeBasicInfo(vehicle);
+            //vehicle = new MotorCycle();
+            //TypeBasicInfo(vehicle);
 
-            vehicle = new Bus();
-            TypeBasicInfo(vehicle);
+            //vehicle = new Bus();
+            //TypeBasicInfo(vehicle);
 
-            vehicle = new Truck();
-            TypeBasicInfo(vehicle);
+            //vehicle = new Truck();
+            //TypeBasicInfo(vehicle);
 
-            vehicle = new Moped();
-            TypeBasicInfo(vehicle);
+            //vehicle = new Moped();
+            //TypeBasicInfo(vehicle);
+
+
+            GarageManager garageManager = new GarageManager();
+            Console.WriteLine(garageManager.GetVehicleTypeString(2)); 
+
         }
 
         private static void TypeBasicInfo(Vehicle vehicle)
@@ -31,5 +38,17 @@ namespace Grupp_5_Garage_v2
             Console.WriteLine(vehicle.GetBasicInfo());
             Console.WriteLine(vehicle);
         }
+
+        private static void TestMethod()
+        {
+
+
+            
+
+
+        }
+
+
+
     }
 }
