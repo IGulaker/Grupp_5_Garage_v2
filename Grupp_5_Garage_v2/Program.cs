@@ -28,7 +28,10 @@ namespace Grupp_5_Garage_v2
 
 
             GarageManager garageManager = new();
-            Console.WriteLine(garageManager.GetVehicleType(1)); 
+            Console.WriteLine(garageManager.GetVehicleType(1));
+            Console.WriteLine("");
+            Console.WriteLine(garageManager.GetVehicleType(2));
+
 
         }
 
@@ -38,17 +41,5 @@ namespace Grupp_5_Garage_v2
             Console.WriteLine(vehicle.GetBasicInfo());
             Console.WriteLine(vehicle);
         }
-
-        private static void TestMethod()
-        {
-
-
-            
-
-
-        }
-
-
-
     }
 }

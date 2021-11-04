@@ -9,10 +9,6 @@ namespace Grupp_5_Garage_v2
     public class GarageManager
     {
         Garage<Vehicle> myGarage;
-
-
-        public int ThisIsAnInt { get; set; }
-
         public GarageManager()
         {
             myGarage = new Garage<Vehicle>();
@@ -20,20 +16,20 @@ namespace Grupp_5_Garage_v2
             myGarage.AddVehicle(new Car());
             myGarage.AddVehicle(new Moped());
             myGarage.AddVehicle(new Car());
+            myGarage.AddVehicle(new Moped());
+            myGarage.AddVehicle(new MotorCycle());
+            myGarage.AddVehicle(new Bus());
         }
 
-        public string GetVehicleType(int input)
+        public string GetVehicleType(int input) => input switch
         {
-            return input switch
-            {
-                1 => myGarage.GetVehicleTypeString<Car>(),
-                2 => myGarage.GetVehicleTypeString<Moped>(),
-                3 => myGarage.GetVehicleTypeString<MotorCycle>(),
-                4 => myGarage.GetVehicleTypeString<Truck>(),
-                5 => myGarage.GetVehicleTypeString<Bus>(),
-                _ => null,
-            };
-        }
+            1 => myGarage.GetVehicleTypeString<Car>(),
+            2 => myGarage.GetVehicleTypeString<Moped>(),
+            3 => myGarage.GetVehicleTypeString<MotorCycle>(),
+            4 => myGarage.GetVehicleTypeString<Truck>(),
+            5 => myGarage.GetVehicleTypeString<Bus>(),
+            _ => null,
+        };
 
     }
 }
