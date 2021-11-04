@@ -31,7 +31,8 @@ namespace Grupp_5_Garage_v2
             Console.WriteLine(garageManager.GetVehicleType(1));
             Console.WriteLine("");
             Console.WriteLine(garageManager.GetVehicleType(2));
-
+            Console.WriteLine("");
+            Console.WriteLine(garageManager.GetVehicleType(5));
 
         }
 
