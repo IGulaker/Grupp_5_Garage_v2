@@ -7,24 +7,32 @@ namespace Grupp_5_Garage_v2
         static void Main(string[] args)
         {
             Moped moped = new("ABC123", "röd", 2, 2, FuelType.Bensin, "BMW", 1873, false, true);
-            Console.WriteLine(moped.GetBasicInfo());
-            Console.WriteLine(moped.ToString());
+            TypeBasicInfo(moped);
 
+            Vehicle vehicle = new Car();
+            TypeBasicInfo(vehicle);
+            Console.WriteLine(vehicle.Size);
 
-            //Garage garage = new Garage();
-            //var garage1 = new Garage<object>();
-            //garage1.AddVehicle(new Moped("BCD123", "Svart", 4, 5, FuelType.Diesel, "Audi", 2000, false, true));
-            //garage1.AddVehicle(new Moped("AER123", "Röd", 4, 5, FuelType.Hybrid, "Bmw", 2010, true, false));
-            //garage1.ListVehicles();
-            //Console.WriteLine(garage1.ListTypeOfVehicle(1)); 
+            vehicle = new MotorCycle();
+            TypeBasicInfo(vehicle);
+            Console.WriteLine(vehicle.Size);
+            vehicle = new Bus("ABC123", "Blå", 6, 187, FuelType.Hybrid, "MAN", 2018, "Busspojken", true);
+            TypeBasicInfo(vehicle);
+            Console.WriteLine(vehicle.Size);
+            vehicle = new Truck();
+            TypeBasicInfo(vehicle);
+            Console.WriteLine(vehicle.Size);
+            vehicle = new Moped();
+            TypeBasicInfo(vehicle);
+            Console.WriteLine(vehicle.Size);
 
-            Garage<Vehicle> garage = new Garage<Vehicle>();
-            Moped moped1 = new Moped("ETT123", "Gul", 2, 2, FuelType.Bensin, "Yamaha", 1999, true, false);
-            garage.AddVehicle(moped1);
-            Moped moped2 = new Moped("TVÅ123", "Vit", 2, 2, FuelType.Bensin, "Szusuki", 1998, false, true);
-            garage.AddVehicle(moped2);
-            
+        }
 
+        private static void TypeBasicInfo(Vehicle vehicle)
+        {
+            Console.WriteLine("");
+            Console.WriteLine(vehicle.GetBasicInfo());
+            Console.WriteLine(vehicle);
         }
     }
 }
