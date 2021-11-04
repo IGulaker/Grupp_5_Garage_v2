@@ -27,8 +27,8 @@ namespace Grupp_5_Garage_v2
             //TypeBasicInfo(vehicle);
 
 
-            GarageManager garageManager = new GarageManager();
-            Console.WriteLine(garageManager.GetVehicleTypeString(1)); 
+            GarageManager garageManager = new();
+            Console.WriteLine(garageManager.GetVehicleType(1)); 
 
         }
 

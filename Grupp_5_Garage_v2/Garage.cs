@@ -18,14 +18,14 @@ namespace Grupp_5_Garage_v2
             }
         }
 
-        private List<T> parkedvehicles = new List<T>();
+        private List<T> parkedvehicles = new();
 
         public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
 
         private List<U> GetVehicleType<U>() where U : T
         {
-            List<U> newList = new List<U>();
+            List<U> newList = new();
 
             newList.AddRange(from T vehicle in parkedvehicles
                              where vehicle is U

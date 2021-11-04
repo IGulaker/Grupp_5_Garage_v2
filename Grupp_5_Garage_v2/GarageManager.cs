@@ -22,32 +22,18 @@ namespace Grupp_5_Garage_v2
             myGarage.AddVehicle(new Car());
         }
 
-        public string GetVehicleTypeString(int input)
+        public string GetVehicleType(int input)
         {
-            string output = "";
-
-            foreach (Vehicle item in myGarage)
+            return input switch
             {
-
-                switch (input)
-                {
-                    case 1:
-                        return myGarage.GetVehicleTypeString<Car>();
-                    case 2:
-                        return myGarage.GetVehicleTypeString<Moped>();
-                    case 3:
-                        return myGarage.GetVehicleTypeString<MotorCycle>();
-                    default:
-                        break;
-                }
-            }
-
-
-
-            return output;
+                1 => myGarage.GetVehicleTypeString<Car>(),
+                2 => myGarage.GetVehicleTypeString<Moped>(),
+                3 => myGarage.GetVehicleTypeString<MotorCycle>(),
+                4 => myGarage.GetVehicleTypeString<Truck>(),
+                5 => myGarage.GetVehicleTypeString<Bus>(),
+                _ => null,
+            };
         }
-
-
 
     }
 }
