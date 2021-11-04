@@ -6,6 +6,10 @@ namespace Grupp_5_Garage_v2
 {
     class Program
     {
+        private static GarageManager GarageManager;
+        private static Dictionary<int, string> Choices;
+        private static int CurrentChoice;
+
         static void Main(string[] args)
         {
             Start();
@@ -14,6 +18,7 @@ namespace Grupp_5_Garage_v2
         private static void Start()
         {
             Introduction();
+            
         }
 
         private static void Introduction()
