@@ -7,8 +7,8 @@ namespace Grupp_5_Garage_v2
     class Program
     {
         private static GarageManager GarageManager;
-        private static Dictionary<int, string> Choices;
-        private static int CurrentChoice;
+        private static Dictionary<ChoiceID, string> Choices;
+        private static ChoiceID CurrentChoice;
 
         static void Main(string[] args)
         {
@@ -18,9 +18,9 @@ namespace Grupp_5_Garage_v2
         private static void Start()
         {
             Introduction();
-            
+            UISetup();
+            GarageManager.Setup();
         }
-
         private static void Introduction()
         {
             string tab = "\t\t\t";
@@ -34,7 +34,12 @@ namespace Grupp_5_Garage_v2
             WriteLine($"{tab}                                                                            ____|  |");
             WriteLine($"{tab}                                                                           |______/");
             ForegroundColor = ConsoleColor.White;
-            ReadKey();
+        }
+
+        private static void UISetup()
+        {
+            GarageManager = new GarageManager();
+            Choices = new Dictionary<ChoiceID, string>();
         }
     }
 }
