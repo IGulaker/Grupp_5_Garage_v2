@@ -76,7 +76,10 @@ namespace Grupp_5_Garage_v2
             CurrentChoice = 0;
 
             Choices.Add(ChoiceID.CreateGarage, "Skapa ett nytt garage.");
-            Choices.Add(ChoiceID.LoadGarage, "Ladda ett sparat garage");
+            Choices.Add(ChoiceID.LoadGarage, "Ladda ett sparat garage.");
+            Choices.Add(ChoiceID.AddVehicle, "Parkera ett fordon.");
+            Choices.Add(ChoiceID.RemoveVehicle, "Hämta ut ett fordon.");
+            Choices.Add(ChoiceID.ListAllVehicles, "Visa alla fordon som står i garaget.");
         }
     }
 }
