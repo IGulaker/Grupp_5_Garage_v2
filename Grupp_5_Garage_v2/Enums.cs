@@ -39,4 +39,9 @@ namespace Grupp_5_Garage_v2
         Chevrolet,
         Toyota
     }
+
+    enum ChoiceID
+    {
+        
+    }
 }
