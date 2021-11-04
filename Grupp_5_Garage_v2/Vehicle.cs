@@ -23,22 +23,11 @@ namespace Grupp_5_Garage_v2
         {
             Random random = new();
             Fuel = (FuelType)random.Next(0, Enum.GetNames(typeof(FuelType)).Length);
-            for (int i = 0; i < 3; i++)
-            {
-                char[] unAllowedLetters = { 'i', 'q', 'v' };
-                char letter;
-                do
-                {
-                    int num = random.Next(0, 26);
-                    letter = (char)('a' + num);
-                } while (unAllowedLetters.Contains(letter));
-                RegNr += letter.ToString().ToUpper();
-            }
-            RegNr += random.Next(1000).ToString("000");
             Color = ((Colors)random.Next(0, Enum.GetNames(typeof(Colors)).Length)).ToString();
             Manufacturer = ((RandomManufacturer)random.Next(0, Enum.GetNames(typeof(RandomManufacturer)).Length)).ToString();
             ModelYear = random.Next(1980, DateTime.Now.Year);
             ReceiptNumber = nextReceiptNumber;
+            GetRandomRegNr();
             nextReceiptNumber++;
         }
         public Vehicle(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear)
@@ -54,6 +43,29 @@ namespace Grupp_5_Garage_v2
             nextReceiptNumber++;
 
         }
+        private void GetRandomRegNr()
+        {
+            Random random = new();
+            for (int i = 0; i < 3; i++)
+            {
+                char[] unAllowedLetters = { 'i', 'q', 'v' };
+                char letter;
+                do
+                {
+                    int num = random.Next(0, 26);
+                    letter = (char)('a' + num);
+                } while (unAllowedLetters.Contains(letter));
+                RegNr += letter.ToString().ToUpper();
+            }
+            RegNr += random.Next(100).ToString("00");
+            if (ModelYear >= 2019 && random.Next(2) == 0)
+            {
+                int num = random.Next(0, 26);
+                char letter = (char)('a' + num);
+                RegNr += letter.ToString().ToUpper();
+            }
+            else RegNr += random.Next(10);
+        }
         public string GetBasicInfo()
         {
             return $"\t{RegNr}\t{VehicleType.PadRight(16).Substring(0, 16)} {Manufacturer.PadRight(15).Substring(0, 15)} Kvittonr: {ReceiptNumber}";
@@ -61,7 +73,7 @@ namespace Grupp_5_Garage_v2
         protected string GetFullInfo()
         {
             return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
-                $"\nAntal hjul:\t{NumberOfWheels}\nKvittonummer:" +
+                $"\nAntal hjul:\t{NumberOfWheels}\nPassagerare:\t{(PassengerCapacity>0 ? PassengerCapacity : "Inga")}\nKvittonummer:" +
                 $"\t{ReceiptNumber}\n";
         }
         abstract protected string VehicleType { get; }

@@ -14,10 +14,12 @@ namespace Grupp_5_Garage_v2
         public Bus()
         {
             Random random = new();
-            BusCompany = "DSB - Det slumpmässiga bussbolaget";
+            BusCompany = ((BusCompanies)random.Next(0, Enum.GetNames(typeof(BusCompanies)).Length)).ToString().Replace('_', ' ');
             IsDoubleDeck = random.Next(2) == 0;
-            Size = 4;
             NumberOfWheels = 4;
+            PassengerCapacity = (IsDoubleDeck) ? random.Next(60, 82) : random.Next(8, 60);
+            Size = (PassengerCapacity > 30) ? 4 : 3;
+
         }
 
         public Bus(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear, string busCompany, bool isDoubleDeck)
@@ -25,7 +27,9 @@ namespace Grupp_5_Garage_v2
         {
             IsDoubleDeck = isDoubleDeck;
             BusCompany = busCompany;
-            Size = 4;
+            if (PassengerCapacity > 60 && !IsDoubleDeck) PassengerCapacity = 60;
+            else if (PassengerCapacity > 81 && IsDoubleDeck) PassengerCapacity = 81;
+            Size = (PassengerCapacity > 30) ? 4 : 3;
         }
 
         protected override string VehicleType => "Buss";
