@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Truck : Vehicle 
+    public class Truck : Vehicle 
     {
         public bool Boogie { get; set; }
         public bool SleepingCabin { get; set; }

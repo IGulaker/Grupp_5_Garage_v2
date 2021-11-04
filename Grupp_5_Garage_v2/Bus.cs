@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Bus : Vehicle
+    public class Bus : Vehicle
     {
         public string BusCompany { get; set; }
         public bool IsDoubleDeck { get; set; }

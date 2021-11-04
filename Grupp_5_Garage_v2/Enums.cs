@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    enum FuelType
+    public enum FuelType
     {
         Bensin,
         Diesel,
@@ -14,13 +14,13 @@ namespace Grupp_5_Garage_v2
         Gas,
         El
     }
-    enum WeightClass
+    public enum WeightClass
     {
         Lätt,
         Mellan,
         Tung,
     }
-    enum MotorCycleType
+    public enum MotorCycleType
     {
         Basic,
         Allroad,
@@ -29,7 +29,7 @@ namespace Grupp_5_Garage_v2
         Sport,
         Touring,
     }
-    enum RandomManufacturer
+    public enum RandomManufacturer
     {
         Volvo,
         Mercedes,
@@ -40,7 +40,7 @@ namespace Grupp_5_Garage_v2
         Toyota
     }
 
-    enum Colors
+    public enum Colors
     {
         Vit,
         Svart,
@@ -54,7 +54,7 @@ namespace Grupp_5_Garage_v2
         Gul,
     }
     
-    enum BusCompanies
+    public enum BusCompanies
     {
         Wallners_Buss,
         Wahlmans_Buss_AB,

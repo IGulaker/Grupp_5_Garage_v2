@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         public int NumberOfDoors { get; set; }
         public bool Rails { get; set; }

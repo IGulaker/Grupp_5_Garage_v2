@@ -9,7 +9,7 @@ namespace Grupp_5_Garage_v2
     /// <summary>
     /// Statiska metoder för att kolla regnummer..
     /// </summary>
-    static class OtherMethods
+    static class InputValidation
     {
         public static bool IsValidLicenseNumber(string input, out string exeptionMessage)
         {
