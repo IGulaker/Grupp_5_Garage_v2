@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,76 +7,63 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Garage
+    public class Garage<T> : IEnumerable<T> where T: Vehicle
     {
-        public int NumberOfParkingLots
-        {
-            get => default;
-            set
-            {
-                NumberOfParkingLots = value;
-            }
-        }
+        public Garage<T> Next;
+        public T Value;
+        public int NumberOfParkingLots { get; set; }
+        List<Vehicle> ParkedVehicles = new List<Vehicle>();
+        List<Vehicle> UnParkedVehicles = new List<Vehicle>();
 
-        public List<Vehicle> ParkedVehicles
-        {
-            get => default;
-            set
-            {
-            }
-        }
-
-        public List<Vehicle> UnparkedVehicle
-        {
-            get => default;
-            set
-            {
-            }
-        }
 
         public void ListVehicles()
         {
-            throw new System.NotImplementedException();
+            foreach (Vehicle item in ParkedVehicles)
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        public void ListTypeOfVehicle()
+        public List<Vehicle> ListTypeOfVehicle(int test)
         {
-            throw new System.NotImplementedException();
+            List<Vehicle> tempList = new List<Vehicle>();
+            switch (test)
+            {
+                case 1:
+                    foreach (Moped item in ParkedVehicles)
+                    {
+                        tempList.Add(item);
+                        GarageManager garageManager = new GarageManager();
+                        garageManager.ConvertToString(tempList);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            return tempList;
+        }
+        public bool AddVehicle(Vehicle vehicle)
+        {
+            ParkedVehicles.Add(vehicle);
+            return true;
         }
 
-        public bool AddVehicle()
+        public bool RemoveVehicle(Vehicle vehicle)
         {
-            throw new System.NotImplementedException();
+            ParkedVehicles.Remove(vehicle);
+            UnParkedVehicles.Add(vehicle);
+            return true;
         }
 
-        public bool RemoveVehicle()
+        public IEnumerator GetEnumerator()
         {
-            throw new System.NotImplementedException();
+            return ((IEnumerable)ParkedVehicles).GetEnumerator();
         }
-
-        public Vehicle SearchVehicle(string regNum)
+        public string GetVehicleTypeString()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public string SearchByColor()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByModelYear(int model)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByManufacturer(string manufacturer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByReceiptNumber(int receiptNumber)
-        {
-            throw new System.NotImplementedException();
+            GetVehicleType();
         }
     }
 }
