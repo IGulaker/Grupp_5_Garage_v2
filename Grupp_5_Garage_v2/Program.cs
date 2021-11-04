@@ -13,12 +13,13 @@ namespace Grupp_5_Garage_v2
         static void Main(string[] args)
         {
             Start();
-            HandleUserInput();
+            InputLoop();
         }
 
 
-        private static void HandleUserInput()
+        private static void InputLoop()
         {
+            if (CurrentChoice > 0) Clear();
             AskUserWhatTheyWantToDo();
             ListChoices();
             ConsoleKeyInfo key = RecieveUserChoiceSelection();
@@ -32,14 +33,23 @@ namespace Grupp_5_Garage_v2
                 for (int i = 1; i <= 2; i++)
                 {
                     WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
+                    index++;
+                }
+            }
+            else
+            {
+                for (int i = 3; i <= Choices.Count; i++)
+                {
+                    WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
+                    index++;
                 }
             }
         }
 
         private static void AskUserWhatTheyWantToDo()
         {
-            WriteLine("_________________");
             WriteLine("Vad vill du göra?");
+            WriteLine("-----------------");
         }
 
         private static ConsoleKeyInfo RecieveUserChoiceSelection()
