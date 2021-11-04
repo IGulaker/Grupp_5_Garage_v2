@@ -9,28 +9,36 @@ namespace Grupp_5_Garage_v2
 {
     public class Garage<T> : IEnumerable<T> where T: Vehicle
     {
-        public Garage<T> Next;
-        public T Value;
         public int NumberOfParkingLots { get; set; }
-        List<Vehicle> ParkedVehicles = new List<Vehicle>();
-        List<Vehicle> UnParkedVehicles = new List<Vehicle>();
+
+        List<T> parkedVehicles = new List<T>();
+        List<T> unParkedVehicles = new List<T>();
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return parkedVehicles.GetEnumerator();
+        }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return parkedVehicles.GetEnumerator();
+        }
 
 
         public void ListVehicles()
         {
-            foreach (Vehicle item in ParkedVehicles)
+            foreach (Vehicle item in parkedVehicles)
             {
                 Console.WriteLine(item);
             }
         }
 
-        public List<Vehicle> ListTypeOfVehicle(int test)
+        public List<T> ListTypeOfVehicle(int test)
         {
-            List<Vehicle> tempList = new List<Vehicle>();
+            List<T> tempList = new List<T>();
             switch (test)
             {
                 case 1:
-                    foreach (Moped item in ParkedVehicles)
+                    foreach (T item in parkedVehicles)
                     {
                         tempList.Add(item);
                         GarageManager garageManager = new GarageManager();
@@ -44,26 +52,36 @@ namespace Grupp_5_Garage_v2
 
             return tempList;
         }
-        public bool AddVehicle(Vehicle vehicle)
+        public bool AddVehicle(T vehicleRegNr)
         {
-            ParkedVehicles.Add(vehicle);
-            return true;
+            if (vehicleRegNr != null)
+            {
+                parkedVehicles.Add(vehicleRegNr);
+                return true;
+            }
+            else
+            {
+                unParkedVehicles.Add(vehicleRegNr);
+            }
+
+            return false;
         }
 
-        public bool RemoveVehicle(Vehicle vehicle)
+        public bool RemoveVehicle(T vehicle)
         {
-            ParkedVehicles.Remove(vehicle);
-            UnParkedVehicles.Add(vehicle);
+            parkedVehicles.Remove(vehicle);
+            unParkedVehicles.Add(vehicle);
             return true;
         }
 
         public IEnumerator GetEnumerator()
         {
-            return ((IEnumerable)ParkedVehicles).GetEnumerator();
+            return ((IEnumerable)parkedVehicles).GetEnumerator();
         }
         public string GetVehicleTypeString()
         {
-            GetVehicleType();
+            //GetVehicleType();
+            return null;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Grupp_5_Garage_v2
             Garage<Vehicle> garage = new Garage<Vehicle>();
             Moped moped1 = new Moped("ETT123", "Gul", 2, 2, FuelType.Bensin, "Yamaha", 1999, true, false);
             garage.AddVehicle(moped1);
-            Moped moped2 = new Moped("TVÅ123", "Vit", 2, 2, FuelType.Bensin, "Szusuki", 1998, false, true);
+            Moped moped2 = new Moped("TVÅ123", "Vit", 2, 2, FuelType.Bensin, "Suzuki", 1998, false, true);
             garage.AddVehicle(moped2);
             
 
