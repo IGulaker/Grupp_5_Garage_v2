@@ -26,7 +26,14 @@ namespace Grupp_5_Garage_v2
 
         private static void ListChoices()
         {
-            
+            int index = 1;
+            if (CurrentChoice == 0)
+            {
+                for (int i = 1; i <= 2; i++)
+                {
+                    WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
+                }
+            }
         }
 
         private static void AskUserWhatTheyWantToDo()
@@ -66,6 +73,10 @@ namespace Grupp_5_Garage_v2
         {
             GarageManager = new GarageManager();
             Choices = new Dictionary<ChoiceID, string>();
+            CurrentChoice = 0;
+
+            Choices.Add(ChoiceID.CreateGarage, "Skapa ett nytt garage.");
+            Choices.Add(ChoiceID.LoadGarage, "Ladda ett sparat garage");
         }
     }
 }
