@@ -14,7 +14,7 @@ namespace Grupp_5_Garage_v2
         Gas,
         El
     }
-    public  enum WeightClass
+    public enum WeightClass
     {
         Lätt,
         Mellan,
@@ -53,7 +53,7 @@ namespace Grupp_5_Garage_v2
         Orange,
         Gul,
     }
-    
+
     enum BusCompanies
     {
         Wallners_Buss,

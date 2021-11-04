@@ -8,23 +8,11 @@
     "net5.0": []
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\vikto\\.nuget\\packages\\": {}
-=======
-<<<<<<< HEAD
-    "C:\\Users\\vikto\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\andre\\.nuget\\packages\\": {}
->>>>>>> origin/Swing
->>>>>>> origin/Viktor_2
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\vikto\\Documents\\GitHub\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
-=======
-<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\vikto\\Documents\\GitHub\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
       "projectName": "Grupp_5_Garage_v2",
       "projectPath": "C:\\Users\\vikto\\Documents\\GitHub\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
@@ -33,21 +21,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "C:\\Users\\andre\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
->>>>>>> origin/Viktor_2
-      "projectName": "Grupp_5_Garage_v2",
-      "projectPath": "C:\\Users\\vikto\\Documents\\GitHub\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
-      "packagesPath": "C:\\Users\\vikto\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vikto\\Documents\\GitHub\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\vikto\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> origin/Swing
->>>>>>> origin/Viktor_2
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
