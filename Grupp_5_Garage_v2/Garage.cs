@@ -7,63 +7,111 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    public class Garage<T> : IEnumerable<T> where T: Vehicle
+    public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        public Garage<T> Next;
-        public T Value;
-        public int NumberOfParkingLots { get; set; }
-        List<Vehicle> ParkedVehicles = new List<Vehicle>();
-        List<Vehicle> UnParkedVehicles = new List<Vehicle>();
+        public int NumberOfParkingLots
+        {
+            get => default;
+            set
+            {
+                NumberOfParkingLots = value;
+            }
+        }
+
+        private List<T> parkedvehicles = new();
+
+        public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
+
+        private List<U> GetVehicleType<U>() where U : T
+        {
+            List<U> newList = new();
+
+            newList.AddRange(from T vehicle in parkedvehicles
+                             where vehicle is U
+                             select vehicle as U);
+
+            return newList;
+        }
+
+        public string GetVehicleTypeString<U>() where U : T
+        {
+            List<U> newList = GetVehicleType<U>();
+
+            string output = "";
+            foreach (U item in newList)
+            {
+                output += item + "\n\n";
+            }
+
+            return output;
+        }
+
+
+        public List<T> ParkedVehicles
+        {
+            get { return parkedvehicles; }
+        }
+
+        public List<Vehicle> UnparkedVehicle
+        {
+            get => default;
+            set
+            {
+            }
+        }
+
+
 
 
         public void ListVehicles()
         {
-            foreach (Vehicle item in ParkedVehicles)
+            throw new System.NotImplementedException();
+        }
+
+        public void ListTypeOfVehicle()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool AddVehicle(T inVehicle)
+        {
+            if (inVehicle != null)
             {
-                Console.WriteLine(item);
+                ParkedVehicles.Add(inVehicle);
+                return true;
             }
+            return false;
         }
 
-        public List<Vehicle> ListTypeOfVehicle(int test)
+        public bool RemoveVehicle()
         {
-            List<Vehicle> tempList = new List<Vehicle>();
-            switch (test)
-            {
-                case 1:
-                    foreach (Moped item in ParkedVehicles)
-                    {
-                        tempList.Add(item);
-                        GarageManager garageManager = new GarageManager();
-                        garageManager.ConvertToString(tempList);
-                    }
-
-                    break;
-                default:
-                    break;
-            }
-
-            return tempList;
-        }
-        public bool AddVehicle(Vehicle vehicle)
-        {
-            ParkedVehicles.Add(vehicle);
-            return true;
+            throw new System.NotImplementedException();
         }
 
-        public bool RemoveVehicle(Vehicle vehicle)
+        public Vehicle SearchVehicle(string regNum)
         {
-            ParkedVehicles.Remove(vehicle);
-            UnParkedVehicles.Add(vehicle);
-            return true;
+            throw new System.NotImplementedException();
         }
 
-        public IEnumerator GetEnumerator()
+        public string SearchByColor()
         {
-            return ((IEnumerable)ParkedVehicles).GetEnumerator();
+            throw new System.NotImplementedException();
         }
-        public string GetVehicleTypeString()
+
+        public void SearchByModelYear(int model)
         {
-            GetVehicleType();
+            throw new System.NotImplementedException();
+        }
+
+        public void SearchByManufacturer(string manufacturer)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SearchByReceiptNumber(int receiptNumber)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

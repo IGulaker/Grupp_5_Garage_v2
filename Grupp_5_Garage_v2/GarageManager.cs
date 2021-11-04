@@ -6,45 +6,34 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class GarageManager
+    public class GarageManager
     {
+        Garage<Vehicle> myGarage;
+
+
         public int ThisIsAnInt { get; set; }
-        public Garage myGarage { get; set; }
 
-        public void SetUp()
+        public GarageManager()
         {
+            myGarage = new Garage<Vehicle>();
 
+            myGarage.AddVehicle(new Car());
+            myGarage.AddVehicle(new Moped());
+            myGarage.AddVehicle(new Car());
         }
-        public Garage LoadGarage()
-        {
-        }
-        public void SaveGarage(Garage garage)
-        {
 
-        }
-        public string SearchVehicle(string input)
+        public string GetVehicleType(int input)
         {
-            return null;
+            return input switch
+            {
+                1 => myGarage.GetVehicleTypeString<Car>(),
+                2 => myGarage.GetVehicleTypeString<Moped>(),
+                3 => myGarage.GetVehicleTypeString<MotorCycle>(),
+                4 => myGarage.GetVehicleTypeString<Truck>(),
+                5 => myGarage.GetVehicleTypeString<Bus>(),
+                _ => null,
+            };
         }
-        public string SearchByColor(string input)
-        {
-            return null;
-        }
-        public string Manufacture(string input)
-        {
-            return null;
-        }
-        public int SearchByModelYear(int input)
-        {
-            return 0;
-        }
-        public int SearchByReceiptNumber(int input)
-        {
-            return 0;
-        }
-        public string ConvertToString(List<T> lista)
-        {
-            return "Convert to string";
-        }
+
     }
 }
