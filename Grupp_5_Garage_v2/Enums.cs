@@ -53,4 +53,16 @@ namespace Grupp_5_Garage_v2
         Orange,
         Gul,
     }
+    
+    enum BusCompanies
+    {
+        Wallners_Buss,
+        Wahlmans_Buss_AB,
+        Strömberg_Buss_AB,
+        Nettbuss_Stadsbussarna_AB,
+        Gunnars_Buss,
+        Merresor_Buss,
+        Vy_Buss_Stadsbussarna,
+        Hedmans_Buss_och_Taxi
+    }
 }

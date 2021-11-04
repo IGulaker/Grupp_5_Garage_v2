@@ -20,6 +20,7 @@ namespace Grupp_5_Garage_v2
             SleepingCabin = random.Next(2) == 0;
             Size = 4;
             NumberOfWheels = random.Next(4,7);
+            PassengerCapacity = random.Next(1,9);
         }
 
         public Truck(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear, bool boogie, bool sleepingcabin)
@@ -28,6 +29,7 @@ namespace Grupp_5_Garage_v2
             Boogie = boogie;
             SleepingCabin = sleepingcabin;
             Size = 4;
+            if (PassengerCapacity > 9) PassengerCapacity = 9;
         }
 
         public override string ToString() => $"{GetFullInfo()}Boogie:\t\t{(Boogie ? "Ja" : "Nej")}\nSovkabin: \t{(SleepingCabin ? "Ja" : "Nej")}";

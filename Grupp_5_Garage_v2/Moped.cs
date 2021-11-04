@@ -12,11 +12,12 @@ namespace Grupp_5_Garage_v2
 
         public bool HasHelmetBox { get; set; }
 
-        public Moped() : base()
+        public Moped()
         {
             Random random = new();
             IsMopedClassTwo = random.Next(2) == 0;
             HasHelmetBox = random.Next(2) == 0;
+            PassengerCapacity = random.Next(2);
             Setup();
         }
 
@@ -34,6 +35,7 @@ namespace Grupp_5_Garage_v2
             Size = 1;
             NumberOfWheels = 2;
             if (IsMopedClassTwo) RegNr = "*REGISTRERINGSNUMMER SAKNAS*";
+            if (PassengerCapacity > 1) PassengerCapacity = 1;
         }
 
         public override string ToString() => $"{GetFullInfo()}Hjälmförvaring: {(HasHelmetBox ? "Ja" : "Nej")}";

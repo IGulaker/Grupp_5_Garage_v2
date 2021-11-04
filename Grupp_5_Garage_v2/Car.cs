@@ -10,9 +10,7 @@ namespace Grupp_5_Garage_v2
     {
         public int NumberOfDoors { get; set; }
         public bool Rails { get; set; }
-
-        protected override string VehicleType => "Bil";
-
+      
         public Car()
         {
             Random random = new();
@@ -20,6 +18,7 @@ namespace Grupp_5_Garage_v2
             Rails = random.Next(2) == 0;
             Size = 2;
             NumberOfWheels = 4;
+            PassengerCapacity = random.Next(1,9);
         }
 
         public Car(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear, int numberofdoors, bool rails)
@@ -28,7 +27,9 @@ namespace Grupp_5_Garage_v2
             Rails = rails;
             NumberOfDoors = numberofdoors;
             Size = 2;
+            if (PassengerCapacity > 8) PassengerCapacity = 8;
         }
+        protected override string VehicleType => "Bil";
 
         public override string ToString() => $"{GetFullInfo()}Antal dörrar: \t{NumberOfDoors}\nTakräcke: \t{(Rails ? "Ja" : "Nej")}";
     }
