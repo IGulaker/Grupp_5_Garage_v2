@@ -13,14 +13,40 @@ namespace Grupp_5_Garage_v2
         static void Main(string[] args)
         {
             Start();
+            HandleUserInput();
         }
 
+
+        private static void HandleUserInput()
+        {
+            AskUserWhatTheyWantToDo();
+            ListChoices();
+            ConsoleKeyInfo key = RecieveUserChoiceSelection();
+        }
+
+        private static void ListChoices()
+        {
+            
+        }
+
+        private static void AskUserWhatTheyWantToDo()
+        {
+            WriteLine("_________________");
+            WriteLine("Vad vill du göra?");
+        }
+
+        private static ConsoleKeyInfo RecieveUserChoiceSelection()
+        {
+            return ReadKey();
+        }
+        
         private static void Start()
         {
             Introduction();
             UISetup();
             GarageManager.Setup();
         }
+        
         private static void Introduction()
         {
             string tab = "\t\t\t";
