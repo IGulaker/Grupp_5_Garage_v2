@@ -65,3 +65,11 @@ C:\Users\andre\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0
 C:\Users\andre\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.pdb
 C:\Users\andre\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.genruntimeconfig.cache
 >>>>>>> origin/Swing
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.csproj.AssemblyReference.cache
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.AssemblyInfoInputs.cache
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.AssemblyInfo.cs
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.csproj.CoreCompileInputs.cache
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.dll
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\ref\Grupp_5_Garage_v2.dll
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.pdb
