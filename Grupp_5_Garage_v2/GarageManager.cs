@@ -9,5 +9,10 @@ namespace Grupp_5_Garage_v2
     public class GarageManager
     {
         public int ThisIsAnInt { get; set; }
+
+        public void Setup()
+        {
+
+        }
     }
 }
