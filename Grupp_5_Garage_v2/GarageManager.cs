@@ -34,5 +34,10 @@ namespace Grupp_5_Garage_v2
             _ => null,
         };
 
+        public void Setup()
+        {
+
+        }
+
     }
 }
