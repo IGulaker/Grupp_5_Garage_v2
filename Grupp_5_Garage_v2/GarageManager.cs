@@ -84,6 +84,7 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     break;
                 case ChoiceID.AddVehicle:
+                    AddVehicle(input, out message);
                     break;
                 case ChoiceID.RemoveVehicle:
                     break;
@@ -99,6 +100,9 @@ namespace Grupp_5_Garage_v2
             return "";
         }
 
-
+        private void AddVehicle(string input, out string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
