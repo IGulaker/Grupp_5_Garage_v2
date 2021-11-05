@@ -19,6 +19,7 @@ namespace Grupp_5_Garage_v2
         }
 
         private List<T> parkedvehicles = new();
+        private List<T> unparkedvehicles = new();
 
         public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
@@ -52,12 +53,9 @@ namespace Grupp_5_Garage_v2
             get { return parkedvehicles; }
         }
 
-        public List<Vehicle> UnparkedVehicle
+        public List<T> UnparkedVehicles
         {
-            get => default;
-            set
-            {
-            }
+            get { return unparkedvehicles; }
         }
 
 
@@ -82,10 +80,6 @@ namespace Grupp_5_Garage_v2
             return false;
         }
 
-                    break;
-                default:
-                    break;
-            }
 
         public Vehicle SearchVehicle(string regNum)
         {
@@ -99,8 +93,9 @@ namespace Grupp_5_Garage_v2
 
         public bool RemoveVehicle(T vehicle)
         {
-            parkedVehicles.Remove(vehicle);
-            unParkedVehicles.Add(vehicle);
+
+            parkedvehicles.Remove(vehicle);
+            unparkedvehicles.Add(vehicle);
             return true;
         }
 
