@@ -8,8 +8,21 @@ namespace Vehicle1
 {
     class Car : Vehicle
     {
-        public bool NumberOfDoors { get; set; }
+        public int NumberOfDoors { get; set; }
         public bool Rails { get; set; }
         
+    }
+
+    public Car()
+    {
+
+    }
+    public Car( ref  Car)
+    {
+
+    }
+    public override string ToString()
+    {
+        return base.ToString();
     }
 }

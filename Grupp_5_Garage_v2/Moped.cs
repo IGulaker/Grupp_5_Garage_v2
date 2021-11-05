@@ -12,4 +12,17 @@ namespace Vehicle1
         public bool IsMopedClass { get; set; }
 
     }
+    public Mope()
+    {
+
+    }
+    public Moped(ref Moped)
+    {
+
+    }
+    public override string Tostring()
+    {
+        return base.ToString();
+    }
+
 }

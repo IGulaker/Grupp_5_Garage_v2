@@ -11,4 +11,16 @@ namespace Vehicle1
        public bool CycleType { get; set; }
         public bool WeightClass { get; set; }
     }
+    public MotorCycle()
+    {
+
+    }
+    public MotorCycle(ref MotorCycle)
+    {
+
+    }
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }

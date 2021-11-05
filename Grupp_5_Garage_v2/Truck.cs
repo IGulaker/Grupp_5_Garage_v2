@@ -12,4 +12,16 @@ namespace Vehicle1
         public bool SleepingCabin { get; set; }
 
     }
+    public Truck()
+    {
+
+    }
+    public Truck( ref Truck)
+    {
+
+    }
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }
