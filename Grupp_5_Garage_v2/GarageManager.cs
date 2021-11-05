@@ -26,11 +26,11 @@ namespace Grupp_5_Garage_v2
 
         public string GetVehicleType(int input) => input switch
         {
-            1 => myGarage.GetVehicleTypeString<Car>(),
-            2 => myGarage.GetVehicleTypeString<Moped>(),
-            3 => myGarage.GetVehicleTypeString<MotorCycle>(),
-            4 => myGarage.GetVehicleTypeString<Truck>(),
-            5 => myGarage.GetVehicleTypeString<Bus>(),
+            1 => myGarage.ListVehicleTypeString<Car>(),
+            2 => myGarage.ListVehicleTypeString<Moped>(),
+            3 => myGarage.ListVehicleTypeString<MotorCycle>(),
+            4 => myGarage.ListVehicleTypeString<Truck>(),
+            5 => myGarage.ListVehicleTypeString<Bus>(),
             _ => null,
         };
 
@@ -54,8 +54,9 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.RemoveVehicle:
                     break;
                 case ChoiceID.ListAllVehicles:
-                    return myGarage.GetVehicleTypeString<Car>();
-                    //break;
+                    return myGarage.ListVehicles();
+                case ChoiceID.ListCars:
+                    return myGarage.ListVehicleTypeString<Car>();
                 default:
                     break;
             }

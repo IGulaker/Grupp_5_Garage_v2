@@ -34,6 +34,8 @@ namespace Grupp_5_Garage_v2
             if (char.IsDigit(key.KeyChar))
             {
                 CurrentChoice = (ChoiceID)key.KeyChar - 48;
+                WriteLine("");
+                string error = "";
                 switch (CurrentChoice)
                 {
                     case ChoiceID.CreateGarage:
@@ -45,14 +47,18 @@ namespace Grupp_5_Garage_v2
                     case ChoiceID.RemoveVehicle:
                         break;
                     case ChoiceID.ListAllVehicles:
-                        WriteLine("");
-                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListAllVehicles, "", out string error));
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListAllVehicles, "", out error));
+                        ReadKey();
+                        break;
+                    case ChoiceID.ListCars:
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListCars, "", out error));
                         ReadKey();
                         break;
                     default:
                         break;
                 }
             }
+            
         }
 
         private static void ListChoices()

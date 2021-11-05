@@ -73,5 +73,6 @@ namespace Grupp_5_Garage_v2
         AddVehicle,
         RemoveVehicle,
         ListAllVehicles,
+        ListCars
     }
 }

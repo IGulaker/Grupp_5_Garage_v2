@@ -34,7 +34,7 @@ namespace Grupp_5_Garage_v2
             return newList;
         }
 
-        public string GetVehicleTypeString<U>() where U : T
+        public string ListVehicleTypeString<U>() where U : T
         {
             List<U> newList = GetVehicleType<U>();
 
@@ -43,7 +43,6 @@ namespace Grupp_5_Garage_v2
             {
                 output += item + "\n\n";
             }
-
             return output;
         }
 
@@ -61,17 +60,14 @@ namespace Grupp_5_Garage_v2
             }
         }
 
-
-
-
-        public void ListVehicles()
+        public string ListVehicles()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void ListTypeOfVehicle()
-        {
-            throw new System.NotImplementedException();
+            string output = "";
+            foreach (var item in ParkedVehicles)
+            {
+                output += item + "\n\n";
+            }
+            return output;
         }
 
         public bool AddVehicle(T inVehicle)
