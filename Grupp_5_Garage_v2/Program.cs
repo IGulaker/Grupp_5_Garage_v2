@@ -19,10 +19,22 @@ namespace Grupp_5_Garage_v2
 
         private static void InputLoop()
         {
-            if (CurrentChoice > 0) Clear();
-            AskUserWhatTheyWantToDo();
-            ListChoices();
-            ConsoleKeyInfo key = RecieveUserChoiceSelection();
+            while (true)
+            {
+                if (CurrentChoice > 0) Clear();
+                AskUserWhatTheyWantToDo();
+                ListChoices();
+                ConsoleKeyInfo key = RecieveUserChoiceSelection();
+                HandleUserInput(key);
+            }
+        }
+
+        private static void HandleUserInput(ConsoleKeyInfo key)
+        {
+            if (char.IsDigit(key.KeyChar))
+            {
+                CurrentChoice = (ChoiceID)key.KeyChar;
+            }
         }
 
         private static void ListChoices()
@@ -38,7 +50,7 @@ namespace Grupp_5_Garage_v2
             }
             else
             {
-                for (int i = 3; i <= Choices.Count; i++)
+                for (int i = 2; i < Choices.Count; i++)
                 {
                     WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
                     index++;
@@ -56,14 +68,14 @@ namespace Grupp_5_Garage_v2
         {
             return ReadKey();
         }
-        
+
         private static void Start()
         {
             Introduction();
             UISetup();
             GarageManager.Setup();
         }
-        
+
         private static void Introduction()
         {
             string tab = "\t\t\t";
