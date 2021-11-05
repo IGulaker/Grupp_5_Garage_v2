@@ -42,7 +42,7 @@ namespace Grupp_5_Garage_v2
             int index = 1;
             if (CurrentChoice == 0)
             {
-                for (int i = 1; i <= 2; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
                     index++;
