@@ -45,6 +45,9 @@ namespace Grupp_5_Garage_v2
                     case ChoiceID.RemoveVehicle:
                         break;
                     case ChoiceID.ListAllVehicles:
+                        WriteLine("");
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListAllVehicles, "", out string error));
+                        ReadKey();
                         break;
                     default:
                         break;

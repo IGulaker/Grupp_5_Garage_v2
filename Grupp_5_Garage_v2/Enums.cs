@@ -54,7 +54,7 @@ namespace Grupp_5_Garage_v2
         Gul,
     }
 
-    enum BusCompanies
+    public enum BusCompanies
     {
         Wallners_Buss,
         Wahlmans_Buss_AB,
@@ -66,7 +66,7 @@ namespace Grupp_5_Garage_v2
         Hedmans_Buss_och_Taxi
     }
 
-    enum ChoiceID
+    public enum ChoiceID
     {
         CreateGarage = 1,
         LoadGarage,

@@ -39,5 +39,31 @@ namespace Grupp_5_Garage_v2
 
         }
 
+        public string ReadUIInfo(ChoiceID choiceID, string input, out string message)
+        {
+            message = "";
+
+            switch (choiceID)
+            {
+                case ChoiceID.CreateGarage:
+                    break;
+                case ChoiceID.LoadGarage:
+                    break;
+                case ChoiceID.AddVehicle:
+                    break;
+                case ChoiceID.RemoveVehicle:
+                    break;
+                case ChoiceID.ListAllVehicles:
+                    return myGarage.GetVehicleTypeString<Car>();
+                    //break;
+                default:
+                    break;
+            }
+
+
+            return "";
+        }
+
+
     }
 }
