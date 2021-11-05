@@ -82,7 +82,7 @@ namespace Grupp_5_Garage_v2
         }
 
 
-        public Vehicle SearchVehicle(string regNum)
+        public string SearchVehicle(string regNum)
         {
             throw new System.NotImplementedException();
         }
