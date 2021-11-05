@@ -43,6 +43,14 @@ namespace Grupp_5_Garage_v2
                     case ChoiceID.LoadGarage:
                         break;
                     case ChoiceID.AddVehicle:
+                        string sendthis = "ABC123_Röd_5_3_2_Hemma AB_1993_4_J";
+
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.AddVehicle, sendthis, out error));
+                        if (!string.IsNullOrEmpty(error))
+                        {
+                            Console.WriteLine(error);
+                            ReadKey();
+                        }
                         break;
                     case ChoiceID.RemoveVehicle:
                         break;

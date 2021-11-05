@@ -12,27 +12,7 @@ namespace Grupp_5_Garage_v2
         public GarageManager()
         {
             myGarage = new Garage<Vehicle>();
-
-            //myGarage.AddVehicle(new Car());
-            //myGarage.AddVehicle(new Moped());
-            //myGarage.AddVehicle(new Car());
-            //myGarage.AddVehicle(new Moped());
-            //myGarage.AddVehicle(new MotorCycle());
-            //myGarage.AddVehicle(new Bus());
-            //myGarage.AddVehicle(new Bus());
-            //myGarage.AddVehicle(new Car());
-            //myGarage.AddVehicle(new Truck());
         }
-
-        public string GetVehicleType(int input) => input switch
-        {
-            1 => myGarage.ListVehicleTypeString<Car>(),
-            2 => myGarage.ListVehicleTypeString<Moped>(),
-            3 => myGarage.ListVehicleTypeString<MotorCycle>(),
-            4 => myGarage.ListVehicleTypeString<Truck>(),
-            5 => myGarage.ListVehicleTypeString<Bus>(),
-            _ => null,
-        };
 
         public void Setup()
         {
@@ -53,22 +33,23 @@ namespace Grupp_5_Garage_v2
         {
             Random r = new Random();
             int randomNumber = r.Next(1, 6);
+            string message = "";
             switch (randomNumber)
             {
                 case 1:
-                    myGarage.AddVehicle(new Car());
+                    myGarage.AddVehicle(new Car(), out message);
                     break;
                 case 2:
-                    myGarage.AddVehicle(new Moped());
+                    myGarage.AddVehicle(new Moped(), out message);
                     break;
                 case 3:
-                    myGarage.AddVehicle(new MotorCycle());
+                    myGarage.AddVehicle(new MotorCycle(), out message);
                     break;
                 case 4:
-                    myGarage.AddVehicle(new Bus());
+                    myGarage.AddVehicle(new Bus(), out message);
                     break;
                 case 5:
-                    myGarage.AddVehicle(new Truck());
+                    myGarage.AddVehicle(new Truck(), out message);
                     break;
             }
         }
@@ -100,15 +81,73 @@ namespace Grupp_5_Garage_v2
             return "";
         }
 
-        private void AddVehicle(string input, out string message)
+        private bool AddVehicle(string input, out string message)
         {
-            throw new NotImplementedException();
-        }
-        public string CheckRegNr(string regNr)
-        {
-            SearchVehicle(regNr);
+            message = "";
 
-            return null;
+            string[] substring = input.Split('_');
+
+            if (substring.Length != 9)
+            {
+                message = "Fel antal skickade värden.";
+                return false;
+            }
+
+
+            //string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear, int numberofdoors, bool rails
+
+            string regNr, color, manufacturer;
+            int numberofwheels, passengercapacity, modelyear;
+            int noofdoors;
+            bool rails;
+            FuelType fuel;
+            GetBasicValuesConverted(substring, out regNr, out color, out numberofwheels, out passengercapacity, out fuel, out manufacturer, out modelyear);
+            GetCarValuesConverted(substring, out noofdoors, out rails);
+
+            if (DoesRegNrExist(regNr, out message))
+                return false;
+
+            if (myGarage.AddVehicle(new Car(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, noofdoors, rails), out string errormessage))
+                return true;
+            else
+            {
+                message = errormessage;
+                return false;
+            }
+        }
+
+        private static void GetCarValuesConverted(string[] substring, out int noofdoors, out bool rails)
+        {
+            noofdoors = Convert.ToInt32(substring[7]);
+            rails = (substring[8] == "J" ? true : false);
+        }
+
+        private static void GetBasicValuesConverted(string[] substring, out string regNr, out string color, out int numberofwheels, out int passengercapacity, out FuelType fuel, out string manufacturer, out int modelyear)
+        {
+            regNr = substring[0];
+            color = substring[1];
+            numberofwheels = Convert.ToInt32(substring[2]);
+            passengercapacity = Convert.ToInt32(substring[3]);
+            fuel = (FuelType)Convert.ToInt32(substring[4]);
+            manufacturer = substring[5];
+            modelyear = Convert.ToInt32(substring[6]);
+        }
+
+        public bool DoesRegNrExist(string regNr, out string errorMessage)
+        {
+            errorMessage = "";
+
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.RegNr == regNr)
+                {
+                    errorMessage = "Registreringsnumret finns redan.";
+                    return true;
+                }
+            }
+
+
+            return false;
 
         }
     }

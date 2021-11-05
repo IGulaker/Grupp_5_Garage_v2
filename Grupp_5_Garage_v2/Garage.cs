@@ -70,8 +70,9 @@ namespace Grupp_5_Garage_v2
             return output;
         }
 
-        public bool AddVehicle(T inVehicle)
+        public bool AddVehicle(T inVehicle, out string errorMessage)
         {
+            errorMessage = "";
             if (inVehicle != null)
             {
                 ParkedVehicles.Add(inVehicle);
