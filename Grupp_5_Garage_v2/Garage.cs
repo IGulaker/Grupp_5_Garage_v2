@@ -82,10 +82,10 @@ namespace Grupp_5_Garage_v2
             return false;
         }
 
-        public bool RemoveVehicle()
-        {
-            throw new System.NotImplementedException();
-        }
+                    break;
+                default:
+                    break;
+            }
 
         public Vehicle SearchVehicle(string regNum)
         {
@@ -97,9 +97,11 @@ namespace Grupp_5_Garage_v2
             throw new System.NotImplementedException();
         }
 
-        public void SearchByModelYear(int model)
+        public bool RemoveVehicle(T vehicle)
         {
-            throw new System.NotImplementedException();
+            parkedVehicles.Remove(vehicle);
+            unParkedVehicles.Add(vehicle);
+            return true;
         }
 
         public void SearchByManufacturer(string manufacturer)
