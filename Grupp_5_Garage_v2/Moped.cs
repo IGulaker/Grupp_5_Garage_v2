@@ -34,7 +34,7 @@ namespace Grupp_5_Garage_v2
         {
             Size = 1;
             NumberOfWheels = 2;
-            if (IsMopedClassTwo) RegNr = "*REGISTRERINGSNUMMER SAKNAS*";
+            if (IsMopedClassTwo) RegNr = "******";
             if (PassengerCapacity > 1) PassengerCapacity = 1;
         }
 

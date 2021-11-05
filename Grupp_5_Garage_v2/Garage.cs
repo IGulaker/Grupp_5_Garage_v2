@@ -60,12 +60,14 @@ namespace Grupp_5_Garage_v2
             }
         }
 
+
+
         public string ListVehicles()
         {
             string output = "";
             foreach (var item in ParkedVehicles)
             {
-                output += item + "\n\n";
+                output += item.GetBasicInfo() + "\n";
             }
             return output;
         }
