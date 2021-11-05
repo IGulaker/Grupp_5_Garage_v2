@@ -33,7 +33,22 @@ namespace Grupp_5_Garage_v2
         {
             if (char.IsDigit(key.KeyChar))
             {
-                CurrentChoice = (ChoiceID)key.KeyChar;
+                CurrentChoice = (ChoiceID)key.KeyChar - 48;
+                switch (CurrentChoice)
+                {
+                    case ChoiceID.CreateGarage:
+                        break;
+                    case ChoiceID.LoadGarage:
+                        break;
+                    case ChoiceID.AddVehicle:
+                        break;
+                    case ChoiceID.RemoveVehicle:
+                        break;
+                    case ChoiceID.ListAllVehicles:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
