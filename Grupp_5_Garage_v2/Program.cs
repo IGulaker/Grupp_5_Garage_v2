@@ -50,7 +50,7 @@ namespace Grupp_5_Garage_v2
             }
             else
             {
-                for (int i = 2; i < Choices.Count; i++)
+                for (int i = 3; i <= Choices.Count; i++)
                 {
                     WriteLine("{0}. {1}", index, Choices[(ChoiceID)i]);
                     index++;
