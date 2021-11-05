@@ -42,7 +42,7 @@ namespace Grupp_5_Garage_v2
 
     enum ChoiceID
     {
-        CreateGarage,
+        CreateGarage = 1,
         LoadGarage,
         AddVehicle,
         RemoveVehicle,
