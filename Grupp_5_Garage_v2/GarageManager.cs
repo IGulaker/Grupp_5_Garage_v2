@@ -104,5 +104,12 @@ namespace Grupp_5_Garage_v2
         {
             throw new NotImplementedException();
         }
+        public string CheckRegNr(string regNr)
+        {
+            SearchVehicle(regNr);
+
+            return null;
+
+        }
     }
 }
