@@ -41,18 +41,21 @@ namespace Grupp_5_Garage_v2
                     case ChoiceID.CreateGarage:
                         break;
                     case ChoiceID.LoadGarage:
+                        Console.WriteLine("Skriv Färg: ");
+                        string search = ReadLine();
+                        WriteLine(GarageManager.SearchByColor(search));
+                        ReadKey();
                         break;
                     case ChoiceID.AddVehicle:
                         string sendthis = "ABC123_Röd_5_3_2_Hemma AB_1993_4_J";
 
                         WriteLine(GarageManager.ReadUIInfo(ChoiceID.AddVehicle, sendthis, out error));
-                        if (!string.IsNullOrEmpty(error))
-                        {
-                            Console.WriteLine(error);
-                            ReadKey();
-                        }
                         break;
                     case ChoiceID.RemoveVehicle:
+                        Console.WriteLine("Skriv RegNr: ");
+                        string Search = ReadLine();
+                        WriteLine(GarageManager.SearchVehicle(Search));
+                        ReadKey();
                         break;
                     case ChoiceID.ListAllVehicles:
                         WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListAllVehicles, "", out error));
@@ -65,8 +68,15 @@ namespace Grupp_5_Garage_v2
                     default:
                         break;
                 }
+                if (!string.IsNullOrEmpty(error))
+                {
+                    Console.WriteLine(error);
+                    ReadKey();
+                }
             }
-            
+
+
+
         }
 
         private static void ListChoices()

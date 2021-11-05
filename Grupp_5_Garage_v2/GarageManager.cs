@@ -84,7 +84,6 @@ namespace Grupp_5_Garage_v2
         private bool AddVehicle(string input, out string message)
         {
             message = "";
-
             string[] substring = input.Split('_');
 
             if (substring.Length != 9)
@@ -139,14 +138,12 @@ namespace Grupp_5_Garage_v2
 
             foreach (Vehicle item in myGarage)
             {
-                if (item.RegNr == regNr)
+                if (SearchVehicle(regNr) != "")
                 {
                     errorMessage = "Registreringsnumret finns redan.";
                     return true;
                 }
             }
-
-
             return false;
 
         }
@@ -157,7 +154,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.RegNr.Contains(regNum))
                 {
-                    outputRegNum += item.GetFullInfo();   
+                    outputRegNum += item.GetFullInfo();
                 }
             }
 
