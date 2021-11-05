@@ -65,4 +65,13 @@ namespace Grupp_5_Garage_v2
         Vy_Buss_Stadsbussarna,
         Hedmans_Buss_och_Taxi
     }
+
+    enum ChoiceID
+    {
+        CreateGarage = 1,
+        LoadGarage,
+        AddVehicle,
+        RemoveVehicle,
+        ListAllVehicles,
+    }
 }
