@@ -43,6 +43,10 @@ namespace Grupp_5_Garage_v2
                     case ChoiceID.LoadGarage:
                         break;
                     case ChoiceID.AddVehicle:
+                        WriteLine("Skriv in en färg");
+                        string inputTest = Console.ReadLine();
+                        WriteLine(GarageManager.SearchVehicle(inputTest));
+                        ReadKey();
                         break;
                     case ChoiceID.RemoveVehicle:
                         break;

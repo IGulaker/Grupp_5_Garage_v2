@@ -70,7 +70,7 @@ namespace Grupp_5_Garage_v2
         {
             return $"\t{RegNr}\t{VehicleType.PadRight(16).Substring(0, 16)} {Manufacturer.PadRight(15).Substring(0, 15)} Kvittonr: {ReceiptNumber}";
         }
-        protected string GetFullInfo()
+        public string GetFullInfo()
         {
             return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
                 $"\nAntal hjul:\t{NumberOfWheels}\nPassagerare:\t{(PassengerCapacity>0 ? PassengerCapacity : "Inga")}\nKvittonummer:" +

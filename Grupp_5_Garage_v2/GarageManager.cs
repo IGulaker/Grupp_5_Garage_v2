@@ -104,5 +104,32 @@ namespace Grupp_5_Garage_v2
         {
             throw new NotImplementedException();
         }
+        public string SearchVehicle(string regNum)
+        {
+            string outputRegNum = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.RegNr.Contains(regNum))
+                {
+                    outputRegNum += item.GetFullInfo();   
+                }
+            }
+
+            return outputRegNum;
+        }
+
+        public string SearchByColor(string inputColor)
+        {
+            string outputColor = "";
+
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.Color.Contains(inputColor))
+                {
+                    outputColor += item.GetFullInfo();
+                }
+            }
+            return outputColor;
+        }
     }
 }
