@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    abstract class Vehicle
+    public class Vehicle
     {
         static int nextReceiptNumber = 1000;
         public string RegNr { get; set; }
