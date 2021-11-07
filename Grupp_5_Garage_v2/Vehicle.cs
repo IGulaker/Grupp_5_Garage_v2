@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Grupp_5_Garage_v2
 {
+    [XmlInclude(typeof(Moped))]
+    [XmlInclude(typeof(Truck))]
+    [XmlInclude(typeof(Car))]
+    [XmlInclude(typeof(MotorCycle))]
+    [XmlInclude(typeof(Bus))]
     public abstract class Vehicle
     {
         static int nextReceiptNumber = 1000;

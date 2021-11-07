@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
+    [Serializable]
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
         public int NumberOfParkingLots
@@ -78,6 +79,7 @@ namespace Grupp_5_Garage_v2
                 ParkedVehicles.Add(inVehicle);
                 return true;
             }
+            errorMessage = "Kunde inte lägga till fordonet.";
             return false;
         }
 

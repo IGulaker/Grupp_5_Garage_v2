@@ -39,12 +39,16 @@ namespace Grupp_5_Garage_v2
                 switch (CurrentChoice)
                 {
                     case ChoiceID.CreateGarage:
+                        string sendBus = "TRO623_Mörkblå_4_36_1_Stora Bussbyggarna_1997_X-Trafik_N";
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.CreateGarage, sendBus, out error));
                         break;
                     case ChoiceID.LoadGarage:
-                        Console.WriteLine("Skriv Färg: ");
-                        string search = ReadLine();
-                        WriteLine(GarageManager.SearchByColor(search));
-                        ReadKey();
+                        //WriteLine("Skriv Färg: ");
+                        //string search = ReadLine();
+                        //WriteLine(GarageManager.SearchByColor(search));
+                        //ReadKey();
+                        string sendTruck = "RIT691_Mörkblå_4_2_3_Scania_2001_N_J";
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.LoadGarage, sendTruck, out error));
                         break;
                     case ChoiceID.AddVehicle:
                         string sendthis = "ABC123_Röd_5_3_2_Hemma AB_1993_4_J";
@@ -52,17 +56,23 @@ namespace Grupp_5_Garage_v2
                         WriteLine(GarageManager.ReadUIInfo(ChoiceID.AddVehicle, sendthis, out error));
                         break;
                     case ChoiceID.RemoveVehicle:
-                        Console.WriteLine("Skriv RegNr: ");
-                        string Search = ReadLine();
-                        WriteLine(GarageManager.SearchVehicle(Search));
-                        ReadKey();
+                        //WriteLine("Skriv RegNr: ");
+                        //string Search = ReadLine();
+                        //WriteLine(GarageManager.SearchVehicle(Search));
+                        //ReadKey();
+                        string sendMotorcycle = "JAS561_Mörkblå_2_2_1_Motorcykeln 101_2011_1_2";
+                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.RemoveVehicle, sendMotorcycle, out error));
                         break;
                     case ChoiceID.ListAllVehicles:
                         WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListAllVehicles, "", out error));
                         ReadKey();
                         break;
                     case ChoiceID.ListCars:
-                        WriteLine(GarageManager.ReadUIInfo(ChoiceID.ListCars, "", out error));
+                    case ChoiceID.ListBuses:
+                    case ChoiceID.ListTrucks:
+                    case ChoiceID.ListMotorCycles:
+                    case ChoiceID.ListMopeds:
+                        WriteLine(GarageManager.ReadUIInfo(CurrentChoice, "", out error));
                         ReadKey();
                         break;
                     default:
@@ -70,7 +80,7 @@ namespace Grupp_5_Garage_v2
                 }
                 if (!string.IsNullOrEmpty(error))
                 {
-                    Console.WriteLine(error);
+                    WriteLine(error);
                     ReadKey();
                 }
             }
