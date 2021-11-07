@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    internal class Moped : Vehicle
+    public class Moped : Vehicle
     {
         public bool IsMopedClassTwo { get; set; }
 

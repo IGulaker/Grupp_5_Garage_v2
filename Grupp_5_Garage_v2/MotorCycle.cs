@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class MotorCycle : Vehicle
+    public class MotorCycle : Vehicle
     {
         public MotorCycleType CycleType { get; set; }
         public WeightClass WeightClass { get; set; }

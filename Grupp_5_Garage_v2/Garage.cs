@@ -10,20 +10,25 @@ namespace Grupp_5_Garage_v2
     [Serializable]
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        public int NumberOfParkingLots
-        {
-            get => default;
-            set
-            {
-                NumberOfParkingLots = value;
-            }
-        }
+        public int NumberOfParkingLots { get => numberOfParkingLots; set => numberOfParkingLots = value; }
+
 
         private List<T> parkedvehicles = new();
         private List<T> unparkedvehicles = new();
+        private int numberOfParkingLots;
 
         public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
+
+        public Garage()
+        {
+            NumberOfParkingLots = 5000;
+        }
+
+        public void Add(T value)
+        {
+            parkedvehicles.Add(value);
+        }
 
         private List<U> GetVehicleType<U>() where U : T
         {
@@ -84,16 +89,6 @@ namespace Grupp_5_Garage_v2
         }
 
 
-        public string SearchVehicle(string regNum)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string SearchByColor()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public bool RemoveVehicle(T vehicle)
         {
 
@@ -102,14 +97,5 @@ namespace Grupp_5_Garage_v2
             return true;
         }
 
-        public void SearchByManufacturer(string manufacturer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByReceiptNumber(int receiptNumber)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

@@ -29,6 +29,24 @@ namespace Grupp_5_Garage_v2
             }
         }
 
+        public void SaveGarage()
+        {
+            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\Garage.xml", myGarage);
+        }
+
+        public void LoadGarage()
+        {
+            try
+            {
+                myGarage = XMLUtilities.XMLFileDeserialize<Garage<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\Garage.xml");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return;
+            }
+        }
+
         private void CreateRandomVehicle()
         {
             Random r = new Random();
@@ -66,13 +84,12 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
-                    AddBus(input, out message);
+                    SaveGarage();
                     break;
                 case ChoiceID.LoadGarage:
-                    AddMoped(input, out message);
+                    LoadGarage();
                     break;
                 case ChoiceID.AddVehicle:
-                    AddCar(input, out message);
                     break;
                 case ChoiceID.RemoveVehicle:
                     AddMotorcycle(input, out message);
