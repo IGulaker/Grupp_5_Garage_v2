@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Car : Vehicle
+    class Bus  : Vehicle
     {
-        public bool NumberOfDoors { get; set; }
-        public bool Rails { get; set; }
+        public bool BusCompany { get; set; } 
+        public bool IsDoubleDeck { get; set; }
 
         protected override string VehicleType()
         {
-            return "Bil";
+            return "Buss";
         }
     }
 }

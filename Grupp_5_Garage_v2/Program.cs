@@ -6,7 +6,9 @@ namespace Grupp_5_Garage_v2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Grupp 5!");
+            Moped moped = new("ABC123", "röd", 2, 2, FuelType.Bensin, "BMW", 1873, false, true);
+            Console.WriteLine(moped.GetBasicInfo());
+            Console.WriteLine(moped.ToString());
         }
     }
 }
