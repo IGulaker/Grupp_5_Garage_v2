@@ -138,7 +138,7 @@ namespace Grupp_5_Garage_v2
         private bool AddMoped(string input, out string message)
         {
             //1. Set up variables
-            string[] ConvertedString = input.Split('_');
+            string[] ConvertedString = input.Split("???");
 
 
             //2. Check to see that we have enough values.
@@ -161,7 +161,7 @@ namespace Grupp_5_Garage_v2
         private bool AddMotorcycle(string input, out string message)
         {
             //1. Set up variables
-            string[] ConvertedString = input.Split('_');
+            string[] ConvertedString = input.Split("???");
 
 
             //2. Check to see that we have enough values.
@@ -184,7 +184,7 @@ namespace Grupp_5_Garage_v2
         private bool AddTruck(string input, out string message)
         {
             //1. Set up variables
-            string[] ConvertedString = input.Split('_');
+            string[] ConvertedString = input.Split("???");
 
 
             //2. Check to see that we have enough values.
@@ -207,7 +207,7 @@ namespace Grupp_5_Garage_v2
         private bool AddCar(string input, out string message)
         {
             //1. Set up variables
-            string[] ConvertedString = input.Split('_');
+            string[] ConvertedString = input.Split("???");
 
             //2. Check to see that we have enough values.
             if (ConvertedString.Length != 9)
@@ -229,7 +229,7 @@ namespace Grupp_5_Garage_v2
         private bool AddBus(string input, out string message)
         {
             //1. Set up variables
-            string[] ConvertedString = input.Split('_');
+            string[] ConvertedString = input.Split("???");
 
             //2. Check to see that we have enough values.
             if (ConvertedString.Length != 9)
