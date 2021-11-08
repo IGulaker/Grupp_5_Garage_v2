@@ -260,8 +260,6 @@ namespace Grupp_5_Garage_v2
             return RecieveUserString();
         }
 
-
-
         private static string RecieveVehicleToRemove()
         {
             Clear();
