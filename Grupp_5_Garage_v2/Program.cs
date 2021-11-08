@@ -512,7 +512,6 @@ namespace Grupp_5_Garage_v2
         private static void StartUp()
         {
             UISetup();
-            
             WindowHeight += 5;
 
             bool isReadyToStart = false;
@@ -526,7 +525,6 @@ namespace Grupp_5_Garage_v2
                 if (startUpChoice == "1")
                 {
                     currentMenu = MenuID.CreatingGarage;
-                    CreateGarageToAdd();
                     CommunicateWithManager(ChoiceID.CreateGarage, CreateGarageToAdd());
                     isReadyToStart = true;
                 }
