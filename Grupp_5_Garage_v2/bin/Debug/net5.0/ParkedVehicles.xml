@@ -651,32 +651,6 @@
     <Rails>true</Rails>
   </Vehicle>
   <Vehicle xsi:type="Car">
-    <RegNr>KGL188</RegNr>
-    <Color>Grön</Color>
-    <NumberOfWheels>4</NumberOfWheels>
-    <PassengerCapacity>4</PassengerCapacity>
-    <Fuel>Diesel</Fuel>
-    <Size>2</Size>
-    <Manufacturer>Mercedes</Manufacturer>
-    <ModelYear>1997</ModelYear>
-    <ReceiptNumber>1050</ReceiptNumber>
-    <NumberOfDoors>4</NumberOfDoors>
-    <Rails>false</Rails>
-  </Vehicle>
-  <Vehicle xsi:type="Car">
-    <RegNr>JUG673</RegNr>
-    <Color>Silver</Color>
-    <NumberOfWheels>4</NumberOfWheels>
-    <PassengerCapacity>5</PassengerCapacity>
-    <Fuel>Hybrid</Fuel>
-    <Size>2</Size>
-    <Manufacturer>Volvo</Manufacturer>
-    <ModelYear>2010</ModelYear>
-    <ReceiptNumber>1051</ReceiptNumber>
-    <NumberOfDoors>4</NumberOfDoors>
-    <Rails>false</Rails>
-  </Vehicle>
-  <Vehicle xsi:type="Car">
     <RegNr>UDA899</RegNr>
     <Color>Svart</Color>
     <NumberOfWheels>4</NumberOfWheels>
@@ -1143,5 +1117,31 @@
     <ReceiptNumber>1087</ReceiptNumber>
     <IsMopedClassTwo>true</IsMopedClassTwo>
     <HasHelmetBox>true</HasHelmetBox>
+  </Vehicle>
+  <Vehicle xsi:type="Car">
+    <RegNr>KGL888</RegNr>
+    <Color>Tre</Color>
+    <NumberOfWheels>3</NumberOfWheels>
+    <PassengerCapacity>4</PassengerCapacity>
+    <Fuel>Gas</Fuel>
+    <Size>2</Size>
+    <Manufacturer>2</Manufacturer>
+    <ModelYear>1932</ModelYear>
+    <ReceiptNumber>1088</ReceiptNumber>
+    <NumberOfDoors>23</NumberOfDoors>
+    <Rails>false</Rails>
+  </Vehicle>
+  <Vehicle xsi:type="Moped">
+    <RegNr>TRY763</RegNr>
+    <Color>Tre</Color>
+    <NumberOfWheels>2</NumberOfWheels>
+    <PassengerCapacity>1</PassengerCapacity>
+    <Fuel>Gas</Fuel>
+    <Size>1</Size>
+    <Manufacturer>3</Manufacturer>
+    <ModelYear>2002</ModelYear>
+    <ReceiptNumber>1089</ReceiptNumber>
+    <IsMopedClassTwo>false</IsMopedClassTwo>
+    <HasHelmetBox>false</HasHelmetBox>
   </Vehicle>
 </ArrayOfVehicle>

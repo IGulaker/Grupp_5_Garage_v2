@@ -186,14 +186,13 @@ namespace Grupp_5_Garage_v2
         private string ParkAgain(string input, out string message)
         {
             string[] SeparatedString = input.Split("???");
-
+            message = "";
             //1. If first string is "J" park again.
             if (SeparatedString[0] == "J")
             {
                 if (myGarage.ReaddVehicle(SeparatedString[1], out message, out string vehicleinfo))
-                    return $"Fordonet har parkerat \n\n{vehicleinfo}";                 
+                    return $"Fordonet har parkerat \n\n{vehicleinfo}";
             }
-            message = "Fordonet har inte parkerat";
             return "";
         }
 
