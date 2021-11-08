@@ -82,7 +82,7 @@ namespace Grupp_5_Garage_v2
                 $"\nAntal hjul:\t{NumberOfWheels}\nPassagerare:\t{(PassengerCapacity > 0 ? PassengerCapacity : "Inga")}\nKvittonummer:" +
                 $"\t{ReceiptNumber}\n";
         }
-        abstract protected string VehicleType { get; }
+        abstract public string VehicleType { get; }
         public static int NextReceiptNumber { get => nextReceiptNumber; set => nextReceiptNumber = value; }
     }
 }

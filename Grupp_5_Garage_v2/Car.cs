@@ -29,7 +29,7 @@ namespace Grupp_5_Garage_v2
             Size = 2;
             if (PassengerCapacity > 8) PassengerCapacity = 8;
         }
-        protected override string VehicleType => "Bil";
+        public override string VehicleType => "Bil";
 
         public override string ToString() => $"{GetFullInfo()}Antal dörrar: \t{NumberOfDoors}\nTakräcke: \t{(Rails ? "Ja" : "Nej")}";
     }
