@@ -280,6 +280,9 @@ namespace Grupp_5_Garage_v2
             string error;
             string vehicleSpecifications;
             string variableSeparator = "???";
+            string input;
+            bool goToNext = false;
+
             Clear();
             WriteHeader(vehicle);
             AddSeperatorLine();
@@ -287,15 +290,17 @@ namespace Grupp_5_Garage_v2
             if (choiceID != ChoiceID.CreateMoped2)
             {
                 Write("Registreringsnummer: ");
-                vehicleSpecifications = RecieveUserString();
-                bool isValidRegNr = InputValidation.IsValidLicenseNumber(vehicleSpecifications, out error);
-                if (!isValidRegNr)
+                do
                 {
-                    DisplayError(error);
-                    PauseForKeyPress();
-                    Menu();
-                }
-                else vehicleSpecifications += variableSeparator;
+                    input = RecieveUserString();
+                    goToNext = InputValidation.IsValidLicenseNumber(input, out error);
+                    if (!goToNext)
+                    {
+                        DisplayError(error);
+                        Write("Registreringsnummer: ");
+                    }
+                } while (!goToNext);
+                vehicleSpecifications = input + variableSeparator;
             }
             else
             {
@@ -304,14 +309,32 @@ namespace Grupp_5_Garage_v2
             }
 
             Write("\nFärg: ");
-            vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += variableSeparator;
+            input = RecieveUserString();
+            while (string.IsNullOrEmpty(input)) 
+            {
+                DisplayError("Du måste skriva något!");
+                Write("\nFärg: ");
+                input = RecieveUserString();
+            } 
+            vehicleSpecifications += input + variableSeparator;
             Write("\nAntal hjul: ");
-            vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += variableSeparator;
+            input = RecieveUserString();
+            while ((!int.TryParse(input, out int aNumber)))
+            {
+                DisplayError("Endast siffor tillåtna!");
+                Write("\nAntal hjul: ");
+                input = RecieveUserString();
+            }
+            vehicleSpecifications += input + variableSeparator;
             Write("\nAntal säten: ");
-            vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += variableSeparator;
+            input = RecieveUserString();
+            while ((!int.TryParse(input, out int aNumber)))
+            {
+                DisplayError("Endast siffor tillåtna!");
+                Write("\nAntal säten: ");
+                input = RecieveUserString();
+            }
+            vehicleSpecifications += input + variableSeparator;
             WriteLine("\nBränsle:");
             WriteLine("1. Bensin");
             WriteLine("2. Diesel");
@@ -319,14 +342,45 @@ namespace Grupp_5_Garage_v2
             WriteLine("4. Gas");
             WriteLine("5. El");
             Write("Val(1 - 5): ");
-            vehicleSpecifications += char.GetNumericValue(RecieveUserString()[0]);
-            vehicleSpecifications += variableSeparator;
+            do
+            {
+                input = RecieveUserString();
+                goToNext = InputValidation.IsValidFuelType(input, out error);
+                if (!goToNext)
+                {
+                    DisplayError(error);
+                    WriteLine("\nBränsle:");
+                    WriteLine("1. Bensin");
+                    WriteLine("2. Diesel");
+                    WriteLine("3. Hybrid");
+                    WriteLine("4. Gas");
+                    WriteLine("5. El");
+                    Write("Val(1 - 5): ");
+                }
+            } while (!goToNext);
+            vehicleSpecifications += input + variableSeparator ;
             Write("\nTillverkare: ");
-            vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += variableSeparator;
+            input = RecieveUserString();
+            while (string.IsNullOrEmpty(input))
+            {
+                DisplayError("Du måste skriva något!");
+                Write("\nTillverkare: ");
+                input = RecieveUserString();
+            }
+            vehicleSpecifications += input + variableSeparator ;
             Write("\nÅrsmodell: ");
-            vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += variableSeparator;
+            do
+            {
+                input = RecieveUserString();
+                goToNext = InputValidation.IsValidModelYearNumber(input, out error, out int modelYear);
+                if (!goToNext)
+                {
+                    DisplayError(error);
+                    Write("\nÅrsmodell: ");
+                }
+                else input = modelYear.ToString();
+            } while (!goToNext);
+            vehicleSpecifications += input + variableSeparator;
 
             switch (choiceID)
             {

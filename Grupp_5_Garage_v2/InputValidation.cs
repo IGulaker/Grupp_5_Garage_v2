@@ -58,5 +58,49 @@ namespace Grupp_5_Garage_v2
             }
             else return true;
         }
+        public static bool IsValidFuelType(string input, out string execptionMessage)
+        {
+            execptionMessage = "";
+            bool isValid = int.TryParse(input, out int inputValue);
+            if (!isValid)
+            {
+                execptionMessage = $"Felaktig inmatning.";
+                return false;
+            }
+            else if (isValid && (inputValue < 1 || inputValue > 5))
+            {
+                execptionMessage = $"Felaktig inmatning. Ange 1 till 5";
+                return false;
+            }
+            else return isValid;
+
+
+        }
+        public static bool IsValidModelYearNumber(string input, out string exceptionMessage, out int modelYear)
+        {
+            exceptionMessage = "";
+            bool isValid = int.TryParse(input, out modelYear);
+            if (!isValid)
+            {
+                exceptionMessage = "Endast siffor tillåtna";
+                return false;
+            }
+
+            if (modelYear < 100 && modelYear > DateTime.Now.Year - 2000)
+            {
+                modelYear += 1900;
+            }
+            else if (modelYear <= DateTime.Now.Year - 2000) modelYear += 2000;
+            if (modelYear > 1885 && modelYear <= DateTime.Now.Year)
+            {
+                return true;
+            }
+            else
+            {
+                exceptionMessage = "Ogiltigt årtal!";
+                return false;
+            }
+        }
+
     }
 }
