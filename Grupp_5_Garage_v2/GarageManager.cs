@@ -112,21 +112,16 @@ namespace Grupp_5_Garage_v2
                     return SearchVehicle(input);
                 case ChoiceID.CreateCar:
                     return AddCar(input, out message);
-
                 case ChoiceID.CreateBus:
-                    AddBus(input, out message);
-                    break;
+                    return AddBus(input, out message);
                 case ChoiceID.CreateMoped1:
                 case ChoiceID.CreateMoped:
                 case ChoiceID.CreateMoped2:
-                    AddMoped(input, out message);
-                    break;
+                    return AddMoped(input, out message);
                 case ChoiceID.CreateMotorcycle:
-                    AddMotorcycle(input, out message);
-                    break;
+                    return AddMotorcycle(input, out message);
                 case ChoiceID.CreateTruck:
-                    AddTruck(input, out message);
-                    break;
+                    return AddTruck(input, out message);
                 default:
                     break;
             }
