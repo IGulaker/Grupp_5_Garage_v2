@@ -43,7 +43,7 @@ namespace Grupp_5_Garage_v2
                         break;
                     case "2":
                         currentMenu = MenuID.GetVehicle;
-                        CommunicateWithManager(ChoiceID.RemoveVehicle, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.RemoveVehicle, RecieveSpecificStringValue());
                         currentMenu = MenuID.Main;
                         break;
                     case "3":
@@ -109,92 +109,92 @@ namespace Grupp_5_Garage_v2
                 {
                     case "1":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByRegNr, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByRegNr, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "2":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByColour, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByColour, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "3":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByNrOfWheels, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByNrOfWheels, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "4":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByNrOfSeats, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByNrOfSeats, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "5":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByFuelType, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByFuelType, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "6":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByManufacturer, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByManufacturer, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "7":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByYearModel, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByYearModel, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "8":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByReceieptNr, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByReceieptNr, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "9":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByClass, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByClass, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "10":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByHelmetBox, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByHelmetBox, RecieveSpecificBoolValue(ChoiceID.SearchByHelmetBox));
                         currentMenu = MenuID.Filter;
                         break;
                     case "11":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByWeightclass, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByWeightclass, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "12":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByType, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByType, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "13":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByRail, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByRail, RecieveSpecificBoolValue(ChoiceID.SearchByRail));
                         currentMenu = MenuID.Filter;
                         break;
                     case "14":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByNrOfDoors, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByNrOfDoors, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "15":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByDoubleDecker, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByDoubleDecker, RecieveSpecificBoolValue(ChoiceID.SearchByDoubleDecker));
                         currentMenu = MenuID.Filter;
                         break;
                     case "16":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByCompany, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByCompany, RecieveSpecificStringValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "17":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByBogie, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByBogie, RecieveSpecificBoolValue(ChoiceID.SearchByBogie));
                         currentMenu = MenuID.Filter;
                         break;
                     case "18":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchBySleepingCabin, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchBySleepingCabin, RecieveSpecificBoolValue(ChoiceID.SearchBySleepingCabin));
                         currentMenu = MenuID.Filter;
                         break;
                     case "19":
@@ -251,13 +251,27 @@ namespace Grupp_5_Garage_v2
         }
 
         // Returns a string that is used for vehicle removal, filtering.
-        private static string RecieveSpecificValue()
+        private static string RecieveSpecificStringValue()
         {
             Clear();
             WriteHeader();
             AddSeperatorLine();
             InputPrefix();
             return RecieveUserString();
+        }
+
+        private static string RecieveUserBool()
+        {
+            return ReadLine().ToUpper()[0].ToString();
+        }
+
+        private static string RecieveSpecificBoolValue(ChoiceID choiceID)
+        {
+            Clear();
+            WriteSearchBoolHeader(choiceID);
+            AddSeperatorLine();
+            InputPrefix();
+            return RecieveUserBool();
         }
 
         // Returns a string that will be used for creating a vehicle.
@@ -449,13 +463,18 @@ namespace Grupp_5_Garage_v2
         private static void WriteHeader()
         {
             ForegroundColor = ConsoleColor.Yellow;
-            if (currentMenu == MenuID.StartUp) WriteLine("(START)");
+            if (currentMenu == MenuID.StartUp || currentMenu == MenuID.CreatingGarage) WriteLine("(START)");
             else if (currentMenu == MenuID.Main) WriteLine("(HUVUDMENY)");
             else if (currentMenu == MenuID.AddVehicle || currentMenu == MenuID.CreateVehicle) WriteLine("(PARKERA FORDON)");
             else if (currentMenu == MenuID.GetVehicle) WriteLine("(HÄMTA FORDON)");
             else if (currentMenu == MenuID.Filter || currentMenu == MenuID.FilterSearch) WriteLine("(FILTER)");
 
-            if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
+            if(currentMenu == MenuID.CreatingGarage)
+            {
+                WriteLine("\nSKAPAR GARAGE");
+                WriteLine("[STORLEK PÅ FORDON: MOPED/MOTORCYKEL = 1, BIL = 2, BUSS = 3/4, LASTBIL = 4]");
+            }
+            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
             {
                 WriteLine("\nVAD VILL DU GÖRA?");
                 WriteLine("[VÄLJ EN SIFFRA]");
@@ -481,6 +500,37 @@ namespace Grupp_5_Garage_v2
             WriteLine($"\nBESKRIV DIN {vehicle.ToUpper()}.");
             WriteLine("[MATA IN INFORMATION]");
             ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void WriteSearchBoolHeader(ChoiceID choiceID)
+        {
+            ForegroundColor = ConsoleColor.Yellow;
+            WriteLine("(FILTER)");
+            Write("\nHAR DEN ");
+            switch (choiceID)
+            {
+                case ChoiceID.SearchByHelmetBox:
+                    Write("HJÄLMFÖRVARING");
+                    break;
+                case ChoiceID.SearchByWeightclass:
+                    break;
+                case ChoiceID.SearchByRail:
+                    Write("TAKRÄCKE");
+                    break;
+                case ChoiceID.SearchByDoubleDecker:
+                    Write("TVÅ VÅNINGAR");
+                    break;
+                case ChoiceID.SearchByBogie:
+                    Write("BOGGI");
+                    break;
+                case ChoiceID.SearchBySleepingCabin:
+                    Write("SOVPLATS");
+                    break;
+                default:
+                    break;
+            }
+            WriteLine('?');
+            WriteLine("[SVARA J/N]");
         }
 
         private static void AddSeperatorLine()
@@ -513,29 +563,29 @@ namespace Grupp_5_Garage_v2
                                 WriteLine("[DELADE EGENSKAPER]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 10:
+                            case 9:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[MOPED]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 12:
+                            case 11:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[MOTORCYKEL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 14:
+                            case 13:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[BIL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 16:
+                            case 15:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[BUSS]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 18:
+                            case 17:
                                 ForegroundColor = ConsoleColor.Yellow;
-                                WriteLine("[TRUCK]");
+                                WriteLine("[LASTBIL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
                             default:
@@ -561,7 +611,6 @@ namespace Grupp_5_Garage_v2
         private static void StartUp()
         {
             UISetup();
-            garageManager.Setup();
             WindowHeight += 5;
 
             bool isReadyToStart = false;
@@ -571,21 +620,39 @@ namespace Grupp_5_Garage_v2
                 Introduction();
                 DisplayMenu();
                 string startUpChoice = RecieveUserString();
-                string message = "";
 
                 if (startUpChoice == "1")
                 {
-                    garageManager.ReadUIInfo(ChoiceID.CreateGarage, null, out message);
+                    currentMenu = MenuID.CreatingGarage;
+                    CommunicateWithManager(ChoiceID.CreateGarage, CreateGarageToAdd());
                     isReadyToStart = true;
                 }
                 else if (startUpChoice == "2")
                 {
-                    garageManager.ReadUIInfo(ChoiceID.LoadGarage, null, out message);
+                    CommunicateWithManager(ChoiceID.LoadGarage, null);
                     isReadyToStart = true;
                 }
             }
 
             currentMenu = MenuID.Main;
+        }
+
+        private static string CreateGarageToAdd()
+        {
+            Clear();
+            WriteHeader();
+            AddSeperatorLine();
+            string error;
+            string garageSpecifications = "";
+            string variableSeparator = "???";
+
+            Write("Storlek på garaget: ");
+            garageSpecifications += RecieveUserString();
+            garageSpecifications += variableSeparator;
+            Write("Antal fordon som redan är parkerade: ");
+            garageSpecifications += RecieveUserString();
+
+            return garageSpecifications;
         }
 
         private static void Introduction()

@@ -14,10 +14,20 @@ namespace Grupp_5_Garage_v2
             myGarage = new Garage<Vehicle>();
         }
 
-        public void Setup()
+        public void Setup(string input, out string message)
         {
-            CreateVehicles(500);
-            
+            message = "";
+
+            string[] SeparatedString = input.Split("???");
+
+            int garagesize = Convert.ToInt32(SeparatedString[0]);
+            int vehiclestocreate = Convert.ToInt32(SeparatedString[1]);
+
+            myGarage.NumberOfParkingLots = garagesize;
+            CreateVehicles(vehiclestocreate);
+
+
+
         }
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
@@ -56,26 +66,26 @@ namespace Grupp_5_Garage_v2
         private void CreateRandomVehicle()
         {
             Random r = new Random();
-            int randomNumber = r.Next(1, 6);
+            int randomNumber = r.Next(1, 100);
             bool done = false;
             do
             {
                 string message;
                 switch (randomNumber)
                 {
-                    case 1:
+                    case > 0 and <= 51:
                         done = myGarage.AddVehicle(new Car(), out message);
                         break;
-                    case 2:
+                    case > 51 and <= 63:
                         done = myGarage.AddVehicle(new Moped(), out message);
                         break;
-                    case 3:
+                    case > 63 and <= 75:
                         done = myGarage.AddVehicle(new MotorCycle(), out message);
                         break;
-                    case 4:
+                    case > 75 and <= 87:
                         done = myGarage.AddVehicle(new Bus(), out message);
                         break;
-                    case 5:
+                    case > 87:
                         done = myGarage.AddVehicle(new Truck(), out message);
                         break;
                 }
@@ -90,7 +100,7 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
-
+                    Setup(input, out message);
                     break;
                 case ChoiceID.LoadGarage:
                     break;
@@ -122,6 +132,8 @@ namespace Grupp_5_Garage_v2
                     return AddMotorcycle(input, out message);
                 case ChoiceID.CreateTruck:
                     return AddTruck(input, out message);
+                case ChoiceID.SearchByWeightclass:
+                    return SearchByWeightclass(input);
                 default:
                     break;
             }
@@ -341,6 +353,43 @@ namespace Grupp_5_Garage_v2
             }
             return outputColor;
         }
+
+        public string SearchByNrOfWheels(int inputNumberOfWheels)
+        {
+            string outputNumberOfWheels = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.NumberOfWheels == inputNumberOfWheels)
+                {
+                    outputNumberOfWheels += item.GetFullInfo();
+                }
+            }
+            return outputNumberOfWheels;
+        }
+        public string SearchByNrOfSeats(int inputSeats)
+        {
+            string outputSeats = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.PassengerCapacity == inputSeats)
+                {
+                    outputSeats += item.GetFullInfo();
+                }
+            }
+            return outputSeats;
+        }
+        public string SearchByFuelType(string inputFuelType)
+        {
+            string outputFuelType = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.Fuel.ToString().Contains(inputFuelType.ToUpper()))
+                {
+                    outputFuelType += item.GetFullInfo();
+                }
+            }
+            return outputFuelType;
+        }
         public string SearchByManufacturer(string manufacturer)
         {
             string outputManufacturer = "";
@@ -378,5 +427,142 @@ namespace Grupp_5_Garage_v2
             }
             return outputModelYear;
         }
+        
+        // Metoder som tillhör MOPED-KLASSEN
+        #region
+        // Måste göras klart med bool
+        public string SearchByClass(string inputClass)
+        {
+            string outputClass = "";
+            foreach (Moped item in myGarage)
+            {
+                if (item.IsMopedClassTwo)
+                {
+                    outputClass += item.GetFullInfo();
+                }
+
+            }
+            return outputClass;
+        }
+
+        // Måste göras klart med bool
+        public string SearchByHelmetBox()
+        {
+            string outputHelmetBox = "";
+            foreach (Moped item in myGarage)
+            {
+
+            }
+            return outputHelmetBox;
+        }
+        #endregion
+
+        // Metoder som tillhör MOTORCYKEL-KLASSEN
+        #region
+        public string SearchByWeightclass(string inputWeightclass)
+        {
+            string outputWeightclass = "";
+            //foreach (MotorCycle item in myGarage)
+            //{
+            //    if (item.WeightClass.ToString().Contains(inputWeightclass.ToUpper()))
+            //    {
+            //        outputWeightclass += item.GetFullInfo();
+            //    }
+            //}
+
+            foreach (Vehicle item in myGarage)
+            {
+                if (item is MotorCycle)
+                {
+                    if ((item as MotorCycle).WeightClass.ToString().ToUpper().Contains(inputWeightclass.ToUpper()))
+                        outputWeightclass += item + "\n\n";
+                }
+
+            }
+
+            return outputWeightclass;
+        }
+        public string SearchByType(string inputMcType)
+        {
+            string outputMcType = "";
+            foreach (MotorCycle item in myGarage)
+            {
+                if (item.CycleType.ToString().Contains(inputMcType.ToUpper()))
+                {
+                    outputMcType += item.GetFullInfo();
+                }
+            }
+            return outputMcType;
+        }
+        #endregion
+
+        // Metoder som tillhör BIL-KLASSEN
+        #region
+        // Ändra till bool
+        public string SearchByRails(string inputRails)
+        {
+            string outputRails = "";
+            foreach (Car item in myGarage)
+            {
+                if (item.Rails.ToString().Contains(inputRails.ToUpper()))
+                {
+                    outputRails += item.GetFullInfo();
+                }
+            }
+            return outputRails;
+        }
+        public string SearchByNrOfDoors(int inputNrOfDoors)
+        {
+            string outputNrOfDoors = "";
+            foreach (Car item in myGarage)
+            {
+                if (item.NumberOfDoors == inputNrOfDoors)
+                {
+                    outputNrOfDoors += item.GetFullInfo();
+                }
+            }
+            return outputNrOfDoors;
+        }
+        #endregion
+
+        // Metoder som tillhör BUSS-KLASSEN
+        #region
+        // Ändra till Bool
+        public string SearchByDoubleDecker(string inputDoubleDecker)
+        {
+            string outputDoubleDecker = "";
+
+            return outputDoubleDecker;
+        }
+        public string SearchByCompany(string inputCompany)
+        {
+            string outputCompany = "";
+            foreach (Bus item in myGarage)
+            {
+                if (item.BusCompany.Contains(inputCompany))
+                {
+                    outputCompany += item.GetFullInfo();
+                }
+            }
+            return outputCompany;
+        }
+        #endregion
+
+        // Metoder som tillhör LASTBIL-KLASSEN
+        #region
+        // Ändra till Bool
+        public string SearchByBoogie(string inputBoogie)
+        {
+            string outputBoogie = "";
+            return outputBoogie;
+        }
+        // Ändra till Bool
+        public string SearchBySleepingCabin(string inputCabin)
+        {
+            string outputCabin = "";
+            return outputCabin;
+        }
+        #endregion
+
     }
 }

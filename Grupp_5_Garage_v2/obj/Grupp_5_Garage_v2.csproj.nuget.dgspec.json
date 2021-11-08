@@ -1,6 +1,22 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "C:\\Users\\marii\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\marii\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\marii\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
+        "projectName": "Grupp_5_Garage_v2",
+        "projectPath": "C:\\Users\\marii\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj",
+        "packagesPath": "C:\\Users\\marii\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\marii\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\marii\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
     "C:\\Users\\andre\\Source\\Repos\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2\\Grupp_5_Garage_v2.csproj": {}
   },
   "projects": {
@@ -15,6 +31,7 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> origin/Swing2
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
