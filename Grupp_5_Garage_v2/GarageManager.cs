@@ -128,41 +128,41 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.CreateTruck:
                     return AddTruck(input, out message);
                 case ChoiceID.SearchByBogie:
-                    return SearchByBoogie(input);
+                    return SearchByBoogie(input, out message);
                 case ChoiceID.SearchByClass:
-                    return SearchByClass(input);
+                    return SearchByClass(input, out message);
                 case ChoiceID.SearchByColour:
-                    return SearchByColor(input);
+                    return SearchByColor(input, out message);
                 case ChoiceID.SearchByCompany:
-                    return SearchByCompany(input);
+                    return SearchByCompany(input, out message);
                 case ChoiceID.SearchByDoubleDecker:
-                    return SearchByDoubleDecker(input);
+                    return SearchByDoubleDecker(input, out message);
                 case ChoiceID.SearchByFuelType:
-                    return SearchByFuelType(input);
+                    return SearchByFuelType(input, out message);
                 case ChoiceID.SearchByHelmetBox:
-                    return SearchByHelmetBox(input);
+                    return SearchByHelmetBox(input, out message);
                 case ChoiceID.SearchByManufacturer:
-                    return SearchByManufacturer(input);
+                    return SearchByManufacturer(input, out message);
                 case ChoiceID.SearchByNrOfDoors:
-                    return SearchByNrOfDoors(Convert.ToInt32(input));
+                    return SearchByNrOfDoors(Convert.ToInt32(input), out message);
                 case ChoiceID.SearchByNrOfSeats:
-                    return SearchByNrOfSeats(Convert.ToInt32(input));
+                    return SearchByNrOfSeats(Convert.ToInt32(input), out message);
                 case ChoiceID.SearchByNrOfWheels:
-                    return SearchByNrOfWheels(Convert.ToInt32(input));
+                    return SearchByNrOfWheels(Convert.ToInt32(input), out message);
                 case ChoiceID.SearchByRail:
-                    return SearchByRails(input);
+                    return SearchByRails(input, out message);
                 case ChoiceID.SearchByReceieptNr:
-                    return SearchByReceiptNumber(Convert.ToInt32(input));
+                    return SearchByReceiptNumber(Convert.ToInt32(input), out message);
                 case ChoiceID.SearchByRegNr:
-                    return SearchVehicle(input);
+                    return SearchVehicle(input, out message);
                 case ChoiceID.SearchBySleepingCabin:
-                    return SearchBySleepingCabin(input);
+                    return SearchBySleepingCabin(input, out message);
                 case ChoiceID.SearchByType:
-                    return SearchByType(input);
+                    return SearchByType(input, out message);
                 case ChoiceID.SearchByWeightclass:
-                    return SearchByWeightclass(input);
+                    return SearchByWeightclass(input, out message);
                 case ChoiceID.SearchByYearModel:
-                    return SearchByModelYear(Convert.ToInt32(input));
+                    return SearchByModelYear(Convert.ToInt32(input), out message);
                 default:
                     break;
             }
@@ -361,6 +361,8 @@ namespace Grupp_5_Garage_v2
             modelyear = Convert.ToInt32(convertedstring[6]);
         }
 
+        private string IsSearchEmpty(string input) => string.IsNullOrEmpty(input) ? "Hittade ingenting." : "";
+
         public bool DoesRegNrExist(string regNr, out string errorMessage)
         {
             errorMessage = "";
@@ -371,7 +373,7 @@ namespace Grupp_5_Garage_v2
 
             foreach (Vehicle item in myGarage)
             {
-                if (SearchVehicle(regNr) != "")
+                if (SearchVehicle(regNr, out errorMessage) != "")
                 {
                     errorMessage = "Registreringsnumret finns redan.";
                     return true;
@@ -379,7 +381,7 @@ namespace Grupp_5_Garage_v2
             }
             return false;
         }
-        public string SearchVehicle(string regNum)
+        public string SearchVehicle(string regNum, out string message)
         {
             string outputRegNum = "";
             foreach (Vehicle item in myGarage)
@@ -389,10 +391,11 @@ namespace Grupp_5_Garage_v2
                     outputRegNum += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputRegNum);
             return outputRegNum;
         }
 
-        public string SearchByColor(string inputColor)
+        public string SearchByColor(string inputColor, out string message)
         {
             string outputColor = "";
             foreach (Vehicle item in myGarage)
@@ -402,10 +405,12 @@ namespace Grupp_5_Garage_v2
                     outputColor += item + "\n\n";
                 }
             }
+
+            message = IsSearchEmpty(outputColor);
             return outputColor;
         }
 
-        public string SearchByNrOfWheels(int inputNumberOfWheels)
+        public string SearchByNrOfWheels(int inputNumberOfWheels, out string message)
         {
             string outputNumberOfWheels = "";
             foreach (Vehicle item in myGarage)
@@ -415,9 +420,11 @@ namespace Grupp_5_Garage_v2
                     outputNumberOfWheels += item + "\n\n";
                 }
             }
+
+            message = IsSearchEmpty(outputNumberOfWheels);
             return outputNumberOfWheels;
         }
-        public string SearchByNrOfSeats(int inputSeats)
+        public string SearchByNrOfSeats(int inputSeats, out string message)
         {
             string outputSeats = "";
             foreach (Vehicle item in myGarage)
@@ -427,9 +434,10 @@ namespace Grupp_5_Garage_v2
                     outputSeats += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputSeats);
             return outputSeats;
         }
-        public string SearchByFuelType(string inputFuelType)
+        public string SearchByFuelType(string inputFuelType, out string message)
         {
             string outputFuelType = "";
             foreach (Vehicle item in myGarage)
@@ -439,9 +447,10 @@ namespace Grupp_5_Garage_v2
                     outputFuelType += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputFuelType);
             return outputFuelType;
         }
-        public string SearchByManufacturer(string manufacturer)
+        public string SearchByManufacturer(string manufacturer, out string message)
         {
             string outputManufacturer = "";
             foreach (Vehicle item in myGarage)
@@ -451,9 +460,10 @@ namespace Grupp_5_Garage_v2
                     outputManufacturer += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputManufacturer);
             return outputManufacturer;
         }
-        public string SearchByReceiptNumber(int receiptNumber)
+        public string SearchByReceiptNumber(int receiptNumber, out string message)
         {
             string outputReceiptNumber = "";
             foreach (Vehicle item in myGarage)
@@ -463,10 +473,11 @@ namespace Grupp_5_Garage_v2
                     outputReceiptNumber += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputReceiptNumber);
             return outputReceiptNumber;
         }
 
-        public string SearchByModelYear(int modelYear)
+        public string SearchByModelYear(int modelYear, out string message)
         {
             string outputModelYear = "";
             foreach (Vehicle item in myGarage)
@@ -476,12 +487,13 @@ namespace Grupp_5_Garage_v2
                     outputModelYear += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputModelYear);
             return outputModelYear;
         }
 
         // Metoder som tillhör MOPED-KLASSEN
         #region
-        public string SearchByClass(string inputClass)
+        public string SearchByClass(string inputClass, out string message)
         {
             string outputClass = "";
             foreach (Vehicle item in myGarage)
@@ -504,9 +516,11 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+
+            message = IsSearchEmpty(outputClass);
             return outputClass;
         }
-        public string SearchByHelmetBox(string inputHelmetBox)
+        public string SearchByHelmetBox(string inputHelmetBox, out string message)
         {
             string outputHelmetBox = "";
             foreach (Vehicle item in myGarage)
@@ -529,13 +543,14 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+            message = IsSearchEmpty(outputHelmetBox);
             return outputHelmetBox;
         }
         #endregion
 
         // Metoder som tillhör MOTORCYKEL-KLASSEN
         #region
-        public string SearchByWeightclass(string inputWeightclass)
+        public string SearchByWeightclass(string inputWeightclass, out string message)
         {
             string outputWeightclass = "";
             foreach (Vehicle item in myGarage)
@@ -546,9 +561,10 @@ namespace Grupp_5_Garage_v2
                         outputWeightclass += item + "\n\n";
                 }
             }
+            message = IsSearchEmpty(outputWeightclass);
             return outputWeightclass;
         }
-        public string SearchByType(string inputMcType)
+        public string SearchByType(string inputMcType, out string message)
         {
             string outputMcType = "";
             foreach (Vehicle item in myGarage)
@@ -561,13 +577,15 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+
+            message = IsSearchEmpty(outputMcType);
             return outputMcType;
         }
         #endregion
 
         // Metoder som tillhör BIL-KLASSEN
         #region
-        public string SearchByRails(string inputRails)
+        public string SearchByRails(string inputRails, out string message)
         {
             string outputRails = "";
             foreach (Vehicle item in myGarage)
@@ -590,9 +608,10 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+            message = IsSearchEmpty(outputRails);
             return outputRails;
         }
-        public string SearchByNrOfDoors(int inputNrOfDoors)
+        public string SearchByNrOfDoors(int inputNrOfDoors, out string message)
         {
             string outputNrOfDoors = "";
             foreach (Vehicle item in myGarage)
@@ -605,13 +624,14 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+            message = IsSearchEmpty(outputNrOfDoors);
             return outputNrOfDoors;
         }
         #endregion
 
         // Metoder som tillhör BUSS-KLASSEN
         #region
-        public string SearchByDoubleDecker(string inputDoubleDecker)
+        public string SearchByDoubleDecker(string inputDoubleDecker, out string message)
         {
             string outputDoubleDecker = "";
             foreach (Vehicle item in myGarage)
@@ -634,9 +654,10 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+            message = IsSearchEmpty(outputDoubleDecker);
             return outputDoubleDecker;
         }
-        public string SearchByCompany(string inputCompany)
+        public string SearchByCompany(string inputCompany, out string message)
         {
             string outputCompany = "";
             foreach (Vehicle item in myGarage)
@@ -649,13 +670,15 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+
+            message = IsSearchEmpty(outputCompany);
             return outputCompany;
         }
         #endregion
 
         // Metoder som tillhör LASTBIL-KLASSEN
         #region
-        public string SearchByBoogie(string inputBoogie)
+        public string SearchByBoogie(string inputBoogie, out string message)
         {
             string outputBoogie = "";
             foreach (Vehicle item in myGarage)
@@ -677,11 +700,11 @@ namespace Grupp_5_Garage_v2
                         }
                     }
                 }
-                
             }
+            message = IsSearchEmpty(outputBoogie);
             return outputBoogie;
         }
-        public string SearchBySleepingCabin(string inputCabin)
+        public string SearchBySleepingCabin(string inputCabin, out string message)
         {
             string outputCabin = "";
             foreach (Vehicle item in myGarage)
@@ -704,6 +727,8 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
+
+            message = IsSearchEmpty(outputCabin);
             return outputCabin;
         }
         #endregion
