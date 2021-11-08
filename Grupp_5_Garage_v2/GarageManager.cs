@@ -371,7 +371,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.RegNr.ToUpper().Contains(regNum.ToUpper()))
                 {
-                    outputRegNum += item.GetFullInfo();
+                    outputRegNum += item + "\n\n";
                 }
             }
             return outputRegNum;
@@ -384,7 +384,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.Color.ToUpper().Contains(inputColor.ToUpper()))
                 {
-                    outputColor += item.GetFullInfo();
+                    outputColor += item + "\n\n";
                 }
             }
             return outputColor;
@@ -397,7 +397,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.NumberOfWheels == inputNumberOfWheels)
                 {
-                    outputNumberOfWheels += item.GetFullInfo();
+                    outputNumberOfWheels += item + "\n\n";
                 }
             }
             return outputNumberOfWheels;
@@ -409,7 +409,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.PassengerCapacity == inputSeats)
                 {
-                    outputSeats += item.GetFullInfo();
+                    outputSeats += item + "\n\n";
                 }
             }
             return outputSeats;
@@ -421,7 +421,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.Fuel.ToString().Contains(inputFuelType.ToUpper()))
                 {
-                    outputFuelType += item.GetFullInfo();
+                    outputFuelType += item + "\n\n";
                 }
             }
             return outputFuelType;
@@ -433,7 +433,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.Manufacturer.ToUpper().Contains(manufacturer.ToUpper()))
                 {
-                    outputManufacturer += item.GetFullInfo();
+                    outputManufacturer += item + "\n\n";
                 }
             }
             return outputManufacturer;
@@ -445,7 +445,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.ReceiptNumber == receiptNumber)
                 {
-                    outputReceiptNumber += item.GetFullInfo();
+                    outputReceiptNumber += item + "\n\n";
                 }
             }
             return outputReceiptNumber;
@@ -458,7 +458,7 @@ namespace Grupp_5_Garage_v2
             {
                 if (item.ModelYear == modelYear)
                 {
-                    outputModelYear += item.GetFullInfo();
+                    outputModelYear += item + "\n\n";
                 }
             }
             return outputModelYear;
