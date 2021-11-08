@@ -233,7 +233,9 @@ namespace Grupp_5_Garage_v2
         private static void DisplayOutput(string output)
         {
             Clear();
+            ForegroundColor = ConsoleColor.Green;
             WriteLine(output);
+            ForegroundColor = ConsoleColor.White;
         }
 
         private static void DisplayError(string error)
