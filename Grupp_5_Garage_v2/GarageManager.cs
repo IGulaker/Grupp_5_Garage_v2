@@ -415,7 +415,7 @@ namespace Grupp_5_Garage_v2
             string outputFuelType = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item.Fuel.ToString().Contains(inputFuelType.ToUpper()))
+                if (item.Fuel.ToString().ToUpper().Contains(inputFuelType.ToUpper()))
                 {
                     outputFuelType += item + "\n\n";
                 }
