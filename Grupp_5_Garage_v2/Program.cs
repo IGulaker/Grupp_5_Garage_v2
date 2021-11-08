@@ -395,13 +395,18 @@ namespace Grupp_5_Garage_v2
         private static void WriteHeader()
         {
             ForegroundColor = ConsoleColor.Yellow;
-            if (currentMenu == MenuID.StartUp) WriteLine("(START)");
+            if (currentMenu == MenuID.StartUp || currentMenu == MenuID.CreatingGarage) WriteLine("(START)");
             else if (currentMenu == MenuID.Main) WriteLine("(HUVUDMENY)");
             else if (currentMenu == MenuID.AddVehicle || currentMenu == MenuID.CreateVehicle) WriteLine("(PARKERA FORDON)");
             else if (currentMenu == MenuID.GetVehicle) WriteLine("(HÄMTA FORDON)");
             else if (currentMenu == MenuID.Filter || currentMenu == MenuID.FilterSearch) WriteLine("(FILTER)");
 
-            if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
+            if(currentMenu == MenuID.CreatingGarage)
+            {
+                WriteLine("\nSKAPAR GARAGE");
+                WriteLine("[LÄGG TILL STORLEK OCH ANTAL FORDON]");
+            }
+            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
             {
                 WriteLine("\nVAD VILL DU GÖRA?");
                 WriteLine("[VÄLJ EN SIFFRA]");
@@ -517,21 +522,40 @@ namespace Grupp_5_Garage_v2
                 Introduction();
                 DisplayMenu();
                 string startUpChoice = RecieveUserString();
-                string message = "";
 
                 if (startUpChoice == "1")
                 {
-                    garageManager.ReadUIInfo(ChoiceID.CreateGarage, null, out message);
+                    currentMenu = MenuID.CreatingGarage;
+                    CreateGarageToAdd();
+                    CommunicateWithManager(ChoiceID.CreateGarage, CreateGarageToAdd());
                     isReadyToStart = true;
                 }
                 else if (startUpChoice == "2")
                 {
-                    garageManager.ReadUIInfo(ChoiceID.LoadGarage, null, out message);
+                    CommunicateWithManager(ChoiceID.LoadGarage, null);
                     isReadyToStart = true;
                 }
             }
 
             currentMenu = MenuID.Main;
+        }
+
+        private static string CreateGarageToAdd()
+        {
+            Clear();
+            WriteHeader();
+            AddSeperatorLine();
+            string error;
+            string garageSpecifications = "";
+            string variableSeparator = "???";
+
+            Write("Storlek på garaget: ");
+            garageSpecifications += RecieveUserString();
+            garageSpecifications += variableSeparator;
+            Write("Antal fordon som redan är parkerade: ");
+            garageSpecifications += RecieveUserString();
+
+            return garageSpecifications;
         }
 
         private static void Introduction()
