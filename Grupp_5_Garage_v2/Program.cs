@@ -404,7 +404,7 @@ namespace Grupp_5_Garage_v2
             if(currentMenu == MenuID.CreatingGarage)
             {
                 WriteLine("\nSKAPAR GARAGE");
-                WriteLine("[LÄGG TILL STORLEK OCH ANTAL FORDON]");
+                WriteLine("[STORLEK PÅ FORDON: MOPED/MOTORCYKEL = 1, BIL = 2, BUSS = 3/4, LASTBIL = 4]");
             }
             else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
             {
