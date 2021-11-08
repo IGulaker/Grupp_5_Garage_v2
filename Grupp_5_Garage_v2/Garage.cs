@@ -123,7 +123,6 @@ namespace Grupp_5_Garage_v2
             errormessage = "";
             if (vehicle != null)
             {
-
                 parkedvehicles.Remove(vehicle);
                 unparkedvehicles.Add(vehicle);
                 SizeOfParkedVehicles -= vehicle.Size;
@@ -131,6 +130,31 @@ namespace Grupp_5_Garage_v2
             }
             errormessage = "Kunde inte hitta ditt fordon.";
             return false;
+        }
+
+        public T GetVehicleWithReceipt(string receiptnumber)
+        {
+            foreach (var item in ParkedVehicles)
+            {
+                if (item.ReceiptNumber.ToString() == receiptnumber)
+                    return item;
+            }
+
+            return null;
+        }
+
+        public T GetVehicleWithRegNr(string regnr)
+        {
+            if (regnr == "******")
+                return null;
+
+            foreach (var item in ParkedVehicles)
+            {
+                if (item.RegNr == regnr)
+                    return item;
+            }
+
+            return null;
         }
     }
 }

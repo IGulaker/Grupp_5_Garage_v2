@@ -102,7 +102,7 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     break;
                 case ChoiceID.RemoveVehicle:
-                    break;
+                    return RemoveVehicle(input, out message);
                 case ChoiceID.ListAllVehicles:
                     return myGarage.ListVehicles();
                 case ChoiceID.ListCars:
@@ -169,6 +169,24 @@ namespace Grupp_5_Garage_v2
 
 
             return "";
+        }
+
+        private string RemoveVehicle(string input, out string message)
+        {
+            Vehicle vehicleToRemove = myGarage.GetVehicleWithReceipt(input);
+
+            if (vehicleToRemove == null)
+                vehicleToRemove = myGarage.GetVehicleWithRegNr(input);
+
+            switch (vehicleToRemove)
+            {
+                case null:
+                    message = "Hittade inte ditt fordon i vårt garage.";
+                    return "";
+                default:
+                    myGarage.RemoveVehicle(vehicleToRemove, out message);
+                    return $"Ditt fordon har nu hämtats ut:\n\n{vehicleToRemove}";
+            }
         }
 
         private string AddMoped(string input, out string message)
