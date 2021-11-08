@@ -512,7 +512,7 @@ namespace Grupp_5_Garage_v2
         private static void StartUp()
         {
             UISetup();
-            garageManager.Setup();
+            
             WindowHeight += 5;
 
             bool isReadyToStart = false;
