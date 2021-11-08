@@ -132,6 +132,8 @@ namespace Grupp_5_Garage_v2
                     return AddMotorcycle(input, out message);
                 case ChoiceID.CreateTruck:
                     return AddTruck(input, out message);
+                case ChoiceID.SearchByWeightclass:
+                    return SearchByWeightclass(input);
                 default:
                     break;
             }
@@ -460,13 +462,24 @@ namespace Grupp_5_Garage_v2
         public string SearchByWeightclass(string inputWeightclass)
         {
             string outputWeightclass = "";
-            foreach (MotorCycle item in myGarage)
+            //foreach (MotorCycle item in myGarage)
+            //{
+            //    if (item.WeightClass.ToString().Contains(inputWeightclass.ToUpper()))
+            //    {
+            //        outputWeightclass += item.GetFullInfo();
+            //    }
+            //}
+
+            foreach (Vehicle item in myGarage)
             {
-                if (item.WeightClass.ToString().Contains(inputWeightclass.ToUpper()))
+                if (item is MotorCycle)
                 {
-                    outputWeightclass += item.GetFullInfo();
+                    if ((item as MotorCycle).WeightClass.ToString().ToUpper().Contains(inputWeightclass.ToUpper()))
+                        outputWeightclass += item + "\n\n";
                 }
+
             }
+
             return outputWeightclass;
         }
         public string SearchByType(string inputMcType)
