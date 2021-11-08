@@ -706,7 +706,6 @@ namespace Grupp_5_Garage_v2
             Clear();
             WriteHeader();
             AddSeperatorLine();
-            string error;
             string garageSpecifications = "";
             string variableSeparator = "???";
 
