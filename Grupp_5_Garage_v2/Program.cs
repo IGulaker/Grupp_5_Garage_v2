@@ -262,7 +262,12 @@ namespace Grupp_5_Garage_v2
 
         private static string RecieveUserBool()
         {
-            return ReadLine().ToUpper()[0].ToString();
+            string input = ReadLine();
+            if (input != "")
+            {
+                return input.ToUpper()[0].ToString();
+            }
+            else return "x";
         }
 
         private static string RecieveSpecificBoolValue(ChoiceID choiceID)
@@ -310,12 +315,12 @@ namespace Grupp_5_Garage_v2
 
             Write("\nFärg: ");
             input = RecieveUserString();
-            while (string.IsNullOrEmpty(input)) 
+            while (string.IsNullOrEmpty(input))
             {
                 DisplayError("Du måste skriva något!");
                 Write("\nFärg: ");
                 input = RecieveUserString();
-            } 
+            }
             vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator;
             Write("\nAntal hjul: ");
             input = RecieveUserString();
@@ -335,7 +340,7 @@ namespace Grupp_5_Garage_v2
                 input = RecieveUserString();
             }
             vehicleSpecifications += input + variableSeparator;
-            
+
             do
             {
                 WriteLine("\nBränsle:");
@@ -352,7 +357,7 @@ namespace Grupp_5_Garage_v2
                     DisplayError(error);
                 }
             } while (!goToNext);
-            vehicleSpecifications += input + variableSeparator ;
+            vehicleSpecifications += input + variableSeparator;
             Write("\nTillverkare: ");
             input = RecieveUserString();
             while (string.IsNullOrEmpty(input))
@@ -361,7 +366,7 @@ namespace Grupp_5_Garage_v2
                 Write("\nTillverkare: ");
                 input = RecieveUserString();
             }
-            vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator ;
+            vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator;
             Write("\nÅrsmodell: ");
             do
             {
@@ -533,7 +538,7 @@ namespace Grupp_5_Garage_v2
             else if (currentMenu == MenuID.GetVehicle) WriteLine("(HÄMTA FORDON)");
             else if (currentMenu == MenuID.Filter || currentMenu == MenuID.FilterSearch) WriteLine("(FILTER)");
 
-            if(currentMenu == MenuID.CreatingGarage)
+            if (currentMenu == MenuID.CreatingGarage)
             {
                 WriteLine("\nSKAPAR GARAGE");
                 WriteLine("[STORLEK PÅ FORDON: MOPED/MOTORCYKEL = 1, BIL = 2, BUSS = 3/4, LASTBIL = 4]");
@@ -543,12 +548,12 @@ namespace Grupp_5_Garage_v2
                 WriteLine("\nVAD VILL DU GÖRA?");
                 WriteLine("[VÄLJ EN SIFFRA]");
             }
-            else if(currentMenu == MenuID.GetVehicle)
+            else if (currentMenu == MenuID.GetVehicle)
             {
                 WriteLine("\nHÄR KAN DU HÄMTA UT ETT FORDON.");
                 WriteLine("[ANGE KVITTO/REGNUMMER FÖR DITT FORDON]");
             }
-            else if(currentMenu == MenuID.FilterSearch)
+            else if (currentMenu == MenuID.FilterSearch)
             {
                 WriteLine("\nHÄR KAN DU SÖKA EFTER ETT SPECIFIKT VÄRDE.");
                 WriteLine("[MATA IN VÄRDET DU VILL SÖKA EFTER]");
