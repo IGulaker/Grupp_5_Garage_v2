@@ -17,7 +17,7 @@ namespace Grupp_5_Garage_v2
         public void Setup()
         {
             CreateVehicles(500);
-            myGarage.UnparkedVehicles.Add(new Car());
+            
         }
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
