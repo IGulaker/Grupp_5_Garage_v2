@@ -582,9 +582,19 @@ namespace Grupp_5_Garage_v2
             {
                 if (item is Bus)
                 {
-                    if ((item as Bus).IsDoubleDeck.ToString().ToUpper().Contains(inputDoubleDecker.ToUpper()))
+                    if (inputDoubleDecker == "J")
                     {
-                        outputDoubleDecker += item + "\n\n";
+                        if ((item as Bus).IsDoubleDeck)
+                        {
+                            outputDoubleDecker += item + "\n\n";
+                        }
+                    }
+                    else
+                    {
+                        if (!(item as Bus).IsDoubleDeck)
+                        {
+                            outputDoubleDecker += item + "\n\n";
+                        }
                     }
                 }
             }
