@@ -434,23 +434,34 @@ namespace Grupp_5_Garage_v2
         public string SearchByClass(string inputClass)
         {
             string outputClass = "";
-            foreach (Moped item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
-                if (item.IsMopedClassTwo)
+                if (item is Moped)
                 {
-                    outputClass += item.GetFullInfo();
-                }
+                    if ((item as Moped).IsMopedClassTwo.ToString().ToUpper().Contains(inputClass.ToUpper()))
+                    {
+                        outputClass += item + "/n/n";
+                    }
 
+                }
             }
             return outputClass;
         }
 
         // Måste göras klart med bool
-        public string SearchByHelmetBox()
+        public string SearchByHelmetBox(string inputHelmetBox)
         {
             string outputHelmetBox = "";
-            foreach (Moped item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
+                if (item is Moped)
+                {
+                    if ((item as Moped).HasHelmetBox.ToString().ToUpper().Contains(inputHelmetBox.ToUpper()))
+                    {
+                        outputHelmetBox += item + "/n/n";
+                    }
+
+                }
 
             }
             return outputHelmetBox;
@@ -462,14 +473,6 @@ namespace Grupp_5_Garage_v2
         public string SearchByWeightclass(string inputWeightclass)
         {
             string outputWeightclass = "";
-            //foreach (MotorCycle item in myGarage)
-            //{
-            //    if (item.WeightClass.ToString().Contains(inputWeightclass.ToUpper()))
-            //    {
-            //        outputWeightclass += item.GetFullInfo();
-            //    }
-            //}
-
             foreach (Vehicle item in myGarage)
             {
                 if (item is MotorCycle)
@@ -485,11 +488,14 @@ namespace Grupp_5_Garage_v2
         public string SearchByType(string inputMcType)
         {
             string outputMcType = "";
-            foreach (MotorCycle item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
-                if (item.CycleType.ToString().Contains(inputMcType.ToUpper()))
+                if (item is MotorCycle)
                 {
-                    outputMcType += item.GetFullInfo();
+                    if ((item as MotorCycle).CycleType.ToString().ToUpper().Contains(inputMcType.ToUpper()))
+                    {
+                        outputMcType += item + "/n/n";
+                    }
                 }
             }
             return outputMcType;
@@ -502,11 +508,15 @@ namespace Grupp_5_Garage_v2
         public string SearchByRails(string inputRails)
         {
             string outputRails = "";
-            foreach (Car item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
-                if (item.Rails.ToString().Contains(inputRails.ToUpper()))
+                if (item is Car)
                 {
-                    outputRails += item.GetFullInfo();
+                    if ((item as Car).Rails.ToString().ToUpper().Contains(inputRails.ToUpper()))
+                    {
+                        outputRails += item + "/n/n";
+                    }
+
                 }
             }
             return outputRails;
@@ -514,11 +524,15 @@ namespace Grupp_5_Garage_v2
         public string SearchByNrOfDoors(int inputNrOfDoors)
         {
             string outputNrOfDoors = "";
-            foreach (Car item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
-                if (item.NumberOfDoors == inputNrOfDoors)
+                if (item is Car)
                 {
-                    outputNrOfDoors += item.GetFullInfo();
+                    if ((item as Car).NumberOfDoors == inputNrOfDoors)
+                    {
+                        outputNrOfDoors += item + "/n/n";
+                    }
+
                 }
             }
             return outputNrOfDoors;
@@ -531,17 +545,29 @@ namespace Grupp_5_Garage_v2
         public string SearchByDoubleDecker(string inputDoubleDecker)
         {
             string outputDoubleDecker = "";
-
+            foreach (Vehicle item in myGarage)
+            {
+                if (item is Bus)
+                {
+                    if ((item as Bus).IsDoubleDeck.ToString().ToUpper().Contains(inputDoubleDecker.ToUpper()))
+                    {
+                        outputDoubleDecker += item + "/n/n";
+                    }
+                }
+            }
             return outputDoubleDecker;
         }
         public string SearchByCompany(string inputCompany)
         {
             string outputCompany = "";
-            foreach (Bus item in myGarage)
+            foreach (Vehicle item in myGarage)
             {
-                if (item.BusCompany.Contains(inputCompany))
+                if (item is Bus)
                 {
-                    outputCompany += item.GetFullInfo();
+                    if ((item as Bus).BusCompany.ToString().ToUpper().Contains(inputCompany.ToUpper()))
+                    {
+                        outputCompany += item + "/n/n";
+                    }
                 }
             }
             return outputCompany;
@@ -554,12 +580,33 @@ namespace Grupp_5_Garage_v2
         public string SearchByBoogie(string inputBoogie)
         {
             string outputBoogie = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item is Truck)
+                {
+                    if ((item as Truck).Boogie.ToString().ToUpper().Contains(inputBoogie.ToUpper()))
+                    {
+                        outputBoogie += item + "/n/n";
+                    }
+                }
+            }
             return outputBoogie;
         }
         // Ändra till Bool
         public string SearchBySleepingCabin(string inputCabin)
         {
             string outputCabin = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item is Truck)
+                {
+                    if ((item as Truck).SleepingCabin.ToString().ToUpper().Contains(inputCabin.ToUpper()))
+                    {
+                        outputCabin += item + "/n/n";
+                    }
+                }
+
+            }
             return outputCabin;
         }
         #endregion
