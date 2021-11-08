@@ -29,7 +29,7 @@ namespace Grupp_5_Garage_v2
             Size = 1;
             if (PassengerCapacity > 1) PassengerCapacity = 1;
         }
-        protected override string VehicleType => "Motorcykel";
+        public override string VehicleType => "Motorcykel";
         public override string ToString() => $"{GetFullInfo()}Motorcykelklass:{CycleType}\nViktklass: \t{WeightClass}";
     }
 }

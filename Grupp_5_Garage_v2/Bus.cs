@@ -32,7 +32,7 @@ namespace Grupp_5_Garage_v2
             Size = (PassengerCapacity > 30) ? 4 : 3;
         }
 
-        protected override string VehicleType => "Buss";
+        public override string VehicleType => "Buss";
 
         public override string ToString() => $"{GetFullInfo()}Bussbolag: \t{BusCompany}\nDubbeldäckare: \t{(IsDoubleDeck ? "Ja" : "Nej")}";
     }

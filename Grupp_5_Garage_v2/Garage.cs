@@ -16,6 +16,7 @@ namespace Grupp_5_Garage_v2
         private List<T> parkedvehicles = new();
         private List<T> unparkedvehicles = new();
         private int numberOfParkingLots;
+        private int SizeOfParkedVehicles { get; set; }
 
         public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
@@ -24,7 +25,7 @@ namespace Grupp_5_Garage_v2
         {
             NumberOfParkingLots = 5000;
             SetCorrectReceiptNumber();
-            
+
         }
 
         public void SetCorrectReceiptNumber()
@@ -100,20 +101,36 @@ namespace Grupp_5_Garage_v2
             errorMessage = "";
             if (inVehicle != null)
             {
-                ParkedVehicles.Add(inVehicle);
-                return true;
+                if (!(inVehicle.Size + SizeOfParkedVehicles > NumberOfParkingLots))
+                {
+                    ParkedVehicles.Add(inVehicle);
+                    SizeOfParkedVehicles += inVehicle.Size;
+                    return true;
+                }
+                else
+                {
+                    errorMessage = $"Garaget är fullt. Kan inte ta emot din {inVehicle.VehicleType}";
+                    return false;
+                }
             }
             errorMessage = "Kunde inte lägga till fordonet.";
             return false;
         }
 
 
-        public bool RemoveVehicle(T vehicle)
+        public bool RemoveVehicle(T vehicle, out string errormessage)
         {
+            errormessage = "";
+            if (vehicle != null)
+            {
 
-            parkedvehicles.Remove(vehicle);
-            unparkedvehicles.Add(vehicle);
-            return true;
+                parkedvehicles.Remove(vehicle);
+                unparkedvehicles.Add(vehicle);
+                SizeOfParkedVehicles -= vehicle.Size;
+                return true;
+            }
+            errormessage = "Kunde inte hitta ditt fordon.";
+            return false;
         }
     }
 }

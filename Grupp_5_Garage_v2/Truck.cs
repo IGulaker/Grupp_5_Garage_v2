@@ -11,7 +11,7 @@ namespace Grupp_5_Garage_v2
         public bool Boogie { get; set; }
         public bool SleepingCabin { get; set; }
 
-        protected override string VehicleType => "Lastbil";
+        public override string VehicleType => "Lastbil";
 
         public Truck()
         {

@@ -40,6 +40,6 @@ namespace Grupp_5_Garage_v2
 
         public override string ToString() => $"{GetFullInfo()}Hjälmförvaring: {(HasHelmetBox ? "Ja" : "Nej")}";
 
-        protected override string VehicleType => $"Moped klass {(IsMopedClassTwo ? "II" : "I")}";
+        public override string VehicleType => $"Moped klass {(IsMopedClassTwo ? "II" : "I")}";
     }
 }
