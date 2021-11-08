@@ -265,6 +265,7 @@ namespace Grupp_5_Garage_v2
         {
             string error;
             string vehicleSpecifications;
+            string variableSeparator = "???";
             Clear();
             WriteHeader(vehicle);
             AddSeperatorLine();
@@ -280,22 +281,23 @@ namespace Grupp_5_Garage_v2
                     PauseForKeyPress();
                     Menu();
                 }
-                else vehicleSpecifications += '_';
+                else vehicleSpecifications += variableSeparator;
             }
             else
             {
-                vehicleSpecifications = "******_";
+                vehicleSpecifications = "******";
+                vehicleSpecifications += variableSeparator;
             }
 
             Write("\nFärg: ");
             vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
             Write("\nAntal hjul: ");
             vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
             Write("\nAntal säten: ");
             vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
             WriteLine("\nBränsle:");
             WriteLine("1. Bensin");
             WriteLine("2. Diesel");
@@ -304,25 +306,25 @@ namespace Grupp_5_Garage_v2
             WriteLine("5. El");
             Write("Val(1 - 5): ");
             vehicleSpecifications += char.GetNumericValue(RecieveUserString()[0]);
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
             Write("\nTillverkare: ");
             vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
             Write("\nÅrsmodell: ");
             vehicleSpecifications += RecieveUserString();
-            vehicleSpecifications += '_';
+            vehicleSpecifications += variableSeparator;
 
             switch (choiceID)
             {
                 case ChoiceID.CreateMoped1:
                     vehicleSpecifications += 'N';
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     Write("\nHar den hjälmförvaring? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
                     break;
                 case ChoiceID.CreateMoped2:
                     vehicleSpecifications += 'J';
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     Write("\nHar den hjälmförvaring? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
                     break;
@@ -335,7 +337,7 @@ namespace Grupp_5_Garage_v2
                     WriteLine("5. Sport");
                     WriteLine("6. Touring");
                     vehicleSpecifications += char.GetNumericValue(RecieveUserString()[0]);
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     WriteLine("\nViktklass:");
                     WriteLine("1. Lätt");
                     WriteLine("2. Mellan");
@@ -345,21 +347,21 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.CreateCar:
                     Write("\nAntal dörrar: ");
                     vehicleSpecifications += RecieveUserString();
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     Write("\nHar den takräcke? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
                     break;
                 case ChoiceID.CreateBus:
                     Write("\nFöretag: ");
                     vehicleSpecifications += RecieveUserString();
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     Write("\nÄr den en dubbeldäckare? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
                     break;
                 case ChoiceID.CreateTruck:
                     Write("\nHar den boggi? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
-                    vehicleSpecifications += '_';
+                    vehicleSpecifications += variableSeparator;
                     Write("\nHar den sovplats? (J/N): ");
                     vehicleSpecifications += RecieveUserString().ToUpper()[0];
                     break;
