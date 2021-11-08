@@ -29,3 +29,4 @@ C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\ref\Grupp_5_Garage_v2.dll
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.pdb
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.genruntimeconfig.cache
+C:\Users\vikto\Documents\GitHub\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.csproj.AssemblyReference.cache
