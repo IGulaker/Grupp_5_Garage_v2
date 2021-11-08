@@ -70,6 +70,7 @@ namespace Grupp_5_Garage_v2
     {
         CreateGarage,
         LoadGarage,
+        SaveGarage,
         RemoveVehicle,
 
         CreateMoped,
@@ -109,7 +110,12 @@ namespace Grupp_5_Garage_v2
         SearchByCompany,
         // Truck
         SearchByBogie,
-        SearchBySleepingCabin
+        SearchBySleepingCabin,
+
+        // Duplicates
+        ShallItParkAgain,
+        ParkAgain
+
     }
 
     public enum MenuID

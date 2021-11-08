@@ -30,61 +30,67 @@ namespace Grupp_5_Garage_v2
 
         }
 
+        public string GarageInfo()
+        {
+            return myGarage.ToString();
+        }
+
         private void CreateVehicles(int numberOfVehiclestoAdd)
         {
             for (int i = 0; i < numberOfVehiclestoAdd; i++)
             {
                 CreateRandomVehicle();
-                //string sendBus = "TRO623_Mörkblå_4_36_1_Stora Bussbyggarna_1997_X-Trafik_N";
-                //AddBus(sendBus, out string heya);
             }
         }
 
-        public void SaveGarage()
+        private string SaveGarage()
         {
             XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
             XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
+            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml", myGarage.NumberOfParkingLots);
 
+            return "Garaget har sparats";
         }
 
-        public void LoadGarage()
+        public string LoadGarage()
         {
             try
             {
                 Vehicle.NextReceiptNumber = 1000;
                 myGarage = XMLUtilities.XMLFileDeserialize<Garage<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml");
                 myGarage.UnparkedVehicles = XMLUtilities.XMLFileDeserialize<List<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml");
-                myGarage.SetCorrectReceiptNumber();
+                myGarage.NumberOfParkingLots = XMLUtilities.XMLFileDeserialize<int>(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml");
+                myGarage.SetCorrectReceiptNumberAfterLoading();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
-                return;
+                return ex.ToString();
             }
+
+            return "Garaget har laddats!";
         }
 
         private void CreateRandomVehicle()
         {
-            Random r = new Random();
+            Random r = new();
             int randomNumber = r.Next(1, 100);
-            bool done = false;
-            string message;
+            bool done;
             switch (randomNumber)
             {
                 case > 0 and <= 51:
-                    done = myGarage.AddVehicle(new Car(), out message);
+                    done = myGarage.AddVehicle(new Car(), out _);
                     break;
                 case > 51 and <= 63:
-                    done = myGarage.AddVehicle(new Moped(), out message);
+                    done = myGarage.AddVehicle(new Moped(), out _);
                     break;
                 case > 63 and <= 75:
-                    done = myGarage.AddVehicle(new MotorCycle(), out message);
+                    done = myGarage.AddVehicle(new MotorCycle(), out _);
                     break;
                 case > 75 and <= 87:
-                    done = myGarage.AddVehicle(new Bus(), out message);
+                    done = myGarage.AddVehicle(new Bus(), out _);
                     break;
                 case > 87:
-                    done = myGarage.AddVehicle(new Truck(), out message);
+                    done = myGarage.AddVehicle(new Truck(), out _);
                     break;
             }
 
@@ -100,21 +106,23 @@ namespace Grupp_5_Garage_v2
                     Setup(input, out message);
                     break;
                 case ChoiceID.LoadGarage:
-                    break;
+                    return LoadGarage();
+                case ChoiceID.SaveGarage:
+                    return SaveGarage();
                 case ChoiceID.RemoveVehicle:
                     return RemoveVehicle(input.ToUpper(), out message);
                 case ChoiceID.ListAllVehicles:
-                    return myGarage.ListVehicles();
+                    return myGarage.ListVehicles(out message);
                 case ChoiceID.ListCars:
-                    return myGarage.ListVehicleTypeString<Car>();
+                    return myGarage.ListVehicleTypeString<Car>(out message);
                 case ChoiceID.ListBuses:
-                    return myGarage.ListVehicleTypeString<Bus>();
+                    return myGarage.ListVehicleTypeString<Bus>(out message);
                 case ChoiceID.ListTrucks:
-                    return myGarage.ListVehicleTypeString<Truck>();
+                    return myGarage.ListVehicleTypeString<Truck>(out message);
                 case ChoiceID.ListMopeds:
-                    return myGarage.ListVehicleTypeString<Moped>();
+                    return myGarage.ListVehicleTypeString<Moped>(out message);
                 case ChoiceID.ListMotorcycles:
-                    return myGarage.ListVehicleTypeString<MotorCycle>();
+                    return myGarage.ListVehicleTypeString<MotorCycle>(out message);
                 case ChoiceID.CreateCar:
                     return AddCar(input, out message);
                 case ChoiceID.CreateBus:
@@ -163,11 +171,29 @@ namespace Grupp_5_Garage_v2
                     return SearchByWeightclass(input, out message);
                 case ChoiceID.SearchByYearModel:
                     return SearchByModelYear(Convert.ToInt32(input), out message);
+                case ChoiceID.ShallItParkAgain:
+                    return CheckIfRegNrAlreadyExists(input, out message);
+                case ChoiceID.ParkAgain:
+                    return ParkAgain(input.ToUpper(), out message);
                 default:
                     break;
             }
 
 
+            return "";
+        }
+
+        private string ParkAgain(string input, out string message)
+        {
+            string[] SeparatedString = input.Split("???");
+
+            //1. If first string is "J" park again.
+            if (SeparatedString[0] == "J")
+            {
+                if (myGarage.ReaddVehicle(SeparatedString[1], out message, out string vehicleinfo))
+                    return $"Fordonet har parkerat \n\n{vehicleinfo}";                 
+            }
+            message = "Fordonet har inte parkerat";
             return "";
         }
 
@@ -191,6 +217,10 @@ namespace Grupp_5_Garage_v2
 
         private string AddMoped(string input, out string message)
         {
+            message = "";
+
+            if (input == null)
+                return "";
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
 
@@ -218,6 +248,10 @@ namespace Grupp_5_Garage_v2
 
         private string AddMotorcycle(string input, out string message)
         {
+            message = "";
+
+            if (input == null)
+                return "";
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
 
@@ -244,6 +278,10 @@ namespace Grupp_5_Garage_v2
 
         private string AddTruck(string input, out string message)
         {
+            message = "";
+
+            if (input == null)
+                return "";
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
 
@@ -270,6 +308,10 @@ namespace Grupp_5_Garage_v2
 
         private string AddCar(string input, out string message)
         {
+            message = "";
+
+            if (input == null)
+                return "";
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
 
@@ -294,6 +336,10 @@ namespace Grupp_5_Garage_v2
 
         private string AddBus(string input, out string message)
         {
+            message = "";
+
+            if (input == null)
+                return "";
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
 
@@ -317,40 +363,47 @@ namespace Grupp_5_Garage_v2
                 : "";
         }
 
-        private void GetBusValuesConverted(string[] convertedString, out string buscompany, out bool isdoubledeck)
+        private string CheckIfRegNrAlreadyExists(string input, out string vehicleinfo)
+        {
+            if (IsRegNrParked(input.ToUpper(), out vehicleinfo))
+                return "Detta fordon har parkerat här förr! \nVill du registrera samma fordon igen?";
+
+            return "";
+
+        }
+
+        private static void GetBusValuesConverted(string[] convertedString, out string buscompany, out bool isdoubledeck)
         {
             buscompany = convertedString[7];
-            isdoubledeck = (convertedString[8] == "J" ? true : false);
+            isdoubledeck = (convertedString[8] == "J");
         }
 
 
-        private void GetTruckValuesConverted(string[] convertedString, out bool boogie, out bool sleepingcabin)
+        private static void GetTruckValuesConverted(string[] convertedString, out bool boogie, out bool sleepingcabin)
         {
-            boogie = (convertedString[7] == "J" ? true : false);
-            sleepingcabin = (convertedString[8] == "J" ? true : false);
+            boogie = convertedString[7] == "J";
+            sleepingcabin = convertedString[8] == "J";
         }
 
-        private void GetMopedValuesConverted(string[] convertedString, out bool ismopedclasstwo, out bool hashelmetbox)
+        private static void GetMopedValuesConverted(string[] convertedString, out bool ismopedclasstwo, out bool hashelmetbox)
         {
-            ismopedclasstwo = (convertedString[7] == "J" ? true : false);
-            hashelmetbox = (convertedString[8] == "J" ? true : false);
+            ismopedclasstwo = convertedString[7] == "J";
+            hashelmetbox = convertedString[8] == "J";
         }
 
-        private void GetMotorcycleValuesConverted(string[] convertedString, out MotorCycleType motorcycletype, out WeightClass weightclass)
+        private static void GetMotorcycleValuesConverted(string[] convertedString, out MotorCycleType motorcycletype, out WeightClass weightclass)
         {
             motorcycletype = (MotorCycleType)Convert.ToInt32(convertedString[7]);
             weightclass = (WeightClass)Convert.ToInt32(convertedString[8]);
         }
 
-        private void GetCarValuesConverted(string[] convertedstring, out int noofdoors, out bool rails)
+        private static void GetCarValuesConverted(string[] convertedstring, out int noofdoors, out bool rails)
         {
             noofdoors = Convert.ToInt32(convertedstring[7]);
-            rails = (convertedstring[8] == "J" ? true : false);
+            rails = convertedstring[8] == "J";
         }
 
-
-
-        private void GetBasicValuesConverted(string[] convertedstring, out string regNr, out string color, out int numberofwheels, out int passengercapacity, out FuelType fuel, out string manufacturer, out int modelyear)
+        private static void GetBasicValuesConverted(string[] convertedstring, out string regNr, out string color, out int numberofwheels, out int passengercapacity, out FuelType fuel, out string manufacturer, out int modelyear)
         {
             regNr = convertedstring[0];
             color = convertedstring[1];
@@ -361,7 +414,7 @@ namespace Grupp_5_Garage_v2
             modelyear = Convert.ToInt32(convertedstring[6]);
         }
 
-        private string IsSearchEmpty(string input) => string.IsNullOrEmpty(input) ? "Hittade ingenting." : "";
+        private static string IsSearchEmpty(string input) => string.IsNullOrEmpty(input) ? "Hittade ingenting." : "";
 
         public bool DoesRegNrExist(string regNr, out string errorMessage)
         {
@@ -376,6 +429,25 @@ namespace Grupp_5_Garage_v2
                 if (SearchVehicle(regNr, out errorMessage) != "")
                 {
                     errorMessage = "Registreringsnumret finns redan.";
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool IsRegNrParked(string regNr, out string vehicle)
+        {
+            vehicle = "";
+
+            //Om inget reg nummer returnera alltid false.
+            if (regNr == "******")
+                return false;
+
+            foreach (Vehicle item in myGarage.UnparkedVehicles)
+            {
+                if (item.RegNr == regNr)
+                {
+                    vehicle = item.ToString();
                     return true;
                 }
             }

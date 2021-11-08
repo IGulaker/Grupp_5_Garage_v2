@@ -45,10 +45,17 @@ namespace Grupp_5_Garage_v2
             Fuel = fuel;
             Manufacturer = manufacturer;
             ModelYear = modelYear;
-            ReceiptNumber = NextReceiptNumber;
-            NextReceiptNumber++;
+            GetNewReceiptNumber();
 
         }
+
+        public void GetNewReceiptNumber()
+        {
+            ReceiptNumber = NextReceiptNumber;
+            NextReceiptNumber++;
+        }
+            
+
         private void GetRandomRegNr()
         {
             Random random = new();

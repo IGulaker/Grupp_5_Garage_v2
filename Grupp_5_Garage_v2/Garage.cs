@@ -24,29 +24,30 @@ namespace Grupp_5_Garage_v2
         public Garage()
         {
             NumberOfParkingLots = 5000;
-            SetCorrectReceiptNumber();
+            //SetCorrectReceiptNumber();
 
         }
 
-        public void SetCorrectReceiptNumber()
-        {
-            int nextreceiptnumber = 1000;
-            foreach (var item in parkedvehicles)
-            {
-                if (item.ReceiptNumber > nextreceiptnumber)
-                    nextreceiptnumber = item.ReceiptNumber + 1;
-            }
-            foreach (var item in unparkedvehicles)
-            {
-                if (item.ReceiptNumber > nextreceiptnumber)
-                    nextreceiptnumber = item.ReceiptNumber + 1;
-            }
-            Vehicle.NextReceiptNumber = nextreceiptnumber;
-        }
+        //public void SetCorrectReceiptNumber()
+        //{
+        //    int nextreceiptnumber = 1000;
+        //    foreach (var item in parkedvehicles)
+        //    {
+        //        if (item.ReceiptNumber > nextreceiptnumber)
+        //            nextreceiptnumber = item.ReceiptNumber + 1;
+        //    }
+        //    foreach (var item in unparkedvehicles)
+        //    {
+        //        if (item.ReceiptNumber > nextreceiptnumber)
+        //            nextreceiptnumber = item.ReceiptNumber + 1;
+        //    }
+        //    Vehicle.NextReceiptNumber = nextreceiptnumber;
+        //}
 
         public void Add(T value)
         {
             parkedvehicles.Add(value);
+            SizeOfParkedVehicles += value.Size;
         }
 
         private List<U> GetVehicleType<U>() where U : T
@@ -60,8 +61,9 @@ namespace Grupp_5_Garage_v2
             return newList;
         }
 
-        public string ListVehicleTypeString<U>() where U : T
+        public string ListVehicleTypeString<U>(out string message) where U : T
         {
+            message = "";
             List<U> newList = GetVehicleType<U>();
 
             string output = "";
@@ -69,9 +71,17 @@ namespace Grupp_5_Garage_v2
             {
                 output += item.GetBasicInfo() + "\n";
             }
+
+            if (string.IsNullOrEmpty(output))
+                message =  "Hittade inga fordon.";
+
             return output;
         }
 
+        internal void SetCorrectReceiptNumberAfterLoading()
+        {
+            Vehicle.NextReceiptNumber = ParkedVehicles[parkedvehicles.Count - 1].ReceiptNumber + 1;
+        }
 
         public List<T> ParkedVehicles
         {
@@ -86,13 +96,17 @@ namespace Grupp_5_Garage_v2
 
 
 
-        public string ListVehicles()
+        public string ListVehicles(out string message)
         {
+            message = "";
             string output = "";
             foreach (var item in ParkedVehicles)
             {
                 output += item.GetBasicInfo() + "\n";
             }
+
+            if (string.IsNullOrEmpty(output))
+                message = "Hittade inga fordon.";
             return output;
         }
 
@@ -109,6 +123,7 @@ namespace Grupp_5_Garage_v2
                 }
                 else
                 {
+                    Vehicle.NextReceiptNumber--;
                     errorMessage = $"Garaget är fullt. Kan inte ta emot din {inVehicle.VehicleType}";
                     return false;
                 }
@@ -117,6 +132,35 @@ namespace Grupp_5_Garage_v2
             return false;
         }
 
+
+        public bool ReaddVehicle(string regnrin, out string errormessage, out string vehicleinfo)
+        {
+            T vehicle = GetUnparkedVehicleWithRegNr(regnrin);
+            errormessage = "";
+            vehicleinfo = "";
+            if (vehicle != null)
+            {
+                if (!(vehicle.Size + SizeOfParkedVehicles > NumberOfParkingLots))
+                {
+
+
+                    unparkedvehicles.Remove(vehicle);
+                    vehicle.GetNewReceiptNumber();
+                    parkedvehicles.Add(vehicle);
+                    SizeOfParkedVehicles += vehicle.Size;
+                    vehicleinfo = vehicle.ToString();
+                    return true;
+                }
+                else
+                {
+                    errormessage = $"Garaget är fullt. Kan inte ta emot din {vehicle.VehicleType}";
+                    return false;
+                }
+
+            }
+            errormessage = "Kunde inte hitta ditt fordon.";
+            return false;
+        }
 
         public bool RemoveVehicle(T vehicle, out string errormessage)
         {
@@ -155,6 +199,25 @@ namespace Grupp_5_Garage_v2
             }
 
             return null;
+        }
+
+        public T GetUnparkedVehicleWithRegNr(string regnr)
+        {
+            if (regnr == "******")
+                return null;
+
+            foreach (var item in UnparkedVehicles)
+            {
+                if (item.RegNr == regnr)
+                    return item;
+            }
+
+            return null;
+        }
+
+        public override string ToString()
+        {
+            return $"Garagestorlek: \t\t{NumberOfParkingLots}\nAnvänd storlek: \t{SizeOfParkedVehicles}";
         }
     }
 }
