@@ -247,7 +247,7 @@ namespace Grupp_5_Garage_v2
         #region Input
         private static string RecieveUserString()
         {
-            return ReadLine().ToLower();
+            return ReadLine();
         }
 
         // Returns a string that is used for vehicle removal, filtering.
