@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Denna UI(Program.cs) är skapad av Isac Gulaker.
+
+using System;
 using static System.Console;
 using System.Collections.Generic;
 
