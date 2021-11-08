@@ -481,39 +481,47 @@ namespace Grupp_5_Garage_v2
 
         // Metoder som tillhör MOPED-KLASSEN
         #region
-        // Måste göras klart med bool
         public string SearchByClass(string inputClass)
         {
             string outputClass = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item is Moped)
+                if (inputClass == "J")
                 {
-                    if ((item as Moped).IsMopedClassTwo.ToString().ToUpper().Contains(inputClass.ToUpper()))
+                    if ((item as Moped).IsMopedClassTwo)
                     {
                         outputClass += item + "\n\n";
                     }
-
+                }
+                else
+                {
+                    if (!(item as Moped).IsMopedClassTwo)
+                    {
+                        outputClass += item + "\n\n";
+                    }
                 }
             }
             return outputClass;
         }
-
-        // Måste göras klart med bool
         public string SearchByHelmetBox(string inputHelmetBox)
         {
             string outputHelmetBox = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item is Moped)
+                if (inputHelmetBox == "J")
                 {
-                    if ((item as Moped).HasHelmetBox.ToString().ToUpper().Contains(inputHelmetBox.ToUpper()))
+                    if ((item as Moped).HasHelmetBox)
                     {
                         outputHelmetBox += item + "\n\n";
                     }
-
                 }
-
+                else
+                {
+                    if (!(item as Moped).HasHelmetBox)
+                    {
+                        outputHelmetBox += item + "\n\n";
+                    }
+                }
             }
             return outputHelmetBox;
         }
@@ -531,9 +539,7 @@ namespace Grupp_5_Garage_v2
                     if ((item as MotorCycle).WeightClass.ToString().ToUpper().Contains(inputWeightclass.ToUpper()))
                         outputWeightclass += item + "\n\n";
                 }
-
             }
-
             return outputWeightclass;
         }
         public string SearchByType(string inputMcType)
@@ -555,19 +561,24 @@ namespace Grupp_5_Garage_v2
 
         // Metoder som tillhör BIL-KLASSEN
         #region
-        // Ändra till bool
         public string SearchByRails(string inputRails)
         {
             string outputRails = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item is Car)
+                if (inputRails == "J")
                 {
-                    if ((item as Car).Rails.ToString().ToUpper().Contains(inputRails.ToUpper()))
+                    if ((item as Car).Rails)
                     {
                         outputRails += item + "\n\n";
                     }
-
+                }
+                else
+                {
+                    if (!(item as Car).Rails)
+                    {
+                        outputRails += item + "\n\n";
+                    }
                 }
             }
             return outputRails;
@@ -583,7 +594,6 @@ namespace Grupp_5_Garage_v2
                     {
                         outputNrOfDoors += item + "\n\n";
                     }
-
                 }
             }
             return outputNrOfDoors;
@@ -592,7 +602,6 @@ namespace Grupp_5_Garage_v2
 
         // Metoder som tillhör BUSS-KLASSEN
         #region
-        // Ändra till Bool
         public string SearchByDoubleDecker(string inputDoubleDecker)
         {
             string outputDoubleDecker = "";
@@ -637,15 +646,21 @@ namespace Grupp_5_Garage_v2
 
         // Metoder som tillhör LASTBIL-KLASSEN
         #region
-        // Ändra till Bool
         public string SearchByBoogie(string inputBoogie)
         {
             string outputBoogie = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item is Truck)
+                if (inputBoogie == "J")
                 {
-                    if ((item as Truck).Boogie.ToString().ToUpper().Contains(inputBoogie.ToUpper()))
+                    if ((item as Truck).Boogie)
+                    {
+                        outputBoogie += item + "\n\n";
+                    }
+                }
+                else
+                {
+                    if (!(item as Truck).Boogie)
                     {
                         outputBoogie += item + "\n\n";
                     }
@@ -653,24 +668,28 @@ namespace Grupp_5_Garage_v2
             }
             return outputBoogie;
         }
-        // Ändra till Bool
         public string SearchBySleepingCabin(string inputCabin)
         {
             string outputCabin = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item is Truck)
+                if (inputCabin == "J")
                 {
-                    if ((item as Truck).SleepingCabin.ToString().ToUpper().Contains(inputCabin.ToUpper()))
+                    if ((item as Truck).SleepingCabin)
                     {
                         outputCabin += item + "\n\n";
                     }
                 }
-
+                else
+                {
+                    if (!(item as Truck).SleepingCabin)
+                    {
+                        outputCabin += item + "\n\n";
+                    }
+                }
             }
             return outputCabin;
         }
         #endregion
-
     }
 }
