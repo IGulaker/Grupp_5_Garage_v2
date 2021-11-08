@@ -132,6 +132,8 @@ namespace Grupp_5_Garage_v2
                     return AddMotorcycle(input, out message);
                 case ChoiceID.CreateTruck:
                     return AddTruck(input, out message);
+                case ChoiceID.SearchByWeightclass:
+                    return SearchByWeightclass(input);
                 default:
                     break;
             }
@@ -351,6 +353,43 @@ namespace Grupp_5_Garage_v2
             }
             return outputColor;
         }
+
+        public string SearchByNrOfWheels(int inputNumberOfWheels)
+        {
+            string outputNumberOfWheels = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.NumberOfWheels == inputNumberOfWheels)
+                {
+                    outputNumberOfWheels += item.GetFullInfo();
+                }
+            }
+            return outputNumberOfWheels;
+        }
+        public string SearchByNrOfSeats(int inputSeats)
+        {
+            string outputSeats = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.PassengerCapacity == inputSeats)
+                {
+                    outputSeats += item.GetFullInfo();
+                }
+            }
+            return outputSeats;
+        }
+        public string SearchByFuelType(string inputFuelType)
+        {
+            string outputFuelType = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.Fuel.ToString().Contains(inputFuelType.ToUpper()))
+                {
+                    outputFuelType += item.GetFullInfo();
+                }
+            }
+            return outputFuelType;
+        }
         public string SearchByManufacturer(string manufacturer)
         {
             string outputManufacturer = "";
@@ -388,5 +427,142 @@ namespace Grupp_5_Garage_v2
             }
             return outputModelYear;
         }
+        
+        // Metoder som tillhör MOPED-KLASSEN
+        #region
+        // Måste göras klart med bool
+        public string SearchByClass(string inputClass)
+        {
+            string outputClass = "";
+            foreach (Moped item in myGarage)
+            {
+                if (item.IsMopedClassTwo)
+                {
+                    outputClass += item.GetFullInfo();
+                }
+
+            }
+            return outputClass;
+        }
+
+        // Måste göras klart med bool
+        public string SearchByHelmetBox()
+        {
+            string outputHelmetBox = "";
+            foreach (Moped item in myGarage)
+            {
+
+            }
+            return outputHelmetBox;
+        }
+        #endregion
+
+        // Metoder som tillhör MOTORCYKEL-KLASSEN
+        #region
+        public string SearchByWeightclass(string inputWeightclass)
+        {
+            string outputWeightclass = "";
+            //foreach (MotorCycle item in myGarage)
+            //{
+            //    if (item.WeightClass.ToString().Contains(inputWeightclass.ToUpper()))
+            //    {
+            //        outputWeightclass += item.GetFullInfo();
+            //    }
+            //}
+
+            foreach (Vehicle item in myGarage)
+            {
+                if (item is MotorCycle)
+                {
+                    if ((item as MotorCycle).WeightClass.ToString().ToUpper().Contains(inputWeightclass.ToUpper()))
+                        outputWeightclass += item + "\n\n";
+                }
+
+            }
+
+            return outputWeightclass;
+        }
+        public string SearchByType(string inputMcType)
+        {
+            string outputMcType = "";
+            foreach (MotorCycle item in myGarage)
+            {
+                if (item.CycleType.ToString().Contains(inputMcType.ToUpper()))
+                {
+                    outputMcType += item.GetFullInfo();
+                }
+            }
+            return outputMcType;
+        }
+        #endregion
+
+        // Metoder som tillhör BIL-KLASSEN
+        #region
+        // Ändra till bool
+        public string SearchByRails(string inputRails)
+        {
+            string outputRails = "";
+            foreach (Car item in myGarage)
+            {
+                if (item.Rails.ToString().Contains(inputRails.ToUpper()))
+                {
+                    outputRails += item.GetFullInfo();
+                }
+            }
+            return outputRails;
+        }
+        public string SearchByNrOfDoors(int inputNrOfDoors)
+        {
+            string outputNrOfDoors = "";
+            foreach (Car item in myGarage)
+            {
+                if (item.NumberOfDoors == inputNrOfDoors)
+                {
+                    outputNrOfDoors += item.GetFullInfo();
+                }
+            }
+            return outputNrOfDoors;
+        }
+        #endregion
+
+        // Metoder som tillhör BUSS-KLASSEN
+        #region
+        // Ändra till Bool
+        public string SearchByDoubleDecker(string inputDoubleDecker)
+        {
+            string outputDoubleDecker = "";
+
+            return outputDoubleDecker;
+        }
+        public string SearchByCompany(string inputCompany)
+        {
+            string outputCompany = "";
+            foreach (Bus item in myGarage)
+            {
+                if (item.BusCompany.Contains(inputCompany))
+                {
+                    outputCompany += item.GetFullInfo();
+                }
+            }
+            return outputCompany;
+        }
+        #endregion
+
+        // Metoder som tillhör LASTBIL-KLASSEN
+        #region
+        // Ändra till Bool
+        public string SearchByBoogie(string inputBoogie)
+        {
+            string outputBoogie = "";
+            return outputBoogie;
+        }
+        // Ändra till Bool
+        public string SearchBySleepingCabin(string inputCabin)
+        {
+            string outputCabin = "";
+            return outputCabin;
+        }
+        #endregion
+
     }
 }
