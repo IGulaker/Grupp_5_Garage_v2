@@ -486,7 +486,7 @@ namespace Grupp_5_Garage_v2
                                 break;
                             case 17:
                                 ForegroundColor = ConsoleColor.Yellow;
-                                WriteLine("[TRUCK]");
+                                WriteLine("[LASTBIL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
                             default:
