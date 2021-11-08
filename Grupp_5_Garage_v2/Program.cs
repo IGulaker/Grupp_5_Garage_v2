@@ -220,6 +220,10 @@ namespace Grupp_5_Garage_v2
             }
             else if (output != "")
             {
+                if ((int)choiceID > 2 && (int)choiceID < 10)
+                {
+                    ForegroundColor = ConsoleColor.Green;
+                }
                 DisplayOutput(output);
                 PauseForKeyPress();
             }
@@ -228,7 +232,6 @@ namespace Grupp_5_Garage_v2
         private static void DisplayOutput(string output)
         {
             Clear();
-            ForegroundColor = ConsoleColor.Green;
             WriteLine(output);
             ForegroundColor = ConsoleColor.White;
         }
