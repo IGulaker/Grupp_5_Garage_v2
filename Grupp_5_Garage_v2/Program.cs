@@ -1,4 +1,4 @@
-﻿// Denna UI(Program.cs) är skapad av Isac Gulaker.
+﻿// This UI(Program.cs) is created by Isac Gulaker.
 
 using System;
 using static System.Console;
