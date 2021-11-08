@@ -300,7 +300,7 @@ namespace Grupp_5_Garage_v2
                         Write("Registreringsnummer: ");
                     }
                 } while (!goToNext);
-                vehicleSpecifications = input + variableSeparator;
+                vehicleSpecifications = input.ToUpper() + variableSeparator;
             }
             else
             {
@@ -316,7 +316,7 @@ namespace Grupp_5_Garage_v2
                 Write("\nFärg: ");
                 input = RecieveUserString();
             } 
-            vehicleSpecifications += input + variableSeparator;
+            vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator;
             Write("\nAntal hjul: ");
             input = RecieveUserString();
             while ((!int.TryParse(input, out int aNumber)))
@@ -326,36 +326,30 @@ namespace Grupp_5_Garage_v2
                 input = RecieveUserString();
             }
             vehicleSpecifications += input + variableSeparator;
-            Write("\nAntal säten: ");
+            Write("\nAntal passagerarplatser: ");
             input = RecieveUserString();
             while ((!int.TryParse(input, out int aNumber)))
             {
                 DisplayError("Endast siffor tillåtna!");
-                Write("\nAntal säten: ");
+                Write("\nAntal passagerarplatser: ");
                 input = RecieveUserString();
             }
             vehicleSpecifications += input + variableSeparator;
-            WriteLine("\nBränsle:");
-            WriteLine("1. Bensin");
-            WriteLine("2. Diesel");
-            WriteLine("3. Hybrid");
-            WriteLine("4. Gas");
-            WriteLine("5. El");
-            Write("Val(1 - 5): ");
+            
             do
             {
+                WriteLine("\nBränsle:");
+                WriteLine("1. Bensin");
+                WriteLine("2. Diesel");
+                WriteLine("3. Hybrid");
+                WriteLine("4. Gas");
+                WriteLine("5. El");
+                Write("Val(1 - 5): ");
                 input = RecieveUserString();
                 goToNext = InputValidation.IsValidEnum(input, out error, Enum.GetNames(typeof(FuelType)).Length);
                 if (!goToNext)
                 {
                     DisplayError(error);
-                    WriteLine("\nBränsle:");
-                    WriteLine("1. Bensin");
-                    WriteLine("2. Diesel");
-                    WriteLine("3. Hybrid");
-                    WriteLine("4. Gas");
-                    WriteLine("5. El");
-                    Write("Val(1 - 5): ");
                 }
             } while (!goToNext);
             vehicleSpecifications += input + variableSeparator ;
@@ -367,7 +361,7 @@ namespace Grupp_5_Garage_v2
                 Write("\nTillverkare: ");
                 input = RecieveUserString();
             }
-            vehicleSpecifications += input + variableSeparator ;
+            vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator ;
             Write("\nÅrsmodell: ");
             do
             {
@@ -388,50 +382,120 @@ namespace Grupp_5_Garage_v2
                     vehicleSpecifications += 'N';
                     vehicleSpecifications += variableSeparator;
                     Write("\nHar den hjälmförvaring? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nHar den hjälmförvaring? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input;
                     break;
                 case ChoiceID.CreateMoped2:
                     vehicleSpecifications += 'J';
                     vehicleSpecifications += variableSeparator;
                     Write("\nHar den hjälmförvaring? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nHar den hjälmförvaring? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input;
                     break;
                 case ChoiceID.CreateMotorcycle:
-                    WriteLine("\nTyp:");
-                    WriteLine("1. Basic");
-                    WriteLine("2. Allroad");
-                    WriteLine("3. Custom");
-                    WriteLine("4. Offroad");
-                    WriteLine("5. Sport");
-                    WriteLine("6. Touring");
-                    vehicleSpecifications += char.GetNumericValue(RecieveUserString()[0]);
-                    vehicleSpecifications += variableSeparator;
-                    WriteLine("\nViktklass:");
-                    WriteLine("1. Lätt");
-                    WriteLine("2. Mellan");
-                    WriteLine("3. Tung");
-                    vehicleSpecifications += char.GetNumericValue(RecieveUserString()[0]);
+                    do
+                    {
+                        WriteLine("\nTyp:");
+                        WriteLine("1. Basic");
+                        WriteLine("2. Allroad");
+                        WriteLine("3. Custom");
+                        WriteLine("4. Offroad");
+                        WriteLine("5. Sport");
+                        WriteLine("6. Touring");
+                        input = RecieveUserString();
+                        goToNext = InputValidation.IsValidEnum(input, out error, Enum.GetNames(typeof(MotorCycleType)).Length);
+                        if (!goToNext)
+                        {
+                            DisplayError(error);
+                        }
+                    } while (!goToNext);
+                    vehicleSpecifications += input + variableSeparator;
+                    do
+                    {
+                        WriteLine("\nViktklass:");
+                        WriteLine("1. Lätt");
+                        WriteLine("2. Mellan");
+                        WriteLine("3. Tung");
+                        input = RecieveUserString();
+                        goToNext = InputValidation.IsValidEnum(input, out error, Enum.GetNames(typeof(WeightClass)).Length);
+                        if (!goToNext)
+                        {
+                            DisplayError(error);
+                        }
+                    } while (!goToNext);
+                    vehicleSpecifications += input;
                     break;
                 case ChoiceID.CreateCar:
                     Write("\nAntal dörrar: ");
-                    vehicleSpecifications += RecieveUserString();
-                    vehicleSpecifications += variableSeparator;
+                    input = RecieveUserString();
+                    while ((!int.TryParse(input, out int aNumber)))
+                    {
+                        DisplayError("Endast siffor tillåtna!");
+                        Write("\nAntal dörrar: ");
+                        input = RecieveUserString();
+                    }
+                    vehicleSpecifications += input + variableSeparator;
                     Write("\nHar den takräcke? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nHar den takräcke? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input;
                     break;
                 case ChoiceID.CreateBus:
                     Write("\nFöretag: ");
-                    vehicleSpecifications += RecieveUserString();
-                    vehicleSpecifications += variableSeparator;
+                    input = RecieveUserString();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nTillverkare: ");
+                        input = RecieveUserString();
+                    }
+                    vehicleSpecifications += InputValidation.InitialToUpper(input) + variableSeparator;
                     Write("\nÄr den en dubbeldäckare? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nÄr den en dubbeldäckare? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input;
                     break;
                 case ChoiceID.CreateTruck:
                     Write("\nHar den boggi? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
-                    vehicleSpecifications += variableSeparator;
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nHar den boggi? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input + variableSeparator;
                     Write("\nHar den sovplats? (J/N): ");
-                    vehicleSpecifications += RecieveUserString().ToUpper()[0];
+                    input = RecieveUserBool();
+                    while (string.IsNullOrEmpty(input))
+                    {
+                        DisplayError("Du måste skriva något!");
+                        Write("\nHar den sovplats? (J/N): ");
+                        input = RecieveUserBool();
+                    }
+                    vehicleSpecifications += input;
                     break;
                 default:
                     break;

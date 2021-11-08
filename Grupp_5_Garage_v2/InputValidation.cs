@@ -60,7 +60,6 @@ namespace Grupp_5_Garage_v2
         }
         public static bool IsValidEnum(string input, out string execptionMessage, int maxIndexOfEnum)
         {
-            maxIndexOfEnum++;
             execptionMessage = "";
             bool isValid = int.TryParse(input, out int inputValue);
             if (!isValid)
@@ -101,6 +100,12 @@ namespace Grupp_5_Garage_v2
                 exceptionMessage = "Ogiltigt årtal!";
                 return false;
             }
+        }
+        public static string InitialToUpper(string input)
+        {
+            string x = input.ToUpper();
+            input = input.Replace(input[0], x[0]);
+            return input;
         }
 
     }
