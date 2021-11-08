@@ -28,7 +28,7 @@ namespace Grupp_5_Garage_v2
         public Vehicle()
         {
             Random random = new();
-            Fuel = (FuelType)random.Next(0, Enum.GetNames(typeof(FuelType)).Length);
+            Fuel = (FuelType)random.Next(1, Enum.GetNames(typeof(FuelType)).Length + 1);
             Color = ((Colors)random.Next(0, Enum.GetNames(typeof(Colors)).Length)).ToString();
             Manufacturer = ((RandomManufacturer)random.Next(0, Enum.GetNames(typeof(RandomManufacturer)).Length)).ToString();
             ModelYear = random.Next(1980, DateTime.Now.Year);
@@ -79,7 +79,7 @@ namespace Grupp_5_Garage_v2
         public string GetFullInfo()
         {
             return $"Reg.Nr:\t\t{RegNr}\nMärke:\t\t{Manufacturer}\nFordonstyp:\t{VehicleType}\nFärg:\t\t{Color}\nÅrsmodell:\t{ModelYear}\nDrivmedel:\t{Fuel}" +
-                $"\nAntal hjul:\t{NumberOfWheels}\nPassagerare:\t{(PassengerCapacity>0 ? PassengerCapacity : "Inga")}\nKvittonummer:" +
+                $"\nAntal hjul:\t{NumberOfWheels}\nPassagerare:\t{(PassengerCapacity > 0 ? PassengerCapacity : "Inga")}\nKvittonummer:" +
                 $"\t{ReceiptNumber}\n";
         }
         abstract protected string VehicleType { get; }
