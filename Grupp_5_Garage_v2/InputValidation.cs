@@ -58,8 +58,9 @@ namespace Grupp_5_Garage_v2
             }
             else return true;
         }
-        public static bool IsValidFuelType(string input, out string execptionMessage)
+        public static bool IsValidEnum(string input, out string execptionMessage, int maxIndexOfEnum)
         {
+            maxIndexOfEnum++;
             execptionMessage = "";
             bool isValid = int.TryParse(input, out int inputValue);
             if (!isValid)
@@ -67,9 +68,9 @@ namespace Grupp_5_Garage_v2
                 execptionMessage = $"Felaktig inmatning.";
                 return false;
             }
-            else if (isValid && (inputValue < 1 || inputValue > 5))
+            else if (isValid && (inputValue < 1 || inputValue > maxIndexOfEnum))
             {
-                execptionMessage = $"Felaktig inmatning. Ange 1 till 5";
+                execptionMessage = $"Felaktig inmatning. Ange 1 till {maxIndexOfEnum}";
                 return false;
             }
             else return isValid;
