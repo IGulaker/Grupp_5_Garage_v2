@@ -14,10 +14,20 @@ namespace Grupp_5_Garage_v2
             myGarage = new Garage<Vehicle>();
         }
 
-        public void Setup()
+        public void Setup(string input, out string message)
         {
-            CreateVehicles(500);
-            
+            message = "";
+
+            string[] SeparatedString = input.Split("???");
+
+            int garagesize = Convert.ToInt32(SeparatedString[0]);
+            int vehiclestocreate = Convert.ToInt32(SeparatedString[1]);
+
+            myGarage.NumberOfParkingLots = garagesize;
+            CreateVehicles(vehiclestocreate);
+
+
+
         }
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
@@ -56,26 +66,26 @@ namespace Grupp_5_Garage_v2
         private void CreateRandomVehicle()
         {
             Random r = new Random();
-            int randomNumber = r.Next(1, 6);
+            int randomNumber = r.Next(1, 100);
             bool done = false;
             do
             {
                 string message;
                 switch (randomNumber)
                 {
-                    case 1:
+                    case > 0 and <= 51:
                         done = myGarage.AddVehicle(new Car(), out message);
                         break;
-                    case 2:
+                    case > 51 and <= 63:
                         done = myGarage.AddVehicle(new Moped(), out message);
                         break;
-                    case 3:
+                    case > 63 and <= 75:
                         done = myGarage.AddVehicle(new MotorCycle(), out message);
                         break;
-                    case 4:
+                    case > 75 and <= 87:
                         done = myGarage.AddVehicle(new Bus(), out message);
                         break;
-                    case 5:
+                    case > 87:
                         done = myGarage.AddVehicle(new Truck(), out message);
                         break;
                 }
@@ -90,7 +100,7 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
-
+                    Setup(input, out message);
                     break;
                 case ChoiceID.LoadGarage:
                     break;
