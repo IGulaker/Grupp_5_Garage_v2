@@ -83,10 +83,9 @@ namespace Grupp_5_Garage_v2
                     break;
                 case ChoiceID.LoadGarage:
                     break;
-                case ChoiceID.AddVehicle:
-                    break;
                 case ChoiceID.RemoveVehicle:
-                    break;
+                    message = "INTE BRA!";
+                    return "Det blev bra!  :D";
                 case ChoiceID.ListAllVehicles:
                     return myGarage.ListVehicles();
                 case ChoiceID.ListCars:
