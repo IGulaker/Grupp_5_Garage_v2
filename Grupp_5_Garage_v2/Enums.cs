@@ -66,6 +66,7 @@ namespace Grupp_5_Garage_v2
         Hedmans_Buss_och_Taxi
     }
 
+    // Skapad av Isac Gulaker
     public enum ChoiceID
     {
         CreateGarage,
@@ -112,6 +113,7 @@ namespace Grupp_5_Garage_v2
         SearchBySleepingCabin
     }
 
+    // Skapad av Isac Gulaker
     public enum MenuID
     {
         StartUp,
