@@ -111,8 +111,8 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.SearchByRegNr:
                     return SearchVehicle(input);
                 case ChoiceID.CreateCar:
-                    AddCar(input, out message);
-                    break;
+                    return AddCar(input, out message);
+
                 case ChoiceID.CreateBus:
                     AddBus(input, out message);
                     break;
@@ -135,7 +135,7 @@ namespace Grupp_5_Garage_v2
             return "";
         }
 
-        private bool AddMoped(string input, out string message)
+        private string AddMoped(string input, out string message)
         {
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
@@ -145,7 +145,7 @@ namespace Grupp_5_Garage_v2
             if (ConvertedString.Length != 9)
             {
                 message = "Fel antal skickade värden.";
-                return false;
+                return "";
             }
 
             //3. Convert the values to correct types
@@ -154,11 +154,15 @@ namespace Grupp_5_Garage_v2
 
             //4. Do all checks if it can be added.
             return DoesRegNrExist(regNr, out message)
-                ? false
-                : myGarage.AddVehicle(new Moped(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, ismopedclasstwo, hashelmetbox), out message);
+                ? ""
+                : myGarage.AddVehicle(new Moped(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, ismopedclasstwo, hashelmetbox), out message)
+                ? "Fordonet registrerat"
+                : "";
+
+
         }
 
-        private bool AddMotorcycle(string input, out string message)
+        private string AddMotorcycle(string input, out string message)
         {
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
@@ -168,7 +172,7 @@ namespace Grupp_5_Garage_v2
             if (ConvertedString.Length != 9)
             {
                 message = "Fel antal skickade värden.";
-                return false;
+                return "";
             }
 
             //3. Convert the values to correct types
@@ -177,11 +181,14 @@ namespace Grupp_5_Garage_v2
 
             //4. Do all checks if it can be added.
             return DoesRegNrExist(regNr, out message)
-                ? false
-                : myGarage.AddVehicle(new MotorCycle(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, motorcycletype, weightclass), out message);
+                ? ""
+                : myGarage.AddVehicle(new MotorCycle(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, motorcycletype, weightclass), out message)
+                ? "Fordonet registrerat"
+                : "";
+
         }
 
-        private bool AddTruck(string input, out string message)
+        private string AddTruck(string input, out string message)
         {
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
@@ -191,7 +198,7 @@ namespace Grupp_5_Garage_v2
             if (ConvertedString.Length != 9)
             {
                 message = "Fel antal skickade värden.";
-                return false;
+                return "";
             }
 
             //3. Convert the values to correct types
@@ -200,11 +207,14 @@ namespace Grupp_5_Garage_v2
 
             //4. Do all checks if it can be added.
             return DoesRegNrExist(regNr, out message)
-                ? false
-                : myGarage.AddVehicle(new Truck(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, boogie, sleepingcabin), out message);
+                ? ""
+                : myGarage.AddVehicle(new Truck(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, boogie, sleepingcabin), out message)
+                ? "Fordonet registrerat!"
+                : "";
+
         }
 
-        private bool AddCar(string input, out string message)
+        private string AddCar(string input, out string message)
         {
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
@@ -213,7 +223,7 @@ namespace Grupp_5_Garage_v2
             if (ConvertedString.Length != 9)
             {
                 message = "Fel antal skickade värden.";
-                return false;
+                return "";
             }
 
             //3. Convert the values to correct types
@@ -222,11 +232,13 @@ namespace Grupp_5_Garage_v2
 
             //4. Do all checks if it can be added.
             return DoesRegNrExist(regNr, out message)
-                ? false
-                : myGarage.AddVehicle(new Car(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, noofdoors, rails), out message);
+                ? ""
+                : myGarage.AddVehicle(new Car(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, noofdoors, rails), out message)
+                ? "Fordonet registrerat!"
+                : "";
         }
 
-        private bool AddBus(string input, out string message)
+        private string AddBus(string input, out string message)
         {
             //1. Set up variables
             string[] ConvertedString = input.Split("???");
@@ -235,7 +247,7 @@ namespace Grupp_5_Garage_v2
             if (ConvertedString.Length != 9)
             {
                 message = "Fel antal skickade värden.";
-                return false;
+                return "";
             }
 
 
@@ -245,8 +257,10 @@ namespace Grupp_5_Garage_v2
 
             //4. Do all checks if it can be added.
             return DoesRegNrExist(regNr, out message)
-                ? false
-                : myGarage.AddVehicle(new Bus(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, buscompany, isdoubledeck), out message);
+                ? ""
+                : myGarage.AddVehicle(new Bus(regNr, color, numberofwheels, passengercapacity, fuel, manufacturer, modelyear, buscompany, isdoubledeck), out message)
+                ? "Fordonet registrerat!"
+                : "";
         }
 
         private void GetBusValuesConverted(string[] convertedString, out string buscompany, out bool isdoubledeck)
