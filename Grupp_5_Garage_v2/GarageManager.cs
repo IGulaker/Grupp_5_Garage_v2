@@ -108,7 +108,7 @@ namespace Grupp_5_Garage_v2
                     return myGarage.ListVehicleTypeString<Truck>();
                 case ChoiceID.ListMopeds:
                     return myGarage.ListVehicleTypeString<Moped>();
-                case ChoiceID.ListMotorCycles:
+                case ChoiceID.ListMotorcycles:
                     return myGarage.ListVehicleTypeString<MotorCycle>();
                 default:
                     break;
