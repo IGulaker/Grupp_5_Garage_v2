@@ -23,6 +23,24 @@ namespace Grupp_5_Garage_v2
         public Garage()
         {
             NumberOfParkingLots = 5000;
+            SetCorrectReceiptNumber();
+            
+        }
+
+        public void SetCorrectReceiptNumber()
+        {
+            int nextreceiptnumber = 1000;
+            foreach (var item in parkedvehicles)
+            {
+                if (item.ReceiptNumber > nextreceiptnumber)
+                    nextreceiptnumber = item.ReceiptNumber + 1;
+            }
+            foreach (var item in unparkedvehicles)
+            {
+                if (item.ReceiptNumber > nextreceiptnumber)
+                    nextreceiptnumber = item.ReceiptNumber + 1;
+            }
+            Vehicle.NextReceiptNumber = nextreceiptnumber;
         }
 
         public void Add(T value)
@@ -62,6 +80,7 @@ namespace Grupp_5_Garage_v2
         public List<T> UnparkedVehicles
         {
             get { return unparkedvehicles; }
+            set { unparkedvehicles = value; }
         }
 
 

@@ -17,6 +17,7 @@ namespace Grupp_5_Garage_v2
         public void Setup()
         {
             CreateVehicles(500);
+            myGarage.UnparkedVehicles.Add(new Car());
         }
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
@@ -31,14 +32,19 @@ namespace Grupp_5_Garage_v2
 
         public void SaveGarage()
         {
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\Garage.xml", myGarage);
+            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
+            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
+
         }
 
         public void LoadGarage()
         {
             try
             {
-                myGarage = XMLUtilities.XMLFileDeserialize<Garage<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\Garage.xml");
+                Vehicle.NextReceiptNumber = 1000;
+                myGarage = XMLUtilities.XMLFileDeserialize<Garage<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml");
+                myGarage.UnparkedVehicles = XMLUtilities.XMLFileDeserialize<List<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml");
+                myGarage.SetCorrectReceiptNumber();
             }
             catch (Exception ex)
             {
@@ -253,7 +259,7 @@ namespace Grupp_5_Garage_v2
             weightclass = (WeightClass)Convert.ToInt32(convertedString[8]);
         }
 
-        private static void GetCarValuesConverted(string[] convertedstring, out int noofdoors, out bool rails)
+        private void GetCarValuesConverted(string[] convertedstring, out int noofdoors, out bool rails)
         {
             noofdoors = Convert.ToInt32(convertedstring[7]);
             rails = (convertedstring[8] == "J" ? true : false);
@@ -261,7 +267,7 @@ namespace Grupp_5_Garage_v2
 
 
 
-        private static void GetBasicValuesConverted(string[] convertedstring, out string regNr, out string color, out int numberofwheels, out int passengercapacity, out FuelType fuel, out string manufacturer, out int modelyear)
+        private void GetBasicValuesConverted(string[] convertedstring, out string regNr, out string color, out int numberofwheels, out int passengercapacity, out FuelType fuel, out string manufacturer, out int modelyear)
         {
             regNr = convertedstring[0];
             color = convertedstring[1];

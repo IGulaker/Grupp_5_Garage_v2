@@ -14,7 +14,7 @@ namespace Grupp_5_Garage_v2
     [XmlInclude(typeof(Bus))]
     public abstract class Vehicle
     {
-        static int nextReceiptNumber = 1000;
+        private static int nextReceiptNumber = 1000;
         public string RegNr { get; set; }
         public string Color { get; set; }
         public int NumberOfWheels { get; set; }
@@ -32,9 +32,9 @@ namespace Grupp_5_Garage_v2
             Color = ((Colors)random.Next(0, Enum.GetNames(typeof(Colors)).Length)).ToString();
             Manufacturer = ((RandomManufacturer)random.Next(0, Enum.GetNames(typeof(RandomManufacturer)).Length)).ToString();
             ModelYear = random.Next(1980, DateTime.Now.Year);
-            ReceiptNumber = nextReceiptNumber;
+            ReceiptNumber = NextReceiptNumber;
             GetRandomRegNr();
-            nextReceiptNumber++;
+            NextReceiptNumber++;
         }
         public Vehicle(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear)
         {
@@ -45,8 +45,8 @@ namespace Grupp_5_Garage_v2
             Fuel = fuel;
             Manufacturer = manufacturer;
             ModelYear = modelYear;
-            ReceiptNumber = nextReceiptNumber;
-            nextReceiptNumber++;
+            ReceiptNumber = NextReceiptNumber;
+            NextReceiptNumber++;
 
         }
         private void GetRandomRegNr()
@@ -83,5 +83,6 @@ namespace Grupp_5_Garage_v2
                 $"\t{ReceiptNumber}\n";
         }
         abstract protected string VehicleType { get; }
+        public static int NextReceiptNumber { get => nextReceiptNumber; set => nextReceiptNumber = value; }
     }
 }
