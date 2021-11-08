@@ -345,7 +345,7 @@ namespace Grupp_5_Garage_v2
             do
             {
                 input = RecieveUserString();
-                goToNext = InputValidation.IsValidFuelType(input, out error);
+                goToNext = InputValidation.IsValidEnum(input, out error, Enum.GetNames(typeof(FuelType)).Length);
                 if (!goToNext)
                 {
                     DisplayError(error);
