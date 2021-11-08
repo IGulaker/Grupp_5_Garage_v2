@@ -66,7 +66,7 @@ namespace Grupp_5_Garage_v2
             string output = "";
             foreach (U item in newList)
             {
-                output += item + "\n\n";
+                output += item.GetBasicInfo() + "\n";
             }
             return output;
         }
