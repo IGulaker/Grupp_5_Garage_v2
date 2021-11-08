@@ -90,12 +90,14 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 04c1fb838bd52c9313021574c704304f0cdff3b5
                     break;
                 case ChoiceID.LoadGarage:
-                    LoadGarage();
                     break;
                 case ChoiceID.RemoveVehicle:
-                    AddMotorcycle(input, out message);
                     break;
                 case ChoiceID.ListAllVehicles:
                     return myGarage.ListVehicles();
@@ -109,6 +111,25 @@ namespace Grupp_5_Garage_v2
                     return myGarage.ListVehicleTypeString<Moped>();
                 case ChoiceID.ListMotorcycles:
                     return myGarage.ListVehicleTypeString<MotorCycle>();
+                case ChoiceID.SearchByRegNr:
+                    return SearchVehicle(input);
+                case ChoiceID.CreateCar:
+                    AddCar(input, out message);
+                    break;
+                case ChoiceID.CreateBus:
+                    AddBus(input, out message);
+                    break;
+                case ChoiceID.CreateMoped1:
+                case ChoiceID.CreateMoped:
+                case ChoiceID.CreateMoped2:
+                    AddMoped(input, out message);
+                    break;
+                case ChoiceID.CreateMotorcycle:
+                    AddMotorcycle(input, out message);
+                    break;
+                case ChoiceID.CreateTruck:
+                    AddTruck(input, out message);
+                    break;
                 default:
                     break;
             }
