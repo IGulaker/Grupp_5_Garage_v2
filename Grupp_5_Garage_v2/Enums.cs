@@ -66,6 +66,7 @@ namespace Grupp_5_Garage_v2
         Hedmans_Buss_och_Taxi
     }
 
+    // Created by Isac Gulaker
     public enum ChoiceID
     {
         CreateGarage,
@@ -74,8 +75,8 @@ namespace Grupp_5_Garage_v2
         RemoveVehicle,
 
         CreateMoped,
-        CreateMoped1, // Används i "Program.cs"
-        CreateMoped2, // Används i "Program.cs"
+        CreateMoped1, // Used in "Program.cs"
+        CreateMoped2, // Used in "Program.cs"
         CreateMotorcycle,
         CreateCar,
         CreateBus,
@@ -118,6 +119,7 @@ namespace Grupp_5_Garage_v2
 
     }
 
+    // Created by Isac Gulaker
     public enum MenuID
     {
         StartUp,
