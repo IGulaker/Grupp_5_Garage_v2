@@ -134,75 +134,70 @@ namespace Grupp_5_Garage_v2
                         break;
                     case "6":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchBySize, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByManufacturer, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "7":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByManufacturer, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByYearModel, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "8":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByYearModel, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByReceieptNr, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "9":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByReceieptNr, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByClass, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "10":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByClass, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByHelmetBox, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "11":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByHelmetBox, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByWeightclass, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "12":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByWeightclass, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByType, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "13":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByType, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByRail, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "14":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByRail, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByNrOfDoors, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "15":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByNrOfDoors, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByDoubleDecker, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "16":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByDoubleDecker, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByCompany, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "17":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByCompany, RecieveSpecificValue());
+                        CommunicateWithManager(ChoiceID.SearchByBogie, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
                     case "18":
                         currentMenu = MenuID.FilterSearch;
-                        CommunicateWithManager(ChoiceID.SearchByBogie, RecieveSpecificValue());
-                        currentMenu = MenuID.Filter;
-                        break;
-                    case "19":
-                        currentMenu = MenuID.FilterSearch;
                         CommunicateWithManager(ChoiceID.SearchBySleepingCabin, RecieveSpecificValue());
                         currentMenu = MenuID.Filter;
                         break;
-                    case "20":
+                    case "19":
                         currentMenu = MenuID.Main;
                         break;
                     default:
@@ -233,7 +228,9 @@ namespace Grupp_5_Garage_v2
         private static void DisplayOutput(string output)
         {
             Clear();
+            ForegroundColor = ConsoleColor.Green;
             WriteLine(output);
+            ForegroundColor = ConsoleColor.White;
         }
 
         private static void DisplayError(string error)
@@ -247,7 +244,7 @@ namespace Grupp_5_Garage_v2
         #region Input
         private static string RecieveUserString()
         {
-            return ReadLine().ToLower();
+            return ReadLine();
         }
 
         // Returns a string that is used for vehicle removal, filtering.
@@ -586,7 +583,6 @@ namespace Grupp_5_Garage_v2
             filterChoices.Add("Sök med antal hjul");
             filterChoices.Add("Sök med antal säten");
             filterChoices.Add("Sök med bensintyp");
-            filterChoices.Add("Sök med storlek");
             filterChoices.Add("Sök med märke");
             filterChoices.Add("Sök med årsmodell");
             filterChoices.Add("Sök med kvittonummer");
