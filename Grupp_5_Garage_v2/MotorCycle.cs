@@ -14,8 +14,8 @@ namespace Grupp_5_Garage_v2
         public MotorCycle()
         {
             Random random = new();
-            CycleType = (MotorCycleType)random.Next(0, Enum.GetNames(typeof(MotorCycleType)).Length);
-            WeightClass = (WeightClass)random.Next(0, Enum.GetNames(typeof(WeightClass)).Length);
+            CycleType = (MotorCycleType)random.Next(1, Enum.GetNames(typeof(MotorCycleType)).Length + 1);
+            WeightClass = (WeightClass)random.Next(1, Enum.GetNames(typeof(WeightClass)).Length + 1);
             Size = 1;
             NumberOfWheels = 2;
             PassengerCapacity = random.Next(2);
