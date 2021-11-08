@@ -486,18 +486,21 @@ namespace Grupp_5_Garage_v2
             string outputClass = "";
             foreach (Vehicle item in myGarage)
             {
-                if (inputClass == "J")
+                if (item is Moped)
                 {
-                    if ((item as Moped).IsMopedClassTwo)
+                    if (inputClass == "J")
                     {
-                        outputClass += item + "\n\n";
+                        if ((item as Moped).IsMopedClassTwo)
+                        {
+                            outputClass += item + "\n\n";
+                        }
                     }
-                }
-                else
-                {
-                    if (!(item as Moped).IsMopedClassTwo)
+                    else
                     {
-                        outputClass += item + "\n\n";
+                        if (!(item as Moped).IsMopedClassTwo)
+                        {
+                            outputClass += item + "\n\n";
+                        }
                     }
                 }
             }
@@ -508,18 +511,21 @@ namespace Grupp_5_Garage_v2
             string outputHelmetBox = "";
             foreach (Vehicle item in myGarage)
             {
-                if (inputHelmetBox == "J")
+                if (item is Moped)
                 {
-                    if ((item as Moped).HasHelmetBox)
+                    if (inputHelmetBox == "J")
                     {
-                        outputHelmetBox += item + "\n\n";
+                        if ((item as Moped).HasHelmetBox)
+                        {
+                            outputHelmetBox += item + "\n\n";
+                        }
                     }
-                }
-                else
-                {
-                    if (!(item as Moped).HasHelmetBox)
+                    else
                     {
-                        outputHelmetBox += item + "\n\n";
+                        if (!(item as Moped).HasHelmetBox)
+                        {
+                            outputHelmetBox += item + "\n\n";
+                        }
                     }
                 }
             }
@@ -566,18 +572,21 @@ namespace Grupp_5_Garage_v2
             string outputRails = "";
             foreach (Vehicle item in myGarage)
             {
-                if (inputRails == "J")
+                if (item is Car)
                 {
-                    if ((item as Car).Rails)
+                    if (inputRails == "J")
                     {
-                        outputRails += item + "\n\n";
+                        if ((item as Car).Rails)
+                        {
+                            outputRails += item + "\n\n";
+                        }
                     }
-                }
-                else
-                {
-                    if (!(item as Car).Rails)
+                    else
                     {
-                        outputRails += item + "\n\n";
+                        if (!(item as Car).Rails)
+                        {
+                            outputRails += item + "\n\n";
+                        }
                     }
                 }
             }
@@ -651,20 +660,24 @@ namespace Grupp_5_Garage_v2
             string outputBoogie = "";
             foreach (Vehicle item in myGarage)
             {
-                if (inputBoogie == "J")
+                if (item is Truck)
                 {
-                    if ((item as Truck).Boogie)
+                    if (inputBoogie == "J")
                     {
-                        outputBoogie += item + "\n\n";
+                        if ((item as Truck).Boogie)
+                        {
+                            outputBoogie += item + "\n\n";
+                        }
+                    }
+                    else
+                    {
+                        if (!(item as Truck).Boogie)
+                        {
+                            outputBoogie += item + "\n\n";
+                        }
                     }
                 }
-                else
-                {
-                    if (!(item as Truck).Boogie)
-                    {
-                        outputBoogie += item + "\n\n";
-                    }
-                }
+                
             }
             return outputBoogie;
         }
@@ -673,18 +686,21 @@ namespace Grupp_5_Garage_v2
             string outputCabin = "";
             foreach (Vehicle item in myGarage)
             {
-                if (inputCabin == "J")
+                if (item is Truck)
                 {
-                    if ((item as Truck).SleepingCabin)
+                    if (inputCabin == "J")
                     {
-                        outputCabin += item + "\n\n";
+                        if ((item as Truck).SleepingCabin)
+                        {
+                            outputCabin += item + "\n\n";
+                        }
                     }
-                }
-                else
-                {
-                    if (!(item as Truck).SleepingCabin)
+                    else
                     {
-                        outputCabin += item + "\n\n";
+                        if (!(item as Truck).SleepingCabin)
+                        {
+                            outputCabin += item + "\n\n";
+                        }
                     }
                 }
             }
