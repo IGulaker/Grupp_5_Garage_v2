@@ -20,7 +20,6 @@ C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\bin\Debug\net5.0
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\bin\Debug\net5.0\Grupp_5_Garage_v2.dll
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\bin\Debug\net5.0\ref\Grupp_5_Garage_v2.dll
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\bin\Debug\net5.0\Grupp_5_Garage_v2.pdb
-C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.csproj.AssemblyReference.cache
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.AssemblyInfoInputs.cache
 C:\Users\marii\Source\Repos\Grupp_5_Garage_v2\Grupp_5_Garage_v2\obj\Debug\net5.0\Grupp_5_Garage_v2.AssemblyInfo.cs
