@@ -295,27 +295,62 @@ namespace Grupp_5_Garage_v2
             string outputRegNum = "";
             foreach (Vehicle item in myGarage)
             {
-                if (item.RegNr.Contains(regNum))
+                if (item.RegNr.ToUpper().Contains(regNum.ToUpper()))
                 {
                     outputRegNum += item.GetFullInfo();
                 }
             }
-
             return outputRegNum;
         }
 
         public string SearchByColor(string inputColor)
         {
             string outputColor = "";
-
             foreach (Vehicle item in myGarage)
             {
-                if (item.Color.Contains(inputColor))
+                if (item.Color.ToUpper().Contains(inputColor.ToUpper()))
                 {
                     outputColor += item.GetFullInfo();
                 }
             }
             return outputColor;
+        }
+        public string SearchByManufacturer(string manufacturer)
+        {
+            string outputManufacturer = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.Manufacturer.ToUpper().Contains(manufacturer.ToUpper()))
+                {
+                    outputManufacturer += item.GetFullInfo();
+                }
+            }
+            return outputManufacturer;
+        }
+        public string SearchByReceiptNumber(int receiptNumber)
+        {
+            string outputReceiptNumber = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.ReceiptNumber == receiptNumber)
+                {
+                    outputReceiptNumber += item.GetFullInfo();
+                }
+            }
+            return outputReceiptNumber;
+        }
+
+        public string SearchByModelYear(int modelYear)
+        {
+            string outputModelYear = "";
+            foreach (Vehicle item in myGarage)
+            {
+                if (item.ModelYear == modelYear)
+                {
+                    outputModelYear += item.GetFullInfo();
+                }
+            }
+            return outputModelYear;
         }
     }
 }
