@@ -90,10 +90,7 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
-<<<<<<< HEAD
-=======
 
->>>>>>> 04c1fb838bd52c9313021574c704304f0cdff3b5
                     break;
                 case ChoiceID.LoadGarage:
                     break;
