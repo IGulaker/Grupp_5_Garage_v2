@@ -90,7 +90,7 @@ namespace Grupp_5_Garage_v2
             switch (choiceID)
             {
                 case ChoiceID.CreateGarage:
-                    SaveGarage();
+                    //SaveGarage();
                     break;
                 case ChoiceID.LoadGarage:
                     LoadGarage();
