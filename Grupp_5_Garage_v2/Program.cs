@@ -505,7 +505,7 @@ namespace Grupp_5_Garage_v2
         private static void WriteSearchBoolHeader(ChoiceID choiceID)
         {
             ForegroundColor = ConsoleColor.Yellow;
-            WriteLine("FILTER");
+            WriteLine("(FILTER)");
             Write("\nHAR DEN ");
             switch (choiceID)
             {
