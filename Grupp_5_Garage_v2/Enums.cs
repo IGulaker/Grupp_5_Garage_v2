@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    enum FuelType
+    public enum FuelType
     {
-        Bensin,
+        Bensin = 1,
         Diesel,
         Hybrid,
         Gas,
         El
     }
-    enum WeightClass
+    public enum WeightClass
     {
-        Lätt,
+        Lätt = 1,
         Mellan,
         Tung,
     }
-    enum MotorCycleType
+    public enum MotorCycleType
     {
-        Basic,
+        Basic = 1,
         Allroad,
         Custom,
         Offroad,
         Sport,
         Touring,
     }
-    enum RandomManufacturer
+    public enum RandomManufacturer
     {
         Volvo,
         Mercedes,
@@ -38,5 +38,89 @@ namespace Grupp_5_Garage_v2
         BMW,
         Chevrolet,
         Toyota
+    }
+
+    public enum Colors
+    {
+        Vit,
+        Svart,
+        Grå,
+        Röd,
+        Silver,
+        Blå,
+        Rosa,
+        Grön,
+        Orange,
+        Gul,
+    }
+
+    public enum BusCompanies
+    {
+        Wallners_Buss,
+        Wahlmans_Buss_AB,
+        Strömberg_Buss_AB,
+        Nettbuss_Stadsbussarna_AB,
+        Gunnars_Buss,
+        Merresor_Buss,
+        Vy_Buss_Stadsbussarna,
+        Hedmans_Buss_och_Taxi
+    }
+
+    public enum ChoiceID
+    {
+        CreateGarage,
+        LoadGarage,
+        RemoveVehicle,
+
+        CreateMoped,
+        CreateMoped1, // Används i "Program.cs"
+        CreateMoped2, // Används i "Program.cs"
+        CreateMotorcycle,
+        CreateCar,
+        CreateBus,
+        CreateTruck,
+
+        ListAllVehicles,
+        ListMopeds,
+        ListMotorcycles,
+        ListCars,
+        ListBuses,
+        ListTrucks,
+
+        SearchByRegNr,
+        SearchByColour,
+        SearchByNrOfWheels,
+        SearchByNrOfSeats,
+        SearchByFuelType,
+        SearchByManufacturer,
+        SearchByYearModel,
+        SearchByReceieptNr,
+        // Moped
+        SearchByClass,
+        SearchByHelmetBox,
+        // Motorcycle
+        SearchByWeightclass,
+        SearchByType,
+        // Car
+        SearchByRail,
+        SearchByNrOfDoors,
+        // Bus
+        SearchByDoubleDecker,
+        SearchByCompany,
+        // Truck
+        SearchByBogie,
+        SearchBySleepingCabin
+    }
+
+    public enum MenuID
+    {
+        StartUp,
+        CreatingGarage,
+        Main,
+        AddVehicle,
+        GetVehicle,
+        CreateVehicle,
+        Filter,
+        FilterSearch
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfVehicle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Vehicle xsi:type="Car">
+    <RegNr>UDZ777</RegNr>
+    <Color>Röd</Color>
+    <NumberOfWheels>4</NumberOfWheels>
+    <PassengerCapacity>5</PassengerCapacity>
+    <Fuel>Hybrid</Fuel>
+    <Size>2</Size>
+    <Manufacturer>Mercedes</Manufacturer>
+    <ModelYear>2013</ModelYear>
+    <ReceiptNumber>1500</ReceiptNumber>
+    <NumberOfDoors>3</NumberOfDoors>
+    <Rails>false</Rails>
+  </Vehicle>
+</ArrayOfVehicle>

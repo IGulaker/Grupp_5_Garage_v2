@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,76 +7,113 @@ using System.Threading.Tasks;
 
 namespace Grupp_5_Garage_v2
 {
-    class Garage
+    [Serializable]
+    public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        public int NumberOfParkingLots
+        public int NumberOfParkingLots { get => numberOfParkingLots; set => numberOfParkingLots = value; }
+
+
+        private List<T> parkedvehicles = new();
+        private List<T> unparkedvehicles = new();
+        private int numberOfParkingLots;
+
+        public IEnumerator<T> GetEnumerator() => parkedvehicles.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => parkedvehicles.GetEnumerator();
+
+        public Garage()
         {
-            get => default;
-            set
+            NumberOfParkingLots = 5000;
+            SetCorrectReceiptNumber();
+            
+        }
+
+        public void SetCorrectReceiptNumber()
+        {
+            int nextreceiptnumber = 1000;
+            foreach (var item in parkedvehicles)
             {
-                NumberOfParkingLots = value;
+                if (item.ReceiptNumber > nextreceiptnumber)
+                    nextreceiptnumber = item.ReceiptNumber + 1;
             }
-        }
-
-        public List<Vehicle> ParkedVehicles
-        {
-            get => default;
-            set
+            foreach (var item in unparkedvehicles)
             {
+                if (item.ReceiptNumber > nextreceiptnumber)
+                    nextreceiptnumber = item.ReceiptNumber + 1;
             }
+            Vehicle.NextReceiptNumber = nextreceiptnumber;
         }
 
-        public List<Vehicle> UnparkedVehicle
+        public void Add(T value)
         {
-            get => default;
-            set
+            parkedvehicles.Add(value);
+        }
+
+        private List<U> GetVehicleType<U>() where U : T
+        {
+            List<U> newList = new();
+
+            newList.AddRange(from T vehicle in parkedvehicles
+                             where vehicle is U
+                             select vehicle as U);
+
+            return newList;
+        }
+
+        public string ListVehicleTypeString<U>() where U : T
+        {
+            List<U> newList = GetVehicleType<U>();
+
+            string output = "";
+            foreach (U item in newList)
             {
+                output += item.GetBasicInfo() + "\n";
             }
+            return output;
         }
 
-        public void ListVehicles()
+
+        public List<T> ParkedVehicles
         {
-            throw new System.NotImplementedException();
+            get { return parkedvehicles; }
         }
 
-        public void ListTypeOfVehicle()
+        public List<T> UnparkedVehicles
         {
-            throw new System.NotImplementedException();
+            get { return unparkedvehicles; }
+            set { unparkedvehicles = value; }
         }
 
-        public bool AddVehicle()
+
+
+        public string ListVehicles()
         {
-            throw new System.NotImplementedException();
+            string output = "";
+            foreach (var item in ParkedVehicles)
+            {
+                output += item.GetBasicInfo() + "\n";
+            }
+            return output;
         }
 
-        public bool RemoveVehicle()
+        public bool AddVehicle(T inVehicle, out string errorMessage)
         {
-            throw new System.NotImplementedException();
+            errorMessage = "";
+            if (inVehicle != null)
+            {
+                ParkedVehicles.Add(inVehicle);
+                return true;
+            }
+            errorMessage = "Kunde inte lägga till fordonet.";
+            return false;
         }
 
-        public Vehicle SearchVehicle(string regNum)
-        {
-            throw new System.NotImplementedException();
-        }
 
-        public string SearchByColor()
+        public bool RemoveVehicle(T vehicle)
         {
-            throw new System.NotImplementedException();
-        }
 
-        public void SearchByModelYear(int model)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByManufacturer(string manufacturer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByReceiptNumber(int receiptNumber)
-        {
-            throw new System.NotImplementedException();
+            parkedvehicles.Remove(vehicle);
+            unparkedvehicles.Add(vehicle);
+            return true;
         }
     }
 }
