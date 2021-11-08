@@ -81,33 +81,12 @@ namespace Grupp_5_Garage_v2
             return false;
         }
 
-
-        public string SearchVehicle(string regNum)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string SearchByColor()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public bool RemoveVehicle(T vehicle)
         {
 
             parkedvehicles.Remove(vehicle);
             unparkedvehicles.Add(vehicle);
             return true;
-        }
-
-        public void SearchByManufacturer(string manufacturer)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void SearchByReceiptNumber(int receiptNumber)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
