@@ -118,8 +118,6 @@ namespace Grupp_5_Garage_v2
                     return myGarage.ListVehicleTypeString<Moped>();
                 case ChoiceID.ListMotorcycles:
                     return myGarage.ListVehicleTypeString<MotorCycle>();
-                case ChoiceID.SearchByRegNr:
-                    return SearchVehicle(input);
                 case ChoiceID.CreateCar:
                     return AddCar(input, out message);
                 case ChoiceID.CreateBus:
@@ -132,8 +130,42 @@ namespace Grupp_5_Garage_v2
                     return AddMotorcycle(input, out message);
                 case ChoiceID.CreateTruck:
                     return AddTruck(input, out message);
+                case ChoiceID.SearchByBogie:
+                    return SearchByBoogie(input);
+                case ChoiceID.SearchByClass:
+                    return SearchByClass(input);
+                case ChoiceID.SearchByColour:
+                    return SearchByColor(input);
+                case ChoiceID.SearchByCompany:
+                    return SearchByCompany(input);
+                case ChoiceID.SearchByDoubleDecker:
+                    return SearchByDoubleDecker(input);
+                case ChoiceID.SearchByFuelType:
+                    return SearchByFuelType(input);
+                case ChoiceID.SearchByHelmetBox:
+                    return SearchByHelmetBox(input);
+                case ChoiceID.SearchByManufacturer:
+                    return SearchByManufacturer(input);
+                case ChoiceID.SearchByNrOfDoors:
+                    return SearchByNrOfDoors(Convert.ToInt32(input));
+                case ChoiceID.SearchByNrOfSeats:
+                    return SearchByNrOfSeats(Convert.ToInt32(input));
+                case ChoiceID.SearchByNrOfWheels:
+                    return SearchByNrOfWheels(Convert.ToInt32(input));
+                case ChoiceID.SearchByRail:
+                    return SearchByRails(input);
+                case ChoiceID.SearchByReceieptNr:
+                    return SearchByReceiptNumber(Convert.ToInt32(input));
+                case ChoiceID.SearchByRegNr:
+                    return SearchVehicle(input);
+                case ChoiceID.SearchBySleepingCabin:
+                    return SearchBySleepingCabin(input);
+                case ChoiceID.SearchByType:
+                    return SearchByType(input);
                 case ChoiceID.SearchByWeightclass:
                     return SearchByWeightclass(input);
+                case ChoiceID.SearchByYearModel:
+                    return SearchByModelYear(Convert.ToInt32(input));
                 default:
                     break;
             }
@@ -427,7 +459,7 @@ namespace Grupp_5_Garage_v2
             }
             return outputModelYear;
         }
-        
+
         // Metoder som tillhör MOPED-KLASSEN
         #region
         // Måste göras klart med bool
@@ -440,7 +472,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Moped).IsMopedClassTwo.ToString().ToUpper().Contains(inputClass.ToUpper()))
                     {
-                        outputClass += item + "/n/n";
+                        outputClass += item + "\n\n";
                     }
 
                 }
@@ -458,7 +490,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Moped).HasHelmetBox.ToString().ToUpper().Contains(inputHelmetBox.ToUpper()))
                     {
-                        outputHelmetBox += item + "/n/n";
+                        outputHelmetBox += item + "\n\n";
                     }
 
                 }
@@ -494,7 +526,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as MotorCycle).CycleType.ToString().ToUpper().Contains(inputMcType.ToUpper()))
                     {
-                        outputMcType += item + "/n/n";
+                        outputMcType += item + "\n\n";
                     }
                 }
             }
@@ -514,7 +546,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Car).Rails.ToString().ToUpper().Contains(inputRails.ToUpper()))
                     {
-                        outputRails += item + "/n/n";
+                        outputRails += item + "\n\n";
                     }
 
                 }
@@ -530,7 +562,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Car).NumberOfDoors == inputNrOfDoors)
                     {
-                        outputNrOfDoors += item + "/n/n";
+                        outputNrOfDoors += item + "\n\n";
                     }
 
                 }
@@ -551,7 +583,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Bus).IsDoubleDeck.ToString().ToUpper().Contains(inputDoubleDecker.ToUpper()))
                     {
-                        outputDoubleDecker += item + "/n/n";
+                        outputDoubleDecker += item + "\n\n";
                     }
                 }
             }
@@ -566,7 +598,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Bus).BusCompany.ToString().ToUpper().Contains(inputCompany.ToUpper()))
                     {
-                        outputCompany += item + "/n/n";
+                        outputCompany += item + "\n\n";
                     }
                 }
             }
@@ -586,7 +618,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Truck).Boogie.ToString().ToUpper().Contains(inputBoogie.ToUpper()))
                     {
-                        outputBoogie += item + "/n/n";
+                        outputBoogie += item + "\n\n";
                     }
                 }
             }
@@ -602,7 +634,7 @@ namespace Grupp_5_Garage_v2
                 {
                     if ((item as Truck).SleepingCabin.ToString().ToUpper().Contains(inputCabin.ToUpper()))
                     {
-                        outputCabin += item + "/n/n";
+                        outputCabin += item + "\n\n";
                     }
                 }
 
