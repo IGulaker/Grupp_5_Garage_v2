@@ -42,25 +42,13 @@ namespace Grupp_5_Garage_v2
 
         public void SaveGarage()
         {
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
+
 
         }
 
         public void LoadGarage()
         {
-            try
-            {
-                Vehicle.NextReceiptNumber = 1000;
-                myGarage = XMLUtilities.XMLFileDeserialize<Garage<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml");
-                myGarage.UnparkedVehicles = XMLUtilities.XMLFileDeserialize<List<Vehicle>>(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml");
-                myGarage.SetCorrectReceiptNumber();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return;
-            }
+
         }
 
         private void CreateRandomVehicle()
