@@ -8,7 +8,7 @@ namespace Grupp_5_Garage_v2
 {
     public enum FuelType
     {
-        Bensin,
+        Bensin = 1,
         Diesel,
         Hybrid,
         Gas,
@@ -16,13 +16,13 @@ namespace Grupp_5_Garage_v2
     }
     public enum WeightClass
     {
-        Lätt,
+        Lätt = 1,
         Mellan,
         Tung,
     }
     public enum MotorCycleType
     {
-        Basic,
+        Basic = 1,
         Allroad,
         Custom,
         Offroad,
@@ -68,15 +68,59 @@ namespace Grupp_5_Garage_v2
 
     public enum ChoiceID
     {
-        CreateGarage = 1,
+        CreateGarage,
         LoadGarage,
-        AddVehicle,
         RemoveVehicle,
+
+        CreateMoped,
+        CreateMoped1, // Används i "Program.cs"
+        CreateMoped2, // Används i "Program.cs"
+        CreateMotorcycle,
+        CreateCar,
+        CreateBus,
+        CreateTruck,
+
         ListAllVehicles,
+        ListMopeds,
+        ListMotorcycles,
         ListCars,
         ListBuses,
         ListTrucks,
-        ListMopeds,
-        ListMotorCycles
+
+        SearchByRegNr,
+        SearchByColour,
+        SearchByNrOfWheels,
+        SearchByNrOfSeats,
+        SearchByFuelType,
+        SearchBySize,
+        SearchByManufacturer,
+        SearchByYearModel,
+        SearchByReceieptNr,
+        // Moped
+        SearchByClass,
+        SearchByHelmetBox,
+        // Motorcycle
+        SearchByWeightclass,
+        SearchByType,
+        // Car
+        SearchByRail,
+        SearchByNrOfDoors,
+        // Bus
+        SearchByDoubleDecker,
+        SearchByCompany,
+        // Truck
+        SearchByBogie,
+        SearchBySleepingCabin
+    }
+
+    public enum MenuID
+    {
+        StartUp,
+        Main,
+        AddVehicle,
+        GetVehicle,
+        CreateVehicle,
+        Filter,
+        FilterSearch
     }
 }

@@ -95,8 +95,6 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     LoadGarage();
                     break;
-                case ChoiceID.AddVehicle:
-                    break;
                 case ChoiceID.RemoveVehicle:
                     AddMotorcycle(input, out message);
                     break;
