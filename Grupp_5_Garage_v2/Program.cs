@@ -225,7 +225,7 @@ namespace Grupp_5_Garage_v2
             }
             else if (output != "")
             {
-                if ((int)choiceID  >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
+                if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
                 {
                     ForegroundColor = ConsoleColor.Green;
                 }
@@ -791,7 +791,8 @@ namespace Grupp_5_Garage_v2
                 else if (startUpChoice == "2")
                 {
                     CommunicateWithManager(ChoiceID.LoadGarage, null);
-                    isReadyToStart = true;
+                    if (garageManager.IsReadyToStart())
+                        isReadyToStart = true;
                 }
             }
 

@@ -30,10 +30,9 @@ namespace Grupp_5_Garage_v2
 
         }
 
-        public string GarageInfo()
-        {
-            return myGarage.ToString();
-        }
+        public bool IsReadyToStart() => myGarage != null;
+
+        public string GarageInfo() => myGarage.ToString();
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
         {
@@ -52,8 +51,9 @@ namespace Grupp_5_Garage_v2
             return "Garaget har sparats";
         }
 
-        public string LoadGarage()
+        public string LoadGarage(out string message)
         {
+            message = "";
             try
             {
                 Vehicle.NextReceiptNumber = 1000;
@@ -62,9 +62,11 @@ namespace Grupp_5_Garage_v2
                 myGarage.NumberOfParkingLots = XMLUtilities.XMLFileDeserialize<int>(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml");
                 myGarage.SetCorrectReceiptNumberAfterLoading();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return ex.ToString();
+                message = "Garaget kunde inte laddas!";
+                myGarage = null;
+                return "";
             }
 
             return "Garaget har laddats!";
@@ -106,7 +108,7 @@ namespace Grupp_5_Garage_v2
                     Setup(input, out message);
                     break;
                 case ChoiceID.LoadGarage:
-                    return LoadGarage();
+                    return LoadGarage(out message);
                 case ChoiceID.SaveGarage:
                     return SaveGarage();
                 case ChoiceID.RemoveVehicle:
@@ -362,14 +364,9 @@ namespace Grupp_5_Garage_v2
                 : "";
         }
 
-        private string CheckIfRegNrAlreadyExists(string input, out string vehicleinfo)
-        {
-            if (IsRegNrParked(input.ToUpper(), out vehicleinfo))
-                return "Detta fordon har parkerat här förr! \nVill du registrera samma fordon igen?";
-
-            return "";
-
-        }
+        private string CheckIfRegNrAlreadyExists(string input, out string vehicleinfo) => IsRegNrParked(input.ToUpper(), out vehicleinfo)
+                ? "Detta fordon har parkerat här förr! \nVill du registrera samma fordon igen?"
+                : "";
 
         private static void GetBusValuesConverted(string[] convertedString, out string buscompany, out bool isdoubledeck)
         {
@@ -441,15 +438,12 @@ namespace Grupp_5_Garage_v2
             //Om inget reg nummer returnera alltid false.
             if (regNr == "******")
                 return false;
-
-            foreach (Vehicle item in myGarage.UnparkedVehicles)
+            foreach (Vehicle item in myGarage.UnparkedVehicles.Where(item => item.RegNr == regNr))
             {
-                if (item.RegNr == regNr)
-                {
-                    vehicle = item.ToString();
-                    return true;
-                }
+                vehicle = item.ToString();
+                return true;
             }
+
             return false;
         }
         public string SearchVehicle(string regNum, out string message)
@@ -802,6 +796,8 @@ namespace Grupp_5_Garage_v2
             message = IsSearchEmpty(outputCabin);
             return outputCabin;
         }
+
+
         #endregion
     }
 }
