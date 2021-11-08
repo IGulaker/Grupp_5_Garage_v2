@@ -92,7 +92,6 @@ namespace Grupp_5_Garage_v2
         SearchByNrOfWheels,
         SearchByNrOfSeats,
         SearchByFuelType,
-        SearchBySize,
         SearchByManufacturer,
         SearchByYearModel,
         SearchByReceieptNr,
