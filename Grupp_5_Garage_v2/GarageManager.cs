@@ -350,6 +350,10 @@ namespace Grupp_5_Garage_v2
         {
             errorMessage = "";
 
+            //Om inget reg nummer returnera alltid false.
+            if (regNr == "******")
+                return false;
+
             foreach (Vehicle item in myGarage)
             {
                 if (SearchVehicle(regNr) != "")
