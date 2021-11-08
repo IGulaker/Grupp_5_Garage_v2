@@ -464,27 +464,27 @@ namespace Grupp_5_Garage_v2
                                 WriteLine("[DELADE EGENSKAPER]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 10:
+                            case 9:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[MOPED]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 12:
+                            case 11:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[MOTORCYKEL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 14:
+                            case 13:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[BIL]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 16:
+                            case 15:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[BUSS]");
                                 ForegroundColor = ConsoleColor.White;
                                 break;
-                            case 18:
+                            case 17:
                                 ForegroundColor = ConsoleColor.Yellow;
                                 WriteLine("[TRUCK]");
                                 ForegroundColor = ConsoleColor.White;
