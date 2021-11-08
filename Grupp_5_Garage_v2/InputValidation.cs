@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Grupp_5_Garage_v2
 {
     /// <summary>
-    /// Statiska metoder för att kolla regnummer..
+    /// Statiska metoder för att user input..
     /// </summary>
     static class InputValidation
     {
