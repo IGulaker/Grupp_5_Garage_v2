@@ -721,10 +721,10 @@ namespace Grupp_5_Garage_v2
         private static void Introduction()
         {
             string tab = "\t\t\t";
-            ForegroundColor = ConsoleColor.Green;
+            ForegroundColor = ConsoleColor.Yellow;
             WriteLine($"{tab}    ____________________________________________________________             _______");
             WriteLine($"{tab}   |                  GRUPP FEMS GARAGEPROJEKT                  |           |   ____|");
-            WriteLine($"{tab}   |                        SKAPAT AV                           |           |  |");
+            WriteLine($"|--------------------------|                        SKAPAT AV                           |-----------|  |--------------|");
             WriteLine($"{tab}   |        AHMAD, ANDREAS, ISAC, MARIE, NESIM, VIKTOR          |           |  |___");
             WriteLine($"{tab}   |____________________________________________________________|           |___   |");
             WriteLine($"{tab}                                                                                |  |");
