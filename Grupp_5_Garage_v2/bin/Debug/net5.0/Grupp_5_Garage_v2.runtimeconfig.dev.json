@@ -1,13 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-<<<<<<< HEAD
-      "C:\\Users\\marii\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\marii\\.nuget\\packages"
-=======
-      "C:\\Users\\andre\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\andre\\.nuget\\packages"
->>>>>>> origin/Swing2
+      "C:\\Users\\vikto\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\vikto\\.nuget\\packages"
     ]
   }
 }
