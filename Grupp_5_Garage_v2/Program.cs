@@ -876,8 +876,8 @@ namespace Grupp_5_Garage_v2
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine($"{tab}    ____________________________________________________________             _______");
             WriteLine($"{tab}   |                  GRUPP FEMS GARAGEPROJEKT                  |           |   ____|");
-            WriteLine($"|--------------------------|                        SKAPAT AV                           |-----------|  |--------------|");
-            WriteLine($"{tab}   |        AHMAD, ANDREAS, ISAC, MARIE, NESIM, VIKTOR          |           |  |___");
+            WriteLine($"|--------------------------|                         SKAPAT AV                          |-----------|  |--------------|");
+            WriteLine($"{tab}   |               ANDREAS, ISAC, MARIE, VIKTOR                 |           |  |___");
             WriteLine($"{tab}   |____________________________________________________________|           |___   |");
             WriteLine($"{tab}                                                                                |  |");
             WriteLine($"{tab}                                                                            ____|  |");
