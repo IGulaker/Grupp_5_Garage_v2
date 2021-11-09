@@ -225,11 +225,7 @@ namespace Grupp_5_Garage_v2
             }
             else if (output != "")
             {
-                if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
-                {
-                    ForegroundColor = ConsoleColor.Green;
-                }
-                DisplayOutput(output);
+                DisplayOutput(output, choiceID);
                 PauseForKeyPress();
             }
         }
@@ -239,15 +235,23 @@ namespace Grupp_5_Garage_v2
             string output = garageManager.ReadUIInfo(choiceID, input, out vehicleinfo);
             if (output != "")
             {
-                DisplayOutput(output + "\n\n" + vehicleinfo);
+                DisplayOutput(output + "\n\n" + vehicleinfo, choiceID);
             }
 
             return output;
         }
 
-        private static void DisplayOutput(string output)
+        private static void DisplayOutput(string output, ChoiceID choiceID)
         {
             Clear();
+            if (choiceID >= ChoiceID.ListAllVehicles && choiceID < ChoiceID.SearchByRegNr)
+            {
+                WriteListingHeader();
+            }
+            else if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
+            {
+                ForegroundColor = ConsoleColor.Green;
+            }
             WriteLine(output);
             ForegroundColor = ConsoleColor.White;
         }
@@ -548,10 +552,16 @@ namespace Grupp_5_Garage_v2
 
         private static void PauseForKeyPress()
         {
+            WritePressAnyKey();
+            SetCursorPosition(0, 0);
+            ReadKey();
+        }
+
+        private static void WritePressAnyKey()
+        {
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine("\n[TRYCK PÅ VALFRI TANGENT FÖR ATT FORTSÄTTA]");
             ForegroundColor = ConsoleColor.White;
-            ReadKey();
         }
         #endregion
 
@@ -561,6 +571,7 @@ namespace Grupp_5_Garage_v2
             WriteHeader();
             AddSeperatorLine();
             ListChoices();
+
             AddSeperatorLine();
             InputPrefix();
         }
@@ -605,6 +616,13 @@ namespace Grupp_5_Garage_v2
             WriteLine("(PARKERA FORDON)");
             WriteLine($"\nBESKRIV DIN {vehicle.ToUpper()}.");
             WriteLine("[MATA IN INFORMATION]");
+            ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void WriteListingHeader()
+        {
+            ForegroundColor = ConsoleColor.Yellow;
+            WriteLine("\t[REGNR] [FORDON]\t [MÄRKE]\t [KVITTONUMMER]");
             ForegroundColor = ConsoleColor.White;
         }
 
