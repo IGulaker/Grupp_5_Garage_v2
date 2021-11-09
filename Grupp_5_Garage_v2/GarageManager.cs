@@ -42,11 +42,21 @@ namespace Grupp_5_Garage_v2
             }
         }
 
-        private string SaveGarage()
+        private string SaveGarage(out string message)
         {
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml", myGarage.NumberOfParkingLots);
+            message = "";
+            try
+            {
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml", myGarage.NumberOfParkingLots);
+            }
+            catch (Exception)
+            {
+                message = "Garaget kunde inte sparas.";
+                return "";
+            }
+
 
             return "Garaget har sparats";
         }
@@ -110,11 +120,11 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     return LoadGarage(out message);
                 case ChoiceID.SaveGarage:
-                    return SaveGarage();
+                    return SaveGarage(out message);
                 case ChoiceID.RemoveVehicle:
                     return RemoveVehicle(input.ToUpper(), out message);
                 case ChoiceID.ListAllVehicles:
-                    return myGarage.ListVehicles(out message);
+                    return ListVehicles(out message);
                 case ChoiceID.ListCars:
                     return myGarage.ListVehicleTypeString<Car>(out message);
                 case ChoiceID.ListBuses:
@@ -122,7 +132,10 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.ListTrucks:
                     return myGarage.ListVehicleTypeString<Truck>(out message);
                 case ChoiceID.ListMopeds:
-                    return myGarage.ListVehicleTypeString<Moped>(out message);
+                    string output = myGarage.ListVehicleTypeString<Moped>(out message);
+
+
+                    return output.Trim();
                 case ChoiceID.ListMotorcycles:
                     return myGarage.ListVehicleTypeString<MotorCycle>(out message);
                 case ChoiceID.CreateCar:
@@ -184,6 +197,30 @@ namespace Grupp_5_Garage_v2
 
             return "";
         }
+
+        private string ListVehicles(out string message)
+        {
+            string output = myGarage.ListVehicles(out message);
+
+            output += CountAll();
+
+            return output;
+        }
+
+        private string CountAll()
+        {
+            string output = "\n";
+
+            output += $"Mopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
+            output += $"Motorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
+            output += $"Bilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
+            output += $"Lastbilar: \t{myGarage.CountVehicle<Truck>()} st.\n";
+            output += $"Bussar: \t{myGarage.CountVehicle<Bus>()} st.\n";
+            output += GetTotalCountOfVehicles();
+            return output;
+        }
+
+        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.";
 
         private string ParkAgain(string input, out string message)
         {

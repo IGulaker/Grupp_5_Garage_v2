@@ -61,6 +61,8 @@ namespace Grupp_5_Garage_v2
             return newList;
         }
 
+        public int CountVehicle<U>() where U : T => GetVehicleType<U>().Count;
+
         public string ListVehicleTypeString<U>(out string message) where U : T
         {
             message = "";
@@ -73,20 +75,19 @@ namespace Grupp_5_Garage_v2
             }
 
             if (string.IsNullOrEmpty(output))
-                message =  "Hittade inga fordon.";
+                message = "Hittade inga fordon.";
+            else
+            {
+                //Moped är ett special case
+                output += $"\n\t{(newList[0].VehicleType.Contains("Moped") ? "Moped" : newList[0].VehicleType)}: {CountVehicle<U>()} st.";
+            }
 
             return output;
         }
 
-        internal void SetCorrectReceiptNumberAfterLoading()
-        {
-            Vehicle.NextReceiptNumber = ParkedVehicles[parkedvehicles.Count - 1].ReceiptNumber + 1;
-        }
+        public void SetCorrectReceiptNumberAfterLoading() => Vehicle.NextReceiptNumber = ParkedVehicles[parkedvehicles.Count - 1].ReceiptNumber + 1;
 
-        public List<T> ParkedVehicles
-        {
-            get { return parkedvehicles; }
-        }
+        public List<T> ParkedVehicles => parkedvehicles;
 
         public List<T> UnparkedVehicles
         {
@@ -107,6 +108,9 @@ namespace Grupp_5_Garage_v2
 
             if (string.IsNullOrEmpty(output))
                 message = "Hittade inga fordon.";
+
+
+
             return output;
         }
 
@@ -142,8 +146,6 @@ namespace Grupp_5_Garage_v2
             {
                 if (!(vehicle.Size + SizeOfParkedVehicles > NumberOfParkingLots))
                 {
-
-
                     unparkedvehicles.Remove(vehicle);
                     vehicle.GetNewReceiptNumber();
                     parkedvehicles.Add(vehicle);
