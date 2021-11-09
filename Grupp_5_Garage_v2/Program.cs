@@ -73,6 +73,7 @@ namespace Grupp_5_Garage_v2
                         Environment.Exit(0);
                         break;
                     case "S":
+                    case "s":
                         CommunicateWithManager(ChoiceID.SaveGarage, null);
                         break;
                     default:
@@ -727,7 +728,14 @@ namespace Grupp_5_Garage_v2
                     for (int i = 1; i <= startUpChoices.Count; i++) WriteLine($"{i}. {startUpChoices[i - 1]}");
                     break;
                 case MenuID.Main:
-                    for (int i = 1; i <= mainChoices.Count; i++) WriteLine($"{i}. {mainChoices[i - 1]}");
+                    for (int i = 1; i <= mainChoices.Count; i++)
+                    {
+                        if (i != mainChoices.Count)
+                        {
+                            WriteLine($"{i}. {mainChoices[i - 1]}");
+                        }
+                        else WriteLine($"S. {mainChoices[i - 1]}");
+                    }
                     break;
                 case MenuID.AddVehicle:
                     for (int i = 1; i <= addVehicleChoices.Count; i++) WriteLine($"{i}. {addVehicleChoices[i - 1]}");
@@ -872,6 +880,7 @@ namespace Grupp_5_Garage_v2
             mainChoices.Add("Lista lastbilar");
             mainChoices.Add("Lista efter filter");
             mainChoices.Add("Stäng av programmet");
+            mainChoices.Add("Spara garaget.");
 
             addVehicleChoices.Add("Parkera en moped (klass 1)");
             addVehicleChoices.Add("Parkera en moped (klass 2)");
