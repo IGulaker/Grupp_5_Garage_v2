@@ -132,10 +132,7 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.ListTrucks:
                     return myGarage.ListVehicleTypeString<Truck>(out message);
                 case ChoiceID.ListMopeds:
-                    string output = myGarage.ListVehicleTypeString<Moped>(out message);
-
-
-                    return output.Trim();
+                    return myGarage.ListVehicleTypeString<Moped>(out message);
                 case ChoiceID.ListMotorcycles:
                     return myGarage.ListVehicleTypeString<MotorCycle>(out message);
                 case ChoiceID.CreateCar:
@@ -746,7 +743,7 @@ namespace Grupp_5_Garage_v2
                 message = IsSearchEmpty(outputNrOfDoors);
                 return outputNrOfDoors;
             }
-            
+
             foreach (Vehicle item in myGarage)
             {
                 if (item is Car)
