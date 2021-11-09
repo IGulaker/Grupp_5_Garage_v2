@@ -10,7 +10,10 @@ namespace Grupp_5_Garage_v2
     [Serializable]
     public class Garage<T> : IEnumerable<T> where T : Vehicle
     {
-        public int NumberOfParkingLots { get => numberOfParkingLots; set => numberOfParkingLots = value; }
+        public int NumberOfParkingLots
+        {
+            get => numberOfParkingLots; set => numberOfParkingLots = value < 10000 ? value : 10000;
+        }
 
 
         private List<T> parkedvehicles = new();
@@ -27,10 +30,27 @@ namespace Grupp_5_Garage_v2
 
         }
 
+        public bool IsFull() => SizeOfParkedVehicles >= NumberOfParkingLots;
+
         public void Add(T value)
         {
             parkedvehicles.Add(value);
             SizeOfParkedVehicles += value.Size;
+        }
+
+        public void GetRidOfDuplicateRegNr()
+        {
+            //Moped är special case så ta dem åt sidan så länge.
+            List<T> tempVehicles = (parkedvehicles.Where(item => item.RegNr == "******")).ToList();
+            parkedvehicles.RemoveAll(i => i.RegNr == "******");
+
+
+            parkedvehicles = parkedvehicles.GroupBy(x => x.RegNr)
+                .Select(x => x.First())
+                .ToList();
+            parkedvehicles.AddRange(tempVehicles);
+            parkedvehicles = parkedvehicles.OrderBy(x => x.ReceiptNumber).ToList();
+
         }
 
         private List<U> GetVehicleType<U>() where U : T
@@ -63,7 +83,7 @@ namespace Grupp_5_Garage_v2
             else
             {
                 //Moped är ett special case
-                 header = $"\n\t{(newList[0].VehicleType.Contains("Moped") ? "Moped" : newList[0].VehicleType)}: {CountVehicle<U>()} st.\n\n";
+                header = $"\n\t{(newList[0].VehicleType.Contains("Moped") ? "Moped" : newList[0].VehicleType)}: {CountVehicle<U>()} st.\n\n";
             }
 
             return header + output;

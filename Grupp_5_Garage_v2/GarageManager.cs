@@ -49,6 +49,8 @@ namespace Grupp_5_Garage_v2
             return;
         }
 
+
+
         public bool IsReadyToStart() => myGarage != null;
 
         public string GarageInfo()
@@ -61,7 +63,12 @@ namespace Grupp_5_Garage_v2
             for (int i = 0; i < numberOfVehiclestoAdd; i++)
             {
                 CreateRandomVehicle();
+                if (myGarage.IsFull())
+                    break;
             }
+
+
+            myGarage.GetRidOfDuplicateRegNr();
         }
 
         private string SaveGarage(string input, out string message)
@@ -112,39 +119,30 @@ namespace Grupp_5_Garage_v2
         {
             Random r = new();
             int randomNumber = r.Next(1, 100);
-            bool done = false;
-            do
+            //bool done = false;
+            //do
+            //{
+            Vehicle newVehicle = null;
+
+            switch (randomNumber)
             {
-                Vehicle newVehicle = null;
-
-                switch (randomNumber)
-                {
-                    case > 0 and <= 51:
-                        newVehicle = new Car();
-                        break;
-                    case > 51 and <= 63:
-                        newVehicle = new Moped();
-                        break;
-                    case > 63 and <= 75:
-                        newVehicle = new MotorCycle();
-                        break;
-                    case > 75 and <= 87:
-                        newVehicle = new Truck();
-                        break;
-                    case > 87:
-                        newVehicle = new Bus();
-                        break;
-                }
-
-                if (!DoesRegNrExist(newVehicle.RegNr, out _))
-                {
-                    done = true;
-                    myGarage.AddVehicle(newVehicle, out _);
-                }
-
-
-            } while (!done);
-
+                case > 0 and <= 51:
+                    newVehicle = new Car();
+                    break;
+                case > 51 and <= 63:
+                    newVehicle = new Moped();
+                    break;
+                case > 63 and <= 75:
+                    newVehicle = new MotorCycle();
+                    break;
+                case > 75 and <= 87:
+                    newVehicle = new Truck();
+                    break;
+                case > 87:
+                    newVehicle = new Bus();
+                    break;
+            }
+            myGarage.AddVehicle(newVehicle, out _);
         }
 
         public string ReadUIInfo(ChoiceID choiceID, string input, out string message)
