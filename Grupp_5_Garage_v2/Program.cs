@@ -804,7 +804,10 @@ namespace Grupp_5_Garage_v2
                 {
                     currentMenu = MenuID.CreatingGarage;
                     CommunicateWithManager(ChoiceID.CreateGarage, CreateGarageToAdd());
-                    isReadyToStart = true;
+                    if (garageManager.IsReadyToStart())
+                        isReadyToStart = true;
+                    else
+                        currentMenu = MenuID.StartUp;
                 }
                 else if (startUpChoice == "2")
                 {
