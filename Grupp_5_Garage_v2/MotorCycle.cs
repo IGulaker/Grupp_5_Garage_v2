@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 namespace Grupp_5_Garage_v2
 {
     class MotorCycle : Vehicle
+    public class MotorCycle : Vehicle
     {
-       public bool CycleType { get; set; }
-        public bool WeightClass { get; set; }
 
-        protected override string VehicleType()
         {
-            return "Motorcykel";
         }
+        protected override string VehicleType => "Motorcykel";
+        public override string ToString() => $"{GetFullInfo()}Motorcykelklass:{CycleType}\nViktklass: \t{WeightClass}";
     }
 }
