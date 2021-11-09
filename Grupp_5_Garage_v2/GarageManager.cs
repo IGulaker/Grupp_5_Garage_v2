@@ -42,11 +42,21 @@ namespace Grupp_5_Garage_v2
             }
         }
 
-        private string SaveGarage()
+        private string SaveGarage(out string message)
         {
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
-            XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml", myGarage.NumberOfParkingLots);
+            message = "";
+            try
+            {
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\ParkedVehicles.xml", myGarage);
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\UnParkedVehicles.xml", myGarage.UnparkedVehicles);
+                XMLUtilities.XMLFileSerialize(AppDomain.CurrentDomain.BaseDirectory + @"\GarageSize.xml", myGarage.NumberOfParkingLots);
+            }
+            catch (Exception)
+            {
+                message = "Garaget kunde inte sparas.";
+                return "";
+            }
+
 
             return "Garaget har sparats";
         }
@@ -110,11 +120,11 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     return LoadGarage(out message);
                 case ChoiceID.SaveGarage:
-                    return SaveGarage();
+                    return SaveGarage(out message);
                 case ChoiceID.RemoveVehicle:
                     return RemoveVehicle(input.ToUpper(), out message);
                 case ChoiceID.ListAllVehicles:
-                    return myGarage.ListVehicles(out message);
+                    return ListVehicles(out message);
                 case ChoiceID.ListCars:
                     return myGarage.ListVehicleTypeString<Car>(out message);
                 case ChoiceID.ListBuses:
@@ -154,15 +164,15 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.SearchByManufacturer:
                     return SearchByManufacturer(input, out message);
                 case ChoiceID.SearchByNrOfDoors:
-                    return SearchByNrOfDoors(Convert.ToInt32(input), out message);
+                    return SearchByNrOfDoors(input, out message);
                 case ChoiceID.SearchByNrOfSeats:
-                    return SearchByNrOfSeats(Convert.ToInt32(input), out message);
+                    return SearchByNrOfSeats(input, out message);
                 case ChoiceID.SearchByNrOfWheels:
-                    return SearchByNrOfWheels(Convert.ToInt32(input), out message);
+                    return SearchByNrOfWheels(input, out message);
                 case ChoiceID.SearchByRail:
                     return SearchByRails(input, out message);
                 case ChoiceID.SearchByReceieptNr:
-                    return SearchByReceiptNumber(Convert.ToInt32(input), out message);
+                    return SearchByReceiptNumber(input, out message);
                 case ChoiceID.SearchByRegNr:
                     return SearchVehicle(input, out message);
                 case ChoiceID.SearchBySleepingCabin:
@@ -172,7 +182,7 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.SearchByWeightclass:
                     return SearchByWeightclass(input, out message);
                 case ChoiceID.SearchByYearModel:
-                    return SearchByModelYear(Convert.ToInt32(input), out message);
+                    return SearchByModelYear(input, out message);
                 case ChoiceID.ShallItParkAgain:
                     return CheckIfRegNrAlreadyExists(input, out message);
                 case ChoiceID.ParkAgain:
@@ -184,6 +194,30 @@ namespace Grupp_5_Garage_v2
 
             return "";
         }
+
+        private string ListVehicles(out string message)
+        {
+            string output = myGarage.ListVehicles(out message);
+
+            output += CountAll();
+
+            return output;
+        }
+
+        private string CountAll()
+        {
+            string output = "\n";
+
+            output += $"Mopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
+            output += $"Motorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
+            output += $"Bilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
+            output += $"Lastbilar: \t{myGarage.CountVehicle<Truck>()} st.\n";
+            output += $"Bussar: \t{myGarage.CountVehicle<Bus>()} st.\n";
+            output += GetTotalCountOfVehicles();
+            return output;
+        }
+
+        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.";
 
         private string ParkAgain(string input, out string message)
         {
@@ -475,9 +509,16 @@ namespace Grupp_5_Garage_v2
             return outputColor;
         }
 
-        public string SearchByNrOfWheels(int inputNumberOfWheels, out string message)
+        public string SearchByNrOfWheels(string input, out string message)
         {
+            int inputNumberOfWheels;
             string outputNumberOfWheels = "";
+            message = "";
+            if (!int.TryParse(input, out inputNumberOfWheels))
+            {
+                message = IsSearchEmpty(outputNumberOfWheels);
+                return outputNumberOfWheels;
+            }
             foreach (Vehicle item in myGarage)
             {
                 if (item.NumberOfWheels == inputNumberOfWheels)
@@ -485,13 +526,18 @@ namespace Grupp_5_Garage_v2
                     outputNumberOfWheels += item + "\n\n";
                 }
             }
-
-            message = IsSearchEmpty(outputNumberOfWheels);
             return outputNumberOfWheels;
         }
-        public string SearchByNrOfSeats(int inputSeats, out string message)
+        public string SearchByNrOfSeats(string input, out string message)
         {
+            int inputSeats;
             string outputSeats = "";
+            message = "";
+            if (!int.TryParse(input, out inputSeats))
+            {
+                message = IsSearchEmpty(outputSeats);
+                return outputSeats;
+            }
             foreach (Vehicle item in myGarage)
             {
                 if (item.PassengerCapacity == inputSeats)
@@ -499,7 +545,6 @@ namespace Grupp_5_Garage_v2
                     outputSeats += item + "\n\n";
                 }
             }
-            message = IsSearchEmpty(outputSeats);
             return outputSeats;
         }
         public string SearchByFuelType(string inputFuelType, out string message)
@@ -528,31 +573,43 @@ namespace Grupp_5_Garage_v2
             message = IsSearchEmpty(outputManufacturer);
             return outputManufacturer;
         }
-        public string SearchByReceiptNumber(int receiptNumber, out string message)
+        public string SearchByReceiptNumber(string input, out string message)
         {
+            int inputReceiptNumber;
             string outputReceiptNumber = "";
+            message = "";
+            if (!int.TryParse(input, out inputReceiptNumber))
+            {
+                message = IsSearchEmpty(outputReceiptNumber);
+                return outputReceiptNumber;
+            }
             foreach (Vehicle item in myGarage)
             {
-                if (item.ReceiptNumber == receiptNumber)
+                if (item.ReceiptNumber == inputReceiptNumber)
                 {
                     outputReceiptNumber += item + "\n\n";
                 }
             }
-            message = IsSearchEmpty(outputReceiptNumber);
             return outputReceiptNumber;
         }
 
-        public string SearchByModelYear(int modelYear, out string message)
+        public string SearchByModelYear(string input, out string message)
         {
+            int inputModelYear;
             string outputModelYear = "";
+            message = "";
+            if (!int.TryParse(input, out inputModelYear))
+            {
+                message = IsSearchEmpty(outputModelYear);
+                return outputModelYear;
+            }
             foreach (Vehicle item in myGarage)
             {
-                if (item.ModelYear == modelYear)
+                if (item.ModelYear == inputModelYear)
                 {
                     outputModelYear += item + "\n\n";
                 }
             }
-            message = IsSearchEmpty(outputModelYear);
             return outputModelYear;
         }
 
@@ -676,9 +733,17 @@ namespace Grupp_5_Garage_v2
             message = IsSearchEmpty(outputRails);
             return outputRails;
         }
-        public string SearchByNrOfDoors(int inputNrOfDoors, out string message)
+        public string SearchByNrOfDoors(string input, out string message)
         {
+            int inputNrOfDoors;
             string outputNrOfDoors = "";
+            message = "";
+            if (!int.TryParse(input, out inputNrOfDoors))
+            {
+                message = IsSearchEmpty(outputNrOfDoors);
+                return outputNrOfDoors;
+            }
+
             foreach (Vehicle item in myGarage)
             {
                 if (item is Car)
@@ -689,7 +754,7 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
-            message = IsSearchEmpty(outputNrOfDoors);
+
             return outputNrOfDoors;
         }
         #endregion
@@ -735,7 +800,6 @@ namespace Grupp_5_Garage_v2
                     }
                 }
             }
-
             message = IsSearchEmpty(outputCompany);
             return outputCompany;
         }
@@ -796,8 +860,6 @@ namespace Grupp_5_Garage_v2
             message = IsSearchEmpty(outputCabin);
             return outputCabin;
         }
-
-
         #endregion
     }
 }
