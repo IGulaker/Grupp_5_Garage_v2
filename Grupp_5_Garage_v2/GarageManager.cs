@@ -11,7 +11,7 @@ namespace Grupp_5_Garage_v2
         Garage<Vehicle> myGarage;
         public GarageManager()
         {
-            
+
         }
 
         public void Setup(string input, out string message)
@@ -53,10 +53,12 @@ namespace Grupp_5_Garage_v2
             }
         }
 
-        private string SaveGarage(out string message)
+        private string SaveGarage(string input, out string message)
         {
+            message = "";
+            if (input != "J")
+                return "Garaget sparades inte.";
 
-           
             message = "";
             try
             {
@@ -133,7 +135,7 @@ namespace Grupp_5_Garage_v2
                 case ChoiceID.LoadGarage:
                     return LoadGarage(out message);
                 case ChoiceID.SaveGarage:
-                    return SaveGarage(out message);
+                    return SaveGarage(input, out message);
                 case ChoiceID.RemoveVehicle:
                     return RemoveVehicle(input.ToUpper(), out message);
                 case ChoiceID.ListAllVehicles:
