@@ -70,11 +70,15 @@ namespace Grupp_5_Garage_v2
                         currentMenu = MenuID.Filter;
                         break;
                     case "10":
+                        currentMenu = MenuID.SaveGarage;
+                        QuestionWantToSave();
                         Environment.Exit(0);
                         break;
                     case "S":
                     case "s":
-                        CommunicateWithManager(ChoiceID.SaveGarage, null);
+                        currentMenu = MenuID.SaveGarage;
+                        QuestionWantToSave();
+                        currentMenu = MenuID.Main;
                         break;
                     default:
                         break;
@@ -209,6 +213,20 @@ namespace Grupp_5_Garage_v2
                     default:
                         break;
                 }
+            }
+        }
+
+        private static void QuestionWantToSave()
+        {
+            Clear();
+            WriteHeader();
+            AddSeperatorLine();
+            InputPrefix();
+            string input = RecieveUserBool();
+
+            if (input == "")
+            {
+                CommunicateWithManager(ChoiceID.SaveGarage, input);
             }
         }
 
@@ -586,13 +604,15 @@ namespace Grupp_5_Garage_v2
             else if (currentMenu == MenuID.AddVehicle || currentMenu == MenuID.CreateVehicle) WriteLine("(PARKERA FORDON)");
             else if (currentMenu == MenuID.GetVehicle) WriteLine("(HÄMTA FORDON)");
             else if (currentMenu == MenuID.Filter || currentMenu == MenuID.FilterSearch) WriteLine("(FILTER)");
+            else if (currentMenu == MenuID.SaveGarage) WriteLine("(SPARA GARAGE)");
+
 
             if (currentMenu == MenuID.CreatingGarage)
             {
                 WriteLine("\nSKAPAR GARAGE.");
                 WriteLine("[STORLEK PÅ FORDON: MOPED/MOTORCYKEL = 1, BIL = 2, BUSS = 3/4, LASTBIL = 4]");
             }
-            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
+            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch && currentMenu != MenuID.SaveGarage)
             {
                 WriteLine("\nVAD VILL DU GÖRA?");
                 WriteLine("[VÄLJ EN SIFFRA]");
@@ -606,6 +626,11 @@ namespace Grupp_5_Garage_v2
             {
                 WriteLine("\nHÄR KAN DU SÖKA EFTER ETT SPECIFIKT VÄRDE.");
                 WriteLine("[MATA IN VÄRDET DU VILL SÖKA EFTER]");
+            }
+            else if (currentMenu == MenuID.SaveGarage)
+            {
+                WriteLine("\nVILL DU SPARA DITT GARAGE?");
+                WriteLine("[SVARA J/N]");
             }
             ForegroundColor = ConsoleColor.White;
         }
