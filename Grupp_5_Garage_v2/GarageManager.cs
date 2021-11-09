@@ -112,23 +112,22 @@ namespace Grupp_5_Garage_v2
         {
             Random r = new();
             int randomNumber = r.Next(1, 100);
-            bool done;
             switch (randomNumber)
             {
                 case > 0 and <= 51:
-                    done = myGarage.AddVehicle(new Car(), out _);
+                    myGarage.AddVehicle(new Car(), out _);
                     break;
                 case > 51 and <= 63:
-                    done = myGarage.AddVehicle(new Moped(), out _);
+                    myGarage.AddVehicle(new Moped(), out _);
                     break;
                 case > 63 and <= 75:
-                    done = myGarage.AddVehicle(new MotorCycle(), out _);
+                    myGarage.AddVehicle(new MotorCycle(), out _);
                     break;
                 case > 75 and <= 87:
-                    done = myGarage.AddVehicle(new Bus(), out _);
+                    myGarage.AddVehicle(new Bus(), out _);
                     break;
                 case > 87:
-                    done = myGarage.AddVehicle(new Truck(), out _);
+                    myGarage.AddVehicle(new Truck(), out _);
                     break;
             }
 
