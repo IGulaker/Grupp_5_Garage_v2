@@ -19,7 +19,7 @@ namespace Grupp_5_Garage_v2
             message = "";
             myGarage = new Garage<Vehicle>();
             string[] SeparatedString = input.Split("???");
-            int vehiclestocreate = 0;
+            int vehiclestocreate;
             int garagesize;
             try
             {
@@ -28,22 +28,33 @@ namespace Grupp_5_Garage_v2
             }
             catch (Exception)
             {
-                message = "Kunde inte skapa garaget. Fel i invärdena.";
-                myGarage = null;
+                StartUpErrorMessage(out message);
+                return;
+            }
+
+            if (garagesize < 1)
+            {
+                StartUpErrorMessage(out message);
                 return;
             }
 
             myGarage.NumberOfParkingLots = garagesize;
             CreateVehicles(vehiclestocreate);
+        }
 
-
-
-
+        private void StartUpErrorMessage(out string message)
+        {
+            message = "Kunde inte skapa garaget. Fel i invärdena.";
+            myGarage = null;
+            return;
         }
 
         public bool IsReadyToStart() => myGarage != null;
 
-        public string GarageInfo() => myGarage.ToString();
+        public string GarageInfo()
+        {
+            return myGarage.ToString() + $"\nParkerade fordon: \t{myGarage.CountVehicle<Vehicle>()}";
+        }
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
         {
@@ -223,7 +234,7 @@ namespace Grupp_5_Garage_v2
         {
             string output = "";
 
-            output += GetTotalCountOfVehicles();
+            output += GetTotalCountOfVehicles() + "\n";
             output += $"\tMopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
             output += $"\tMotorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
             output += $"\tBilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
@@ -233,7 +244,7 @@ namespace Grupp_5_Garage_v2
             return output;
         }
 
-        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.\n";
+        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.";
 
         private string ParkAgain(string input, out string message)
         {
