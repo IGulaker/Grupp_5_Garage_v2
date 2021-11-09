@@ -21,25 +21,30 @@ namespace Grupp_5_Garage_v2
             Setup();
         }
 
-        public Moped(string regNr, string color, int numberOfWheels, int passengerCapacity, FuelType fuel, string manufacturer, int modelYear,
-            bool isMopedClassTwo, bool hasHelmetBox) 
-            : base(regNr, color, numberOfWheels, passengerCapacity, fuel, manufacturer, modelYear)
+        public Moped(string x)
         {
-            IsMopedClassTwo = isMopedClassTwo;
-            HasHelmetBox = hasHelmetBox;
-            Setup();
+            throw new System.NotImplementedException();
         }
 
-        private void Setup()
+        public bool IsMopedClass
         {
-            Size = 1;
-            NumberOfWheels = 2;
-            if (IsMopedClassTwo) RegNr = "******";
-            if (PassengerCapacity > 1) PassengerCapacity = 1;
+            get => default;
+            set
+            {
+            }
         }
 
-        public override string ToString() => $"{GetFullInfo()}Hjälmförvaring: {(HasHelmetBox ? "Ja" : "Nej")}";
+        public bool HasHelmetBox
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
-        protected override string VehicleType => $"Moped klass {(IsMopedClassTwo ? "II" : "I")}";
+        public override string ToString()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
