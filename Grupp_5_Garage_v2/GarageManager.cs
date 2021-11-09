@@ -60,6 +60,8 @@ namespace Grupp_5_Garage_v2
 
         private void CreateVehicles(int numberOfVehiclestoAdd)
         {
+            myGarage.SetSize();
+
             for (int i = 0; i < numberOfVehiclestoAdd; i++)
             {
                 CreateRandomVehicle();
@@ -112,6 +114,7 @@ namespace Grupp_5_Garage_v2
                 return "";
             }
 
+            myGarage.SetSize();
             return "Garaget har laddats!";
         }
 
@@ -119,9 +122,6 @@ namespace Grupp_5_Garage_v2
         {
             Random r = new();
             int randomNumber = r.Next(1, 100);
-            //bool done = false;
-            //do
-            //{
             Vehicle newVehicle = null;
 
             switch (randomNumber)

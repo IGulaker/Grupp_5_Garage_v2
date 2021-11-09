@@ -35,7 +35,7 @@ namespace Grupp_5_Garage_v2
         public void Add(T value)
         {
             parkedvehicles.Add(value);
-            SizeOfParkedVehicles += value.Size;
+            //SizeOfParkedVehicles += value.Size;
         }
 
         public void GetRidOfDuplicateRegNr()
@@ -51,6 +51,15 @@ namespace Grupp_5_Garage_v2
             parkedvehicles.AddRange(tempVehicles);
             parkedvehicles = parkedvehicles.OrderBy(x => x.ReceiptNumber).ToList();
 
+        }
+
+        public void SetSize()
+        {
+            SizeOfParkedVehicles = 0;
+            foreach (T item in parkedvehicles)
+            {
+                SizeOfParkedVehicles += item.Size;
+            }
         }
 
         private List<U> GetVehicleType<U>() where U : T
