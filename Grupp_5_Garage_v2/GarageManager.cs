@@ -197,27 +197,28 @@ namespace Grupp_5_Garage_v2
 
         private string ListVehicles(out string message)
         {
-            string output = myGarage.ListVehicles(out message);
+            string output = CountAll();
 
-            output += CountAll();
+            output += myGarage.ListVehicles(out message);
 
             return output;
         }
 
         private string CountAll()
         {
-            string output = "\n";
+            string output = "";
 
+            output += GetTotalCountOfVehicles();
             output += $"Mopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
             output += $"Motorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
             output += $"Bilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
             output += $"Lastbilar: \t{myGarage.CountVehicle<Truck>()} st.\n";
             output += $"Bussar: \t{myGarage.CountVehicle<Bus>()} st.\n";
-            output += GetTotalCountOfVehicles();
+            
             return output;
         }
 
-        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.";
+        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.\n";
 
         private string ParkAgain(string input, out string message)
         {

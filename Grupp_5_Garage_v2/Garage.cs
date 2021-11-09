@@ -49,6 +49,7 @@ namespace Grupp_5_Garage_v2
         public string ListVehicleTypeString<U>(out string message) where U : T
         {
             message = "";
+            string header = "";
             List<U> newList = GetVehicleType<U>();
 
             string output = "";
@@ -62,10 +63,10 @@ namespace Grupp_5_Garage_v2
             else
             {
                 //Moped är ett special case
-                output += $"\n\t{(newList[0].VehicleType.Contains("Moped") ? "Moped" : newList[0].VehicleType)}: {CountVehicle<U>()} st.";
+                 header = $"\n\t{(newList[0].VehicleType.Contains("Moped") ? "Moped" : newList[0].VehicleType)}: {CountVehicle<U>()} st.\n\n";
             }
 
-            return output;
+            return header + output;
         }
 
         public void SetCorrectReceiptNumberAfterLoading() => Vehicle.NextReceiptNumber = ParkedVehicles[parkedvehicles.Count - 1].ReceiptNumber + 1;
