@@ -224,7 +224,7 @@ namespace Grupp_5_Garage_v2
             InputPrefix();
             string input = RecieveUserBool();
 
-            if (input == "")
+            if (input != "")
             {
                 CommunicateWithManager(ChoiceID.SaveGarage, input);
             }
