@@ -259,28 +259,6 @@ namespace Grupp_5_Garage_v2
 
             return output;
         }
-
-        private static void DisplayOutput(string output, ChoiceID choiceID)
-        {
-            Clear();
-            if (choiceID >= ChoiceID.ListAllVehicles && choiceID < ChoiceID.SearchByRegNr)
-            {
-                WriteListingHeader();
-            }
-            else if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
-            {
-                ForegroundColor = ConsoleColor.Green;
-            }
-            WriteLine(output);
-            ForegroundColor = ConsoleColor.White;
-        }
-
-        private static void DisplayError(string error)
-        {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine("\n[ERROR]\n" + error);
-            ForegroundColor = ConsoleColor.White;
-        }
         #endregion
 
         #region Input
@@ -815,6 +793,28 @@ namespace Grupp_5_Garage_v2
         {
             ForegroundColor = ConsoleColor.Yellow;
             Write("INMATNING: ");
+            ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void DisplayOutput(string output, ChoiceID choiceID)
+        {
+            Clear();
+            if (choiceID >= ChoiceID.ListAllVehicles && choiceID < ChoiceID.SearchByRegNr)
+            {
+                WriteListingHeader();
+            }
+            else if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
+            {
+                ForegroundColor = ConsoleColor.Green;
+            }
+            WriteLine(output);
+            ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void DisplayError(string error)
+        {
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine("\n[ERROR]\n" + error);
             ForegroundColor = ConsoleColor.White;
         }
         #endregion
