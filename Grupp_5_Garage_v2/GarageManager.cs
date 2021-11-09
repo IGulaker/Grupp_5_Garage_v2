@@ -11,20 +11,31 @@ namespace Grupp_5_Garage_v2
         Garage<Vehicle> myGarage;
         public GarageManager()
         {
-            myGarage = new Garage<Vehicle>();
+            
         }
 
         public void Setup(string input, out string message)
         {
             message = "";
-
+            myGarage = new Garage<Vehicle>();
             string[] SeparatedString = input.Split("???");
-
-            int garagesize = Convert.ToInt32(SeparatedString[0]);
-            int vehiclestocreate = Convert.ToInt32(SeparatedString[1]);
+            int vehiclestocreate = 0;
+            int garagesize;
+            try
+            {
+                garagesize = Convert.ToInt32(SeparatedString[0]);
+                vehiclestocreate = Convert.ToInt32(SeparatedString[1]);
+            }
+            catch (Exception)
+            {
+                message = "Kunde inte skapa garaget. Fel i invärdena.";
+                myGarage = null;
+                return;
+            }
 
             myGarage.NumberOfParkingLots = garagesize;
             CreateVehicles(vehiclestocreate);
+
 
 
 
@@ -197,27 +208,28 @@ namespace Grupp_5_Garage_v2
 
         private string ListVehicles(out string message)
         {
-            string output = myGarage.ListVehicles(out message);
+            string output = CountAll() + "\n";
 
-            output += CountAll();
+            output += myGarage.ListVehicles(out message);
 
             return output;
         }
 
         private string CountAll()
         {
-            string output = "\n";
+            string output = "";
 
-            output += $"Mopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
-            output += $"Motorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
-            output += $"Bilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
-            output += $"Lastbilar: \t{myGarage.CountVehicle<Truck>()} st.\n";
-            output += $"Bussar: \t{myGarage.CountVehicle<Bus>()} st.\n";
             output += GetTotalCountOfVehicles();
+            output += $"\tMopeder: \t{myGarage.CountVehicle<Moped>()} st.\n";
+            output += $"\tMotorcyklar: \t{myGarage.CountVehicle<MotorCycle>()} st.\n";
+            output += $"\tBilar: \t\t{myGarage.CountVehicle<Car>()} st.\n";
+            output += $"\tLastbilar: \t{myGarage.CountVehicle<Truck>()} st.\n";
+            output += $"\tBussar: \t{myGarage.CountVehicle<Bus>()} st.\n";
+
             return output;
         }
 
-        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.";
+        public string GetTotalCountOfVehicles() => $"\nTotalt finns det {myGarage.CountVehicle<Vehicle>()} st. fordon parkerade.\n";
 
         private string ParkAgain(string input, out string message)
         {
