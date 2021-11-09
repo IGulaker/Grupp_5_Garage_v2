@@ -70,10 +70,15 @@ namespace Grupp_5_Garage_v2
                         currentMenu = MenuID.Filter;
                         break;
                     case "10":
+                        currentMenu = MenuID.SaveGarage;
+                        QuestionWantToSave();
                         Environment.Exit(0);
                         break;
                     case "S":
-                        CommunicateWithManager(ChoiceID.SaveGarage, null);
+                    case "s":
+                        currentMenu = MenuID.SaveGarage;
+                        QuestionWantToSave();
+                        currentMenu = MenuID.Main;
                         break;
                     default:
                         break;
@@ -211,6 +216,20 @@ namespace Grupp_5_Garage_v2
             }
         }
 
+        private static void QuestionWantToSave()
+        {
+            Clear();
+            WriteHeader();
+            AddSeperatorLine();
+            InputPrefix();
+            string input = RecieveUserBool();
+
+            if (input != "")
+            {
+                CommunicateWithManager(ChoiceID.SaveGarage, input);
+            }
+        }
+
         #region garageManagerCommunication
         // Sends the input to garageManager, and then displays the output.
         private static void CommunicateWithManager(ChoiceID choiceID, string input)
@@ -221,16 +240,12 @@ namespace Grupp_5_Garage_v2
             if (error != "")
             {
                 DisplayError(error);
-                PauseForKeyPress();
+                PauseForKeyPress(choiceID);
             }
             else if (output != "")
             {
-                if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
-                {
-                    ForegroundColor = ConsoleColor.Green;
-                }
-                DisplayOutput(output);
-                PauseForKeyPress();
+                DisplayOutput(output, choiceID);
+                PauseForKeyPress(choiceID);
             }
         }
 
@@ -239,24 +254,10 @@ namespace Grupp_5_Garage_v2
             string output = garageManager.ReadUIInfo(choiceID, input, out vehicleinfo);
             if (output != "")
             {
-                DisplayOutput(output + "\n\n" + vehicleinfo);
+                DisplayOutput(output + "\n\n" + vehicleinfo, choiceID);
             }
 
             return output;
-        }
-
-        private static void DisplayOutput(string output)
-        {
-            Clear();
-            WriteLine(output);
-            ForegroundColor = ConsoleColor.White;
-        }
-
-        private static void DisplayError(string error)
-        {
-            ForegroundColor = ConsoleColor.Red;
-            WriteLine("\n[ERROR]\n" + error);
-            ForegroundColor = ConsoleColor.White;
         }
         #endregion
 
@@ -546,12 +547,18 @@ namespace Grupp_5_Garage_v2
             return vehicleSpecifications;
         }
 
-        private static void PauseForKeyPress()
+        private static void PauseForKeyPress(ChoiceID choiceID)
+        {
+            WritePressAnyKey();
+            if (choiceID >= ChoiceID.ListAllVehicles && choiceID <= ChoiceID.ListTrucks) SetCursorPosition(0, 0);
+            ReadKey();
+        }
+
+        private static void WritePressAnyKey()
         {
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine("\n[TRYCK PÅ VALFRI TANGENT FÖR ATT FORTSÄTTA]");
             ForegroundColor = ConsoleColor.White;
-            ReadKey();
         }
         #endregion
 
@@ -561,6 +568,7 @@ namespace Grupp_5_Garage_v2
             WriteHeader();
             AddSeperatorLine();
             ListChoices();
+
             AddSeperatorLine();
             InputPrefix();
         }
@@ -574,13 +582,15 @@ namespace Grupp_5_Garage_v2
             else if (currentMenu == MenuID.AddVehicle || currentMenu == MenuID.CreateVehicle) WriteLine("(PARKERA FORDON)");
             else if (currentMenu == MenuID.GetVehicle) WriteLine("(HÄMTA FORDON)");
             else if (currentMenu == MenuID.Filter || currentMenu == MenuID.FilterSearch) WriteLine("(FILTER)");
+            else if (currentMenu == MenuID.SaveGarage) WriteLine("(SPARA GARAGE)");
+
 
             if (currentMenu == MenuID.CreatingGarage)
             {
                 WriteLine("\nSKAPAR GARAGE.");
                 WriteLine("[STORLEK PÅ FORDON: MOPED/MOTORCYKEL = 1, BIL = 2, BUSS = 3/4, LASTBIL = 4]");
             }
-            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch)
+            else if (currentMenu != MenuID.GetVehicle && currentMenu != MenuID.FilterSearch && currentMenu != MenuID.SaveGarage)
             {
                 WriteLine("\nVAD VILL DU GÖRA?");
                 WriteLine("[VÄLJ EN SIFFRA]");
@@ -595,6 +605,11 @@ namespace Grupp_5_Garage_v2
                 WriteLine("\nHÄR KAN DU SÖKA EFTER ETT SPECIFIKT VÄRDE.");
                 WriteLine("[MATA IN VÄRDET DU VILL SÖKA EFTER]");
             }
+            else if (currentMenu == MenuID.SaveGarage)
+            {
+                WriteLine("\nVILL DU SPARA DITT GARAGE?");
+                WriteLine("[SVARA J/N]");
+            }
             ForegroundColor = ConsoleColor.White;
         }
 
@@ -605,6 +620,13 @@ namespace Grupp_5_Garage_v2
             WriteLine("(PARKERA FORDON)");
             WriteLine($"\nBESKRIV DIN {vehicle.ToUpper()}.");
             WriteLine("[MATA IN INFORMATION]");
+            ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void WriteListingHeader()
+        {
+            ForegroundColor = ConsoleColor.Yellow;
+            WriteLine("\t[REGNR] [FORDON]\t [MÄRKE]\t [KVITTONUMMER]");
             ForegroundColor = ConsoleColor.White;
         }
 
@@ -709,7 +731,14 @@ namespace Grupp_5_Garage_v2
                     for (int i = 1; i <= startUpChoices.Count; i++) WriteLine($"{i}. {startUpChoices[i - 1]}");
                     break;
                 case MenuID.Main:
-                    for (int i = 1; i <= mainChoices.Count; i++) WriteLine($"{i}. {mainChoices[i - 1]}");
+                    for (int i = 1; i <= mainChoices.Count; i++)
+                    {
+                        if (i != mainChoices.Count)
+                        {
+                            WriteLine($"{i}. {mainChoices[i - 1]}");
+                        }
+                        else WriteLine($"S. {mainChoices[i - 1]}");
+                    }
                     break;
                 case MenuID.AddVehicle:
                     for (int i = 1; i <= addVehicleChoices.Count; i++) WriteLine($"{i}. {addVehicleChoices[i - 1]}");
@@ -766,6 +795,28 @@ namespace Grupp_5_Garage_v2
             Write("INMATNING: ");
             ForegroundColor = ConsoleColor.White;
         }
+
+        private static void DisplayOutput(string output, ChoiceID choiceID)
+        {
+            Clear();
+            if (choiceID >= ChoiceID.ListAllVehicles && choiceID < ChoiceID.SearchByRegNr)
+            {
+                WriteListingHeader();
+            }
+            else if ((int)choiceID >= (int)ChoiceID.CreateMoped && (int)choiceID <= (int)ChoiceID.CreateTruck)
+            {
+                ForegroundColor = ConsoleColor.Green;
+            }
+            WriteLine(output);
+            ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void DisplayError(string error)
+        {
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine("\n[ERROR]\n" + error);
+            ForegroundColor = ConsoleColor.White;
+        }
         #endregion
 
         #region UsedOnStartUp
@@ -786,7 +837,10 @@ namespace Grupp_5_Garage_v2
                 {
                     currentMenu = MenuID.CreatingGarage;
                     CommunicateWithManager(ChoiceID.CreateGarage, CreateGarageToAdd());
-                    isReadyToStart = true;
+                    if (garageManager.IsReadyToStart())
+                        isReadyToStart = true;
+                    else
+                        currentMenu = MenuID.StartUp;
                 }
                 else if (startUpChoice == "2")
                 {
@@ -822,8 +876,8 @@ namespace Grupp_5_Garage_v2
             ForegroundColor = ConsoleColor.Yellow;
             WriteLine($"{tab}    ____________________________________________________________             _______");
             WriteLine($"{tab}   |                  GRUPP FEMS GARAGEPROJEKT                  |           |   ____|");
-            WriteLine($"|--------------------------|                        SKAPAT AV                           |-----------|  |--------------|");
-            WriteLine($"{tab}   |        AHMAD, ANDREAS, ISAC, MARIE, NESIM, VIKTOR          |           |  |___");
+            WriteLine($"|--------------------------|                         SKAPAT AV                          |-----------|  |--------------|");
+            WriteLine($"{tab}   |               ANDREAS, ISAC, MARIE, VIKTOR                 |           |  |___");
             WriteLine($"{tab}   |____________________________________________________________|           |___   |");
             WriteLine($"{tab}                                                                                |  |");
             WriteLine($"{tab}                                                                            ____|  |");
@@ -854,6 +908,7 @@ namespace Grupp_5_Garage_v2
             mainChoices.Add("Lista lastbilar");
             mainChoices.Add("Lista efter filter");
             mainChoices.Add("Stäng av programmet");
+            mainChoices.Add("Spara garaget.");
 
             addVehicleChoices.Add("Parkera en moped (klass 1)");
             addVehicleChoices.Add("Parkera en moped (klass 2)");
