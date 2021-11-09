@@ -240,12 +240,12 @@ namespace Grupp_5_Garage_v2
             if (error != "")
             {
                 DisplayError(error);
-                PauseForKeyPress();
+                PauseForKeyPress(choiceID);
             }
             else if (output != "")
             {
                 DisplayOutput(output, choiceID);
-                PauseForKeyPress();
+                PauseForKeyPress(choiceID);
             }
         }
 
@@ -547,10 +547,10 @@ namespace Grupp_5_Garage_v2
             return vehicleSpecifications;
         }
 
-        private static void PauseForKeyPress()
+        private static void PauseForKeyPress(ChoiceID choiceID)
         {
             WritePressAnyKey();
-            SetCursorPosition(0, 0);
+            if (choiceID >= ChoiceID.ListAllVehicles && choiceID <= ChoiceID.ListTrucks) SetCursorPosition(0, 0);
             ReadKey();
         }
 
